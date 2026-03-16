@@ -299,15 +299,15 @@ button, input {
 
 /* 프로필 이미지 */
 .profile-avatar-img {
-  flex: 0 0 auto; width: 5.6rem; height: 5.6rem; border-radius: 50%;
+  flex: 0 0 auto; width: 7.5rem; height: 7.5rem; border-radius: 50%;
   object-fit: cover; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   border: 2px solid #ffffff;
 }
 
 /* (2) 전체 논문 목록(publications.html) 썸네일 스타일 */
 .paper-thumb {
-  width: 16rem;  /* 기존 10rem -> 16rem 으로 대폭 확대 (약 256px) */
-  height: 10rem; /* 기존 6.5rem -> 10rem 으로 대폭 확대 (약 160px) */
+  width: 24rem;  /* 기존 10rem -> 24rem 으로 대폭 확대 (약 256px) */
+  height: 12rem; /* 기존 6.5rem -> 10rem 으로 대폭 확대 (약 160px) */
   border-radius: 0.8rem;
   object-fit: cover; /* 비율이 깨지지 않고 꽉 차게 조절 */
   border: 1px solid var(--line);
