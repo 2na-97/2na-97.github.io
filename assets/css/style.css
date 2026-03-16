@@ -152,7 +152,7 @@ button, input {
 .hero-wave-a { width: min(980px, 95vw); height: 340px; right: -260px; top: 60px; transform: rotate(-12deg); border: 1px solid rgba(168,85,247,0.08); }
 .hero-wave-b { width: min(760px, 80vw); height: 250px; left: -220px; bottom: 30px; transform: rotate(10deg); opacity: 0.3; }
 
-.hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 3rem; align-items: center; }
+.hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 3rem; align-items: center; }
 
 /* 포인트 텍스트 색상 */
 .eyebrow, .section-kicker, .profile-kicker, .label, .side-note-title {
