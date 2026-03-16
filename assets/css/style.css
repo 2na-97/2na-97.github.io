@@ -324,16 +324,34 @@ button, input {
   margin-bottom: 0.8rem;
 }
 
-/* 썸네일 크기 (원하시는 큼직한 사이즈) */
+/* 왼쪽: 이미지와 연도를 묶는 영역 */
+.paper-image-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 중앙 정렬 */
+  flex-shrink: 0;
+}
+
+/* 썸네일 크기 */
 .paper-thumb {
-  width: 30rem;  
-  height: 15rem; 
+  width: 22rem;  
+  height: 12.5rem; 
   border-radius: 0.8rem;
   object-fit: cover;
   border: 1px solid var(--line);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  flex-shrink: 0;
   background-color: var(--surface-strong);
+}
+
+/* 연도 워터마크 (그림 밑에 어울리도록 크기와 여백 조정) */
+.year-mark {
+  font-size: 3.5rem; 
+  line-height: 1; 
+  font-weight: 800;
+  letter-spacing: -0.05em; 
+  color: rgba(0, 0, 0, 0.06); 
+  user-select: none;
+  margin-top: 0.8rem; 
 }
 
 /* 논문 카드 상단 이미지 (index.html 용) */
@@ -349,7 +367,10 @@ button, input {
 }
 .paper-feature:hover .paper-image { transform: scale(1.03); }
 
-/* 반응형 처리 */
+/* =========================================================================
+   반응형 처리 (Media Queries)
+   ========================================================================= */
+
 @media (max-width: 1080px) {
   .hero-grid, .about-grid, .two-column-layout, .split-head, .contact-card { grid-template-columns: 1fr; }
   .three-column-grid, .feature-grid, .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -371,57 +392,17 @@ button, input {
   .toolbar-card { top: 5.2rem; }
 }
 
-/* 왼쪽: 이미지와 연도를 묶는 영역 */
-.paper-image-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* 중앙 정렬 (왼쪽 정렬을 원하면 flex-start로 변경) */
-  flex-shrink: 0;
-}
-
-/* 썸네일 크기 (기존 유지, flex-shrink 제거) */
-.paper-thumb {
-  width: 22rem;  
-  height: 12.5rem; 
-  border-radius: 0.8rem;
-  object-fit: cover;
-  border: 1px solid var(--line);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  background-color: var(--surface-strong);
-}
-
-/* 연도 워터마크 (그림 밑에 어울리도록 크기와 여백 조정) */
-.year-mark {
-  font-size: 3.5rem; /* 그림 밑에 쏙 들어가도록 사이즈 조절 */
-  line-height: 1; 
-  font-weight: 800;
-  letter-spacing: -0.05em; 
-  color: rgba(0, 0, 0, 0.06); /* 밝은 배경에 어울리는 연한 색 */
-  user-select: none;
-  margin-top: 0.8rem; /* 이미지와 연도 사이의 간격 */
-}
-
-/* 모바일 화면 대응 */
-@media (max-width: 720px) {
-  .paper-image-col {
-    width: 100%;
-    align-items: flex-start; /* 모바일에서는 왼쪽으로 붙이는 게 예쁩니다 */
-  }
-  .year-mark {
-    font-size: 3rem;
-    margin-top: 0.5rem;
-    margin-bottom: -1rem;
-  }
-}
-
 @media (max-width: 720px) {
   :root { --container: min(100vw - 1.2rem, 100%); --container-narrow: min(100vw - 1.2rem, 100%); }
   .hero h1, .page-hero h1 { max-width: none; }
+  
   .profile-top, .paper-top, .paper-card-top, .paper-body, .timeline-top, .project-top, .contact-card, .footer-shell, .year-header {
     flex-direction: column; align-items: flex-start;
   }
+  
   .profile-grid, .mini-grid, .three-column-grid, .feature-grid, .project-grid { grid-template-columns: 1fr; }
   .button, .button-small, .filter-btn { width: 100%; }
+  
   .hero-wave-a { width: 140vw; right: -45vw; top: 90px; }
   .hero-wave-b { width: 120vw; left: -45vw; }
   
@@ -430,10 +411,22 @@ button, input {
     flex-direction: column;
     gap: 1.2rem;
   }
+  
+  .paper-image-col {
+    width: 100%;
+    align-items: flex-start; /* 모바일에서는 왼쪽으로 붙입니다 */
+  }
+  
   .paper-thumb {
     width: 100%;
     height: auto;
     aspect-ratio: 16 / 9;
     margin-bottom: 0;
+  }
+  
+  .year-mark {
+    font-size: 3rem;
+    margin-top: 0.5rem;
+    margin-bottom: -1rem;
   }
 }
