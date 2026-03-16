@@ -304,12 +304,16 @@ button, input {
   border: 2px solid #ffffff;
 }
 
-/* 전체 논문 목록(publications.html) 썸네일 */
+/* (2) 전체 논문 목록(publications.html) 썸네일 스타일 */
 .paper-thumb {
-  width: 10rem; height: 6.5rem; border-radius: 0.8rem;
-  object-fit: cover; border: 1px solid var(--line);
+  width: 16rem;  /* 기존 10rem -> 16rem 으로 대폭 확대 (약 256px) */
+  height: 10rem; /* 기존 6.5rem -> 10rem 으로 대폭 확대 (약 160px) */
+  border-radius: 0.8rem;
+  object-fit: cover; /* 비율이 깨지지 않고 꽉 차게 조절 */
+  border: 1px solid var(--line);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  flex-shrink: 0; background-color: var(--surface-strong);
+  flex-shrink: 0; /* 화면이 좁아져도 이미지 크기가 안 줄어들게 고정 */
+  background-color: var(--surface-strong); /* 이미지가 없을 때 빈 칸 색상 */
 }
 
 /* 논문 카드 상단 이미지 (index.html) */
