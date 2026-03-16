@@ -292,7 +292,6 @@ button, input {
 .footer-shell { align-items: center; }
 .footer-shell p { margin: 0; }
 
-
 /* =========================================================================
    이미지 관련 스타일 (프로필, 썸네일, 카드 썸네일)
    ========================================================================= */
@@ -321,13 +320,18 @@ button, input {
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-width: 0; /* 텍스트가 밖으로 넘치지 않게 방지 */
+  min-width: 0;
+}
+
+/* 상단 태그 칩 영역에 여백 추가 */
+.paper-info .paper-meta {
+  margin-bottom: 0.8rem;
 }
 
 /* 썸네일 크기 (원하시는 큼직한 사이즈) */
 .paper-thumb {
-  width: 22rem;  /* 가로를 시원하게 늘림 (약 350px) */
-  height: 12.5rem; /* 비율에 맞게 세로 조절 (약 200px) */
+  width: 22rem;  
+  height: 12.5rem; 
   border-radius: 0.8rem;
   object-fit: cover;
   border: 1px solid var(--line);
@@ -336,20 +340,7 @@ button, input {
   background-color: var(--surface-strong);
 }
 
-/* 모바일 등 작은 화면에서는 자동으로 위/아래 배치로 예쁘게 변경 */
-@media (max-width: 720px) {
-  .paper-card.list-layout {
-    flex-direction: column;
-    gap: 1.2rem;
-  }
-  .paper-thumb {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
-  }
-}
-
-/* 논문 카드 상단 이미지 (index.html) */
+/* 논문 카드 상단 이미지 (index.html 용) */
 .paper-image-wrapper {
   margin: -1.5rem -1.5rem 1.2rem -1.5rem;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
@@ -361,7 +352,6 @@ button, input {
   transition: transform 0.4s ease;
 }
 .paper-feature:hover .paper-image { transform: scale(1.03); }
-
 
 /* 반응형 처리 */
 @media (max-width: 1080px) {
@@ -397,5 +387,15 @@ button, input {
   .hero-wave-b { width: 120vw; left: -45vw; }
   .year-mark { font-size: 2.4rem; }
   
-  .paper-thumb { width: 100%; height: 18rem; margin-bottom: 0.5rem;}
+  /* 모바일 화면에서는 2단 레이아웃을 다시 위/아래로 풀어줍니다 */
+  .paper-card.list-layout {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .paper-thumb {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    margin-bottom: 0;
+  }
 }
