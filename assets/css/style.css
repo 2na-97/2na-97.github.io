@@ -401,8 +401,42 @@ button, input {
   }
   
   .profile-grid, .mini-grid, .three-column-grid, .feature-grid, .project-grid { grid-template-columns: 1fr; }
-  .button, .button-small, .filter-btn { width: 100%; }
   
+  /* 기존에 .filter-btn 까지 100% 였던 것을 제외함 */
+  .button, .button-small { width: 100%; } 
+  
+  /* ================= [수정된 모바일 검색창 & 필터 설정] ================= */
+  /* 모바일에서는 검색창이 화면을 가리지 않도록 고정(sticky) 해제 */
+  .toolbar-card { 
+    position: relative; 
+    top: 0; 
+    margin-bottom: 2rem; 
+  }
+  
+  /* 필터 버튼들이 세로로 쌓이지 않고 가로로 스와이프 되도록 설정 */
+  .filter-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* 아이폰 부드러운 스크롤 */
+    padding-bottom: 0.5rem;
+    gap: 0.5rem;
+  }
+  
+  /* 모바일 스크롤바 숨기기 (더 깔끔하게) */
+  .filter-row::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* 필터 버튼 크기를 글씨에 맞게 자동으로 줄임 */
+  .filter-btn { 
+    width: auto; 
+    flex-shrink: 0; 
+    font-size: 0.85rem; 
+    padding: 0.5rem 0.9rem; 
+    min-height: 2.5rem;
+  }
+  /* ================================================================= */
+
   .hero-wave-a { width: 140vw; right: -45vw; top: 90px; }
   .hero-wave-b { width: 120vw; left: -45vw; }
   
