@@ -304,16 +304,49 @@ button, input {
   border: 2px solid #ffffff;
 }
 
-/* (2) 전체 논문 목록(publications.html) 썸네일 스타일 */
+/* =========================================================================
+   논문 목록(publications.html) 가로 2단 레이아웃 및 썸네일
+   ========================================================================= */
+
+/* 카드 전체를 가로 배치로 만듭니다 */
+.paper-card.list-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 1.8rem;
+  align-items: flex-start;
+}
+
+/* 텍스트가 들어가는 우측 영역이 남은 공간을 꽉 채우도록 합니다 */
+.paper-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* 텍스트가 밖으로 넘치지 않게 방지 */
+}
+
+/* 썸네일 크기 (원하시는 큼직한 사이즈) */
 .paper-thumb {
-  width: 24rem;  /* 기존 10rem -> 24rem 으로 대폭 확대 (약 256px) */
-  height: 12rem; /* 기존 6.5rem -> 10rem 으로 대폭 확대 (약 160px) */
+  width: 22rem;  /* 가로를 시원하게 늘림 (약 350px) */
+  height: 12.5rem; /* 비율에 맞게 세로 조절 (약 200px) */
   border-radius: 0.8rem;
-  object-fit: cover; /* 비율이 깨지지 않고 꽉 차게 조절 */
+  object-fit: cover;
   border: 1px solid var(--line);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  flex-shrink: 0; /* 화면이 좁아져도 이미지 크기가 안 줄어들게 고정 */
-  background-color: var(--surface-strong); /* 이미지가 없을 때 빈 칸 색상 */
+  flex-shrink: 0;
+  background-color: var(--surface-strong);
+}
+
+/* 모바일 등 작은 화면에서는 자동으로 위/아래 배치로 예쁘게 변경 */
+@media (max-width: 720px) {
+  .paper-card.list-layout {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .paper-thumb {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
 }
 
 /* 논문 카드 상단 이미지 (index.html) */
@@ -364,5 +397,5 @@ button, input {
   .hero-wave-b { width: 120vw; left: -45vw; }
   .year-mark { font-size: 2.4rem; }
   
-  .paper-thumb { width: 100%; height: 12rem; margin-bottom: 0.5rem;}
+  .paper-thumb { width: 100%; height: 18rem; margin-bottom: 0.5rem;}
 }
