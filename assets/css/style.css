@@ -330,8 +330,8 @@ button, input {
 
 /* 썸네일 크기 (원하시는 큼직한 사이즈) */
 .paper-thumb {
-  width: 22rem;  
-  height: 12.5rem; 
+  width: 30rem;  
+  height: 15rem; 
   border-radius: 0.8rem;
   object-fit: cover;
   border: 1px solid var(--line);
