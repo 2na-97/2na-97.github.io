@@ -266,6 +266,21 @@ button, input {
 .chip-accent { background: rgba(244, 114, 182, 0.08); border-color: rgba(244, 114, 182, 0.25); color: #db2777; }
 .chip-soft { background: rgba(168, 85, 247, 0.08); border-color: rgba(168, 85, 247, 0.25); color: #7e22ce; }
 
+.card .award-callout {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin: 0.7rem 0 0;
+  padding: 0.52rem 0.78rem;
+  border-radius: 0.9rem;
+  background: rgba(245, 158, 11, 0.10);
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  color: #b45309;
+  font-size: 0.86rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
 .stats-grid { margin-top: 1.6rem; }
 .stat-card {
   min-width: 11rem; padding: 1rem 1.1rem; border-radius: var(--radius-md);
@@ -559,7 +574,8 @@ button, input {
   color: var(--text-strong);
 }
 
-.hero-panel .card.side-note-featured .sticky-tag-review {
+.hero-panel .card.side-note-featured .sticky-tag-review,
+.hero-panel .card.side-note-featured .sticky-tag-eccv {
   background: rgba(124, 58, 237, 0.12);
   color: #7c3aed;
 }
@@ -572,6 +588,11 @@ button, input {
 .hero-panel .card.side-note-featured .sticky-tag-cvpr {
   background: rgba(244, 114, 182, 0.12);
   color: #db2777;
+}
+
+.hero-panel .card.side-note-featured .sticky-tag-award {
+  background: rgba(245, 158, 11, 0.14);
+  color: #b45309;
 }
 
 .hero-panel .card.side-note-featured .sticky-note h4 {
