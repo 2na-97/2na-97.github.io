@@ -42,6 +42,7 @@
     <script src="assets/js/motion.js" defer></script>
     <link rel="stylesheet" href="assets/css/experience.css" />
     <script type="module" src="assets/js/lab-scene.js"></script>
+    <script src="assets/js/wonder.js" defer></script>
   </head>
   <body>
     <div class="reading-progress" aria-hidden="true"></div>
@@ -79,7 +80,7 @@
           ><a href="projects.html">Play &amp; build</a>
           <a
             class="nav-cv"
-            href="assets/files/InhaKang_CV.pdf"
+            href="assets/files/Inha_Kang_CV_20261030.pdf"
             target="_blank"
             rel="noopener noreferrer"
             >CV <span aria-hidden="true">↗</span></a
@@ -125,10 +126,30 @@
               <a class="button dark" href="#research"
                 >Discover my research <span aria-hidden="true">↗</span></a
               >
+            </div>
+            <div
+              class="scene-controls"
+              role="group"
+              aria-label="Play with the research universe"
+            >
               <button class="rain-button" type="button" hidden>
-                <span class="rain-icon" aria-hidden="true">✦</span> Make it rain
+                <span aria-hidden="true">✦</span> Make it rain
+              </button>
+              <button
+                class="orbit-button"
+                type="button"
+                aria-pressed="false"
+                hidden
+              >
+                <span aria-hidden="true">◎</span> Orbit
+              </button>
+              <button class="snap-button" type="button" hidden>
+                <span aria-hidden="true">▣</span> Bubbles
               </button>
             </div>
+            <button class="bubble-clear" type="button" hidden>
+              Pop all bubbles <span aria-hidden="true">✧</span>
+            </button>
           </div>
           <div class="showcase-bottom wrap">
             <div class="affiliation-lockup">
@@ -139,7 +160,7 @@
               >Ideas in motion <span aria-hidden="true">↓</span></a
             >
           </div>
-          <p class="scene-caption" aria-hidden="true">
+          <p class="scene-caption" role="status">
             A small universe of things I’m curious about.
           </p>
         </div>
@@ -576,24 +597,100 @@
         </div>
       </section>
       <section class="section wrap about-section" id="about">
+        <div class="curiosity-world" data-scroll-scene data-world="daydream">
+          <img
+            class="world-landscape"
+            src="assets/img/curiosity-landscape.webp"
+            alt=""
+            width="1536"
+            height="1024"
+            loading="lazy"
+          />
+          <div class="world-wash" aria-hidden="true"></div>
+          <div class="world-heading">
+            <p class="eyebrow">SOMEWHERE BETWEEN REAL &amp; POSSIBLE</p>
+            <h2><span>A curious mind.</span><em>In any world.</em></h2>
+            <p>
+              A real moment. A little imagination.<br />The same person asking
+              what comes next.
+            </p>
+          </div>
+          <div class="world-orbs" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="world-photo-anchor">
+            <button
+              class="world-photo"
+              type="button"
+              aria-pressed="false"
+              aria-label="Flip Inha’s photo"
+              aria-describedby="paper-help"
+              disabled
+            >
+              <span class="photo-face photo-front">
+                <span class="paper-fibers" aria-hidden="true"></span>
+                <span class="paper-tape" aria-hidden="true"></span>
+                <img
+                  src="assets/img/inha-cutout.webp"
+                  alt="Inha Kang, cut out from her original outdoor photograph"
+                  width="1254"
+                  height="1254"
+                  loading="lazy"
+                  draggable="false"
+                />
+                <span class="paper-corner" aria-hidden="true"></span>
+                <span class="photo-caption"
+                  >A little outside the lines. <b aria-hidden="true">↻</b></span
+                >
+              </span>
+              <span class="photo-face photo-back" aria-hidden="true">
+                <span class="postcard-stamp" aria-hidden="true">✳</span>
+                <span class="eyebrow">A NOTE FROM INHA</span>
+                <strong
+                  >Curiosity is<br />the common<br /><em>thread.</em></strong
+                >
+                <span
+                  >From pixels and language<br />to the physical world.</span
+                >
+                <span class="postcard-signature">Keep wondering. ↻</span>
+              </span>
+            </button>
+            <span class="paper-hint" aria-hidden="true"
+              >drag me · flip me ↗</span
+            >
+            <p id="paper-help" class="paper-help">
+              Drag the paper, or use arrow keys to move it. Press Enter to turn
+              it over, and Home to reset its position.
+            </p>
+          </div>
+          <div class="world-footer">
+            <p>Real photograph · Imagined landscape</p>
+            <div
+              class="world-switch"
+              role="group"
+              aria-label="Choose the portrait setting"
+              hidden
+            >
+              <button type="button" data-setting="daydream" aria-pressed="true">
+                Daydream <span aria-hidden="true">✧</span>
+              </button>
+              <button type="button" data-setting="studio" aria-pressed="false">
+                Studio <span aria-hidden="true">◌</span>
+              </button>
+              <button
+                type="button"
+                class="paper-reset"
+                aria-label="Reset the paper collage"
+              >
+                Reset <span aria-hidden="true">↺</span>
+              </button>
+            </div>
+          </div>
+        </div>
         <div class="about-heading">
           <p class="eyebrow">02 / THE PERSON BEHIND THE PAPERS</p>
           <h2>
             Research depth.<br />
             <em>Builder energy.</em>
           </h2>
-          <figure class="about-portrait">
-            <img
-              src="assets/img/profile.webp"
-              alt="Inha Kang outdoors beside a waterfall"
-              width="720"
-              height="720"
-              loading="lazy"
-            />
-            <figcaption>
-              Outside the lab. Still curious. <span aria-hidden="true">↗</span>
-            </figcaption>
-          </figure>
           <div class="about-note">
             <span aria-hidden="true">✳</span>
             <p>
@@ -625,10 +722,16 @@
           <div class="about-links">
             <a
               class="text-link"
-              href="assets/files/InhaKang_CV.pdf"
+              href="assets/files/Inha_Kang_CV_20261030.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              >Read my CV · Sep 2026 <span aria-hidden="true">↗</span></a
+              >Read my CV · Oct 2026 <span aria-hidden="true">↗</span></a
+            ><a
+              class="text-link"
+              href="assets/files/Inha_Kang_Research_Resume_20261030.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              >2-page research resume <span aria-hidden="true">↗</span></a
             ><a
               class="text-link"
               href="https://drive.google.com/file/d/10ShAh3M-BPV0rrOXE94NQod0BKUxyx11/view?usp=sharing"
@@ -846,7 +949,7 @@
               >LinkedIn <span aria-hidden="true">↗</span></a
             ><a
               class="text-link"
-              href="assets/files/InhaKang_CV.pdf"
+              href="assets/files/Inha_Kang_CV_20261030.pdf"
               target="_blank"
               rel="noopener noreferrer"
               >CV <span aria-hidden="true">↗</span></a

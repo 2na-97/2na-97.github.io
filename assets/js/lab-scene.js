@@ -22,6 +22,10 @@ function createUniverse(host) {
   const canvas = host.querySelector("canvas");
   const copy = host.querySelector(".showcase-copy");
   const rainButton = host.querySelector(".rain-button");
+  const orbitButton = host.querySelector(".orbit-button");
+  const snapButton = host.querySelector(".snap-button");
+  const caption = host.querySelector(".scene-caption");
+  const clearButton = host.querySelector(".bubble-clear");
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   const fine = matchMedia("(hover:hover) and (pointer:fine)");
   const renderer = new THREE.WebGLRenderer({
@@ -76,6 +80,13 @@ function createUniverse(host) {
     blush: mat("#ff90b4"),
     visor: mat("#2d3165", { metalness: 0.55, roughness: 0.16 }),
     silver: mat("#dbe4ff", { metalness: 0.85, roughness: 0.16 }),
+    coral: mat("#ff927b"),
+    glass: mat("#adbcff", {
+      metalness: 0.5,
+      roughness: 0.1,
+      transparent: true,
+      opacity: 0.72,
+    }),
   };
   const sphere = new THREE.SphereGeometry(1, 40, 28);
   const mesh = (geo, material, parent, pos = [0, 0, 0], scale = [1, 1, 1]) => {
@@ -219,26 +230,167 @@ function createUniverse(host) {
     ball(g, materials.gold, [0.53, 0.36, 0], [0.15, 0.15, 0.15]);
     return g;
   }
-  const factories = [robot, eye, globe, cloud, bubble, star, tokens, orbit];
+  function photoCamera() {
+    const g = new THREE.Group();
+    box(g, materials.mint, [1.65, 1.08, 0.72], [0, 0, 0], 0.24);
+    box(g, materials.coral, [0.33, 0.92, 0.78], [-0.62, -0.03, 0.02], 0.12);
+    box(g, materials.mint, [0.68, 0.26, 0.57], [0.12, 0.62, -0.06], 0.09);
+    const lens = new THREE.Group();
+    lens.name = "lens";
+    lens.position.set(0.15, -0.06, 0.42);
+    g.add(lens);
+    torus(lens, materials.silver, 0.43, 0.075);
+    ball(lens, materials.visor, [0, 0, 0], [0.4, 0.4, 0.13]);
+    torus(lens, materials.cyan, 0.28, 0.026, [0, 0, 0.13]);
+    ball(lens, materials.blue, [0, 0, 0.13], [0.25, 0.25, 0.09]);
+    ball(lens, materials.white, [-0.09, 0.12, 0.22], [0.065, 0.09, 0.02]);
+    box(g, materials.gold, [0.29, 0.12, 0.26], [-0.48, 0.6, 0.03], 0.05);
+    box(g, materials.white, [0.27, 0.15, 0.04], [0.57, 0.29, 0.38], 0.04);
+    const strap = torus(g, materials.lavender, 0.58, 0.035, [0, -0.2, -0.4]);
+    strap.scale.set(1.65, 1, 1);
+    strap.rotation.x = 0.3;
+    return g;
+  }
+  function neuralNetwork() {
+    const g = new THREE.Group();
+    const points = [
+      [-0.65, 0.4, 0],
+      [-0.65, -0.4, 0],
+      [0, 0.65, 0.08],
+      [0, 0, 0.2],
+      [0, -0.65, 0.08],
+      [0.65, 0.36, 0],
+      [0.65, -0.36, 0],
+    ].map((p) => new THREE.Vector3(...p));
+    const edges = [
+      [0, 2],
+      [0, 3],
+      [0, 4],
+      [1, 2],
+      [1, 3],
+      [1, 4],
+      [2, 5],
+      [3, 5],
+      [3, 6],
+      [4, 6],
+    ];
+    edges.forEach(([a, b]) => {
+      const delta = new THREE.Vector3().subVectors(points[b], points[a]);
+      const line = mesh(
+        new THREE.CylinderGeometry(0.022, 0.022, delta.length(), 8),
+        materials.silver,
+        g,
+      );
+      line.position.copy(points[a]).add(points[b]).multiplyScalar(0.5);
+      line.quaternion.setFromUnitVectors(
+        new THREE.Vector3(0, 1, 0),
+        delta.normalize(),
+      );
+    });
+    points.forEach((p, i) =>
+      ball(
+        g,
+        [materials.pink, materials.cyan, materials.lavender][i % 3],
+        p.toArray(),
+        [0.16, 0.16, 0.16],
+      ),
+    );
+    const signal = ball(g, materials.gold, [0, 0, 0], [0.07, 0.07, 0.07]);
+    signal.name = "signal";
+    return g;
+  }
+  function prism() {
+    const g = new THREE.Group();
+    const geometry = new THREE.OctahedronGeometry(0.7);
+    mesh(geometry, materials.glass, g);
+    const edges = new THREE.LineSegments(
+      new THREE.EdgesGeometry(geometry),
+      new THREE.LineBasicMaterial({ color: 0xcbd9ff }),
+    );
+    g.add(edges);
+    ball(g, materials.pink, [0, 0, 0], [0.24, 0.24, 0.24]);
+    const ring = torus(g, materials.gold, 0.48, 0.023);
+    ring.rotation.set(0.8, 0.4, 0);
+    return g;
+  }
+  const factories = [
+    robot,
+    eye,
+    globe,
+    cloud,
+    bubble,
+    star,
+    tokens,
+    orbit,
+    photoCamera,
+    neuralNetwork,
+    prism,
+  ];
+  const descriptions = [
+    "A little agent. Big possibilities.",
+    "A fresh way of seeing.",
+    "Models of a world in motion.",
+    "Forecasting a little further.",
+    "Language meets imagination.",
+    "Stay a little starry-eyed.",
+    "Good ideas start with good data.",
+    "Follow your curiosity.",
+    "A different lens on the world.",
+    "Everything is connected.",
+    "A new dimension of understanding.",
+  ];
   const toys = [];
   // Relative x coordinates keep a quiet reading area in the center.
   const layouts = [
-    [-0.35, -1.75, 0.95, -0.2, 0.34, -0.19],
-    [-0.36, 0.95, 0.8, 0.12, -0.28, 0.12],
+    [-0.34, -1.75, 0.85, -0.2, 0.34, -0.19],
+    [-0.4, 0.8, 0.67, 0.12, -0.28, 0.12],
     [0.35, 1.9, 1.08, 0.25, -0.25, 0.15],
     [0.34, -2.05, 0.95, -0.14, -0.25, -0.12],
     [0.4, -0.05, 0.82, 0.1, -0.32, 0.2],
-    [-0.24, 2.55, 0.8, 0.15, 0.3, -0.2],
+    [-0.15, 3.2, 0.6, 0.15, 0.3, -0.2],
     [-0.12, -2.95, 0.68, 0.25, 0.2, -0.18],
     [0.16, 2.9, 0.65, 0.2, -0.25, 0.18],
+    [-0.34, 2.4, 0.86, -0.12, 0.28, -0.16],
+    [0.25, -3.0, 0.62, 0.15, -0.3, 0.12],
+    [-0.43, -0.55, 0.5, 0.2, 0.3, 0.15],
   ];
   factories.forEach((factory, i) => {
     const object = factory();
     scene.add(object);
-    toys.push({ object, layout: layouts[i], phase: i * 1.7 });
+    object.userData.toyIndex = i;
+    toys.push({
+      object,
+      layout: layouts[i],
+      phase: i * 1.7,
+      kick: 0,
+      turn: 0,
+      turnTarget: 0,
+      push: new THREE.Vector2(),
+    });
   });
+  const raycaster = new THREE.Raycaster();
+  const hitPoint = new THREE.Vector2();
+  // Lightweight orbital ribbons and traveling beads give the stage depth.
+  const ribbons = [];
+  for (let i = 0; i < 3; i++) {
+    const path = new THREE.EllipseCurve(0, 0, 1, 1, 0, Math.PI * 2);
+    const geometry = new THREE.BufferGeometry().setFromPoints(
+      path.getPoints(120),
+    );
+    const line = new THREE.LineLoop(
+      geometry,
+      new THREE.LineBasicMaterial({
+        color: [0xc2b5f4, 0xa4d6eb, 0xf0b5ce][i],
+        transparent: true,
+        opacity: 0.34,
+      }),
+    );
+    line.position.z = -1.7;
+    scene.add(line);
+    ribbons.push(line);
+  }
   const sparks = [];
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < 18; i++) {
     const object = ball(
       scene,
       [materials.pink, materials.cyan, materials.gold][i % 3],
@@ -252,7 +404,7 @@ function createUniverse(host) {
     sparks.push(object);
   }
   // Particle toys reuse the originals' geometries/materials and a fixed pool.
-  const drops = Array.from({ length: 22 }, (_, i) => {
+  const drops = Array.from({ length: 26 }, (_, i) => {
     const object = toys[i % toys.length].object.clone(true);
     object.visible = false;
     scene.add(object);
@@ -265,6 +417,50 @@ function createUniverse(host) {
       bounces: 0,
     };
   });
+  // A bounded pool of iridescent bubbles: repeated shots reuse old slots.
+  const soapGeometry = new THREE.SphereGeometry(1, 24, 16);
+  const bubbleRimGeometry = new THREE.BufferGeometry().setFromPoints(
+    new THREE.EllipseCurve(0, 0, 1, 1, 0, Math.PI * 2).getPoints(48),
+  );
+  const bubbles = Array.from({ length: 64 }, (_, index) => {
+    const object = new THREE.Group();
+    const material = mat("#f9a7d6", {
+      metalness: 0.02,
+      roughness: 0.08,
+      transparent: true,
+      opacity: 0.55,
+      depthWrite: false,
+      envMapIntensity: 0.55,
+      iridescence: 0.8,
+      iridescenceIOR: 1.3,
+      iridescenceThicknessRange: [200, 500],
+    });
+    mesh(soapGeometry, material, object);
+    const rimMaterial = new THREE.LineBasicMaterial({
+      color: 0xffffff,
+      transparent: true,
+      opacity: 0.65,
+    });
+    const edge = new THREE.LineLoop(bubbleRimGeometry, rimMaterial);
+    object.add(edge);
+    ball(object, materials.white, [-0.35, 0.46, 0.72], [0.13, 0.2, 0.025]);
+    object.visible = false;
+    object.userData.bubbleIndex = index;
+    scene.add(object);
+    return {
+      object,
+      material,
+      rimMaterial,
+      velocity: new THREE.Vector2(),
+      radius: 0.25,
+      age: 0,
+      popping: 0,
+      live: false,
+    };
+  });
+  let bubbleCursor = 0,
+    bubbleShot = 0,
+    lensKick = 0;
   let active =
     document.documentElement.classList.contains("motion-active") &&
     !reduced.matches;
@@ -277,7 +473,12 @@ function createUniverse(host) {
     scrollValue = 0,
     halfWidth = 8,
     mobile = false,
-    lost = false;
+    lost = false,
+    orbiting = false,
+    orbitMix = 0,
+    orbitTime = 0,
+    hovered = -1,
+    pointerInside = false;
   const pointer = new THREE.Vector2(),
     smoothPointer = new THREE.Vector2();
   const clamp = THREE.MathUtils.clamp;
@@ -285,6 +486,13 @@ function createUniverse(host) {
     const w = stage.clientWidth,
       h = stage.clientHeight;
     mobile = w < 600;
+    if (mobile && bubbles.slice(32).some((bubble) => bubble.live)) {
+      bubbles.slice(32).forEach((bubble) => {
+        bubble.live = false;
+        bubble.object.visible = false;
+      });
+      bubbleStatus();
+    }
     renderer.setPixelRatio(Math.min(devicePixelRatio || 1, mobile ? 1.5 : 1.8));
     renderer.setSize(w, h, false);
     halfWidth = (4.3 * w) / h;
@@ -311,14 +519,178 @@ function createUniverse(host) {
       (document.documentElement.classList.contains("motion-active") &&
         !reduced.matches);
     rainButton.disabled = !active;
+    orbitButton.disabled = !active;
+    snapButton.disabled = !active;
+    clearButton.disabled = !active;
     canvas.dataset.motion = active ? "active" : "static";
     if (!active) {
       burst = -1;
       canvas.dataset.rainPhase = "idle";
       drops.forEach((d) => (d.object.visible = false));
+      orbiting = false;
+      orbitMix = 0;
+      orbitButton.setAttribute("aria-pressed", "false");
+      canvas.dataset.orbit = "idle";
+      host.classList.remove("is-over-toy");
+      toys.forEach((toy) => {
+        toy.kick = 0;
+        toy.turn = toy.turnTarget = 0;
+      });
+      caption.textContent = "A small universe of things I’m curious about.";
     }
     previous = 0;
     request();
+  }
+  function hitTest() {
+    raycaster.setFromCamera(hitPoint, camera);
+    const hit = raycaster.intersectObjects(
+      toys.map((toy) => toy.object),
+      true,
+    )[0];
+    if (!hit) return -1;
+    let object = hit.object;
+    while (object && object.userData.toyIndex === undefined)
+      object = object.parent;
+    return object?.userData.toyIndex ?? -1;
+  }
+  function poke(index) {
+    if (!active || index < 0) return;
+    const toy = toys[index];
+    toy.kick = 1;
+    toy.turnTarget += Math.PI * 2;
+    caption.textContent = descriptions[index];
+    canvas.dataset.lastToy = String(index);
+  }
+  function bubbleStatus() {
+    const count = bubbles.filter(
+      (bubble) => bubble.live && !bubble.popping,
+    ).length;
+    canvas.dataset.bubbles = String(count);
+    canvas.dataset.bubbleShot = String(bubbleShot);
+    clearButton.hidden = count === 0;
+  }
+  function shootBubbles() {
+    if (!active) return;
+    bubbleShot++;
+    lensKick = 1;
+    toys[8].kick = 0.7;
+    const source = toys[8].object.position;
+    const limit = mobile ? 32 : bubbles.length;
+    for (let i = 0; i < (mobile ? 8 : 12); i++) {
+      const bubble = bubbles[bubbleCursor++ % limit];
+      bubble.live = true;
+      bubble.popping = 0;
+      bubble.age = -i * 0.055;
+      bubble.radius =
+        (mobile ? 0.13 : 0.21) + Math.random() * (mobile ? 0.11 : 0.18);
+      const hue = (bubbleShot * 0.23 + i * 0.025) % 1;
+      bubble.material.color.setHSL(hue, 0.9, 0.52);
+      bubble.rimMaterial.color.setHSL(hue, 0.9, 0.65);
+      bubble.rimMaterial.opacity = 0.65;
+      bubble.material.opacity = 0.55;
+      bubble.object.visible = false;
+      bubble.object.scale.setScalar(bubble.radius * 0.1);
+      bubble.object.position.set(source.x + 0.25, source.y, 3);
+      bubble.velocity.set(1.4 + Math.random() * 3.7, 0.3 + Math.random() * 1.5);
+    }
+    caption.textContent =
+      "A little color, a little wonder. Tap a bubble to pop it.";
+    bubbleStatus();
+    request();
+  }
+  function popBubble(index) {
+    const bubble = bubbles[index];
+    if (!bubble.live || bubble.popping) return;
+    bubble.popping = 0.001;
+    canvas.dataset.lastPopped = String(index);
+    bubbleStatus();
+  }
+  function bubbleHitTest() {
+    raycaster.setFromCamera(hitPoint, camera);
+    const hit = raycaster.intersectObjects(
+      bubbles
+        .filter((b) => b.live && !b.popping && b.object.visible)
+        .map((b) => b.object),
+      true,
+    )[0];
+    if (!hit) return -1;
+    let object = hit.object;
+    while (object && object.userData.bubbleIndex === undefined)
+      object = object.parent;
+    return object?.userData.bubbleIndex ?? -1;
+  }
+  function animateBubbles(dt) {
+    const floor = -3.55;
+    bubbles.forEach((b, i) => {
+      if (!b.live) return;
+      b.age += dt;
+      if (b.age < 0) return;
+      b.object.visible = true;
+      if (b.popping) {
+        b.popping += dt;
+        b.object.scale.setScalar(b.radius * (1 + b.popping * 2.2));
+        b.material.opacity = Math.max(0, 0.55 * (1 - b.popping / 0.22));
+        b.rimMaterial.opacity = Math.max(0, 0.65 * (1 - b.popping / 0.22));
+        if (b.popping > 0.22) {
+          b.live = false;
+          b.object.visible = false;
+        }
+        return;
+      }
+      b.velocity.y -= dt * 1.75;
+      b.velocity.x *= Math.exp(-dt * 0.45);
+      b.object.position.x += b.velocity.x * dt;
+      b.object.position.y += b.velocity.y * dt;
+      const wall = halfWidth - b.radius - 0.08;
+      if (Math.abs(b.object.position.x) > wall) {
+        b.object.position.x = clamp(b.object.position.x, -wall, wall);
+        b.velocity.x *= -0.55;
+      }
+      if (b.object.position.y < floor + b.radius) {
+        b.object.position.y = floor + b.radius;
+        b.velocity.y = Math.abs(b.velocity.y) * 0.32;
+        if (b.velocity.y < 0.12) b.velocity.y = 0;
+      }
+      const swell = Math.min(1, b.age * 6);
+      b.object.scale.setScalar(
+        b.radius * swell * (1 + Math.sin(time * 2 + i) * 0.02),
+      );
+    });
+    // Two inexpensive sphere-contact passes keep the bottom pile soft and stable.
+    for (let pass = 0; pass < 2; pass++) {
+      for (let i = 0; i < bubbles.length; i++) {
+        const a = bubbles[i];
+        if (!a.live || a.popping || a.age < 0.2) continue;
+        for (let j = i + 1; j < bubbles.length; j++) {
+          const b = bubbles[j];
+          if (!b.live || b.popping || b.age < 0.2) continue;
+          const dx = b.object.position.x - a.object.position.x,
+            dy = b.object.position.y - a.object.position.y;
+          const distance = Math.hypot(dx, dy),
+            separation = a.radius + b.radius;
+          if (distance >= separation) continue;
+          const nx = distance ? dx / distance : 1,
+            ny = distance ? dy / distance : 0;
+          const shift = (separation - distance) * 0.5;
+          a.object.position.x -= nx * shift;
+          a.object.position.y -= ny * shift;
+          b.object.position.x += nx * shift;
+          b.object.position.y += ny * shift;
+          const speed =
+            (b.velocity.x - a.velocity.x) * nx +
+            (b.velocity.y - a.velocity.y) * ny;
+          if (speed < 0) {
+            const impulse = -speed * 0.58;
+            a.velocity.x -= impulse * nx;
+            a.velocity.y -= impulse * ny;
+            b.velocity.x += impulse * nx;
+            b.velocity.y += impulse * ny;
+          }
+          a.object.position.y = Math.max(floor + a.radius, a.object.position.y);
+          b.object.position.y = Math.max(floor + b.radius, b.object.position.y);
+        }
+      }
+    }
   }
   function makeRain() {
     if (!active || burst >= 0) return;
@@ -326,7 +698,7 @@ function createUniverse(host) {
     rainButton.disabled = true;
     canvas.dataset.rainPhase = "falling";
     drops.forEach((drop, i) => {
-      drop.delay = i * 0.055;
+      drop.delay = i < (mobile ? 16 : 26) ? i * 0.055 : Infinity;
       drop.age = 0;
       drop.bounces = 0;
       drop.object.visible = false;
@@ -360,56 +732,138 @@ function createUniverse(host) {
     smoothPointer.lerp(active ? pointer : new THREE.Vector2(), 0.04);
     const progress = scrollValue,
       fall = progress * progress;
-    toys.forEach(({ object, layout: l, phase }, i) => {
+    orbitMix = THREE.MathUtils.damp(
+      orbitMix,
+      orbiting && active ? 1 : 0,
+      3,
+      dt,
+    );
+    if (active && orbiting) orbitTime += dt * 0.24;
+    toys.forEach((toy, i) => {
+      const { object, layout: l, phase } = toy;
       let x = l[0] * halfWidth * 2,
         y = l[1],
         scale = l[2];
       if (mobile) {
         // On phones, toys sit above and below the copy instead of behind it.
         const placements = [
-          [-0.28, -2.45, 0.55],
-          [-0.32, 2.5, 0.44],
-          [0.29, 2.75, 0.5],
+          [-0.28, -2.5, 0.5],
+          [-0.02, 2.85, 0.27],
+          [0.3, 3.3, 0.43],
           [0.3, -2.48, 0.55],
-          [0.37, -1.5, 0.33],
-          [-0.05, 3.15, 0.42],
-          [-0.08, -3.25, 0.34],
-          [0.17, 3.3, 0.34],
+          [0.37, -1.95, 0.28],
+          [-0.02, 3.55, 0.32],
+          [-0.05, -3.25, 0.29],
+          [0.08, -2.8, 0.27],
+          [-0.29, 3.35, 0.43],
+          [0.32, -3.3, 0.32],
+          [-0.38, -1.6, 0.3],
         ];
         x = placements[i][0] * halfWidth * 2;
         y = placements[i][1];
         scale = placements[i][2];
       }
-      const float = active ? Math.sin(time * 0.62 + phase) * 0.1 : 0;
+      const orbitAngle =
+        Math.atan2(y / 3.5, x / (halfWidth * 0.86)) + orbitTime;
+      const cos = Math.cos(orbitAngle),
+        sin = Math.sin(orbitAngle);
+      x = THREE.MathUtils.lerp(
+        x,
+        Math.sign(cos) * Math.pow(Math.abs(cos), 0.55) * halfWidth * 0.86,
+        orbitMix,
+      );
+      y = THREE.MathUtils.lerp(
+        y,
+        Math.sign(sin) * Math.pow(Math.abs(sin), 0.55) * 3.5,
+        orbitMix,
+      );
+      scale *= 1 - orbitMix * 0.22;
+      const float = active ? Math.sin(time * 1.05 + phase) * 0.17 : 0;
       const entry = active
         ? Math.exp(-time * 2.2) * Math.cos(time * 3.8 + i * 0.35) * 0.8
         : 0;
+      toy.kick = active ? Math.max(0, toy.kick - dt * 0.65) : 0;
+      toy.turn = THREE.MathUtils.damp(toy.turn, toy.turnTarget, 3.2, dt);
+      const kick = Math.sin(toy.kick * Math.PI * 3) * toy.kick;
+      const dx = x - pointer.x * halfWidth * 2;
+      const dy = y + pointer.y * 8.6;
+      const distance = Math.hypot(dx, dy);
+      const force =
+        active && pointerInside && fine.matches
+          ? Math.max(0, 1 - distance / 1.7) * 0.23
+          : 0;
+      toy.push.x = THREE.MathUtils.damp(
+        toy.push.x,
+        distance ? (dx / distance) * force : 0,
+        6,
+        dt,
+      );
+      toy.push.y = THREE.MathUtils.damp(
+        toy.push.y,
+        distance ? (dy / distance) * force : 0,
+        6,
+        dt,
+      );
       object.position.set(
         x +
-          smoothPointer.x * (i % 2 ? 0.1 : -0.12) +
+          smoothPointer.x * (i % 2 ? 0.16 : -0.2) +
+          toy.push.x +
+          (active ? Math.cos(time * 0.65 + phase) * 0.09 : 0) +
           Math.sin(progress * Math.PI) * 0.2,
-        y + float + entry - fall * (6 + (i % 3) * 1.4),
+        y +
+          float +
+          entry +
+          kick * 0.3 +
+          toy.push.y -
+          fall * (1 - orbitMix) * (6 + (i % 3) * 1.4),
         -0.1 + (i % 3) * 0.25,
       );
       object.rotation.set(
-        l[3] + (active ? Math.sin(time * 0.3 + phase) * 0.08 : 0) + fall * 0.7,
-        l[4] + smoothPointer.x * 0.09 + progress * 0.5,
+        l[3] +
+          (active ? Math.sin(time * 0.6 + phase) * 0.16 : 0) +
+          fall * 0.7 +
+          kick * 0.15,
+        l[4] +
+          smoothPointer.x * 0.3 +
+          progress * 0.5 +
+          toy.turn +
+          (active ? Math.cos(time * 0.42 + phase) * 0.16 : 0),
         l[5] +
-          (active ? Math.sin(time * 0.24 + phase) * 0.07 : 0) +
+          (active ? Math.sin(time * 0.5 + phase) * 0.12 : 0) +
           fall * (i % 2 ? 1 : -1),
       );
-      object.scale.setScalar(scale);
+      object.scale.setScalar(scale * (1 + Math.max(0, kick) * 0.12));
+    });
+    const lens = toys[8].object.getObjectByName("lens");
+    lensKick = active ? Math.max(0, lensKick - dt * 2.5) : 0;
+    lens.position.z =
+      0.42 + (active ? Math.sin(time * 1.3) * 0.045 : 0) + lensKick * 0.16;
+    const signal = toys[9].object.getObjectByName("signal");
+    signal.position.set(
+      active ? Math.sin(time * 1.8) * 0.65 : 0,
+      active ? Math.cos(time * 2.8) * 0.4 : 0,
+      0.18,
+    );
+    ribbons.forEach((line, i) => {
+      line.scale.set(halfWidth * (0.83 + i * 0.04), 3.15 - i * 0.25, 1);
+      line.rotation.set(
+        0,
+        0,
+        (i - 1) * 0.11 + (active ? Math.sin(time * 0.18 + i) * 0.055 : 0),
+      );
+      line.position.y = -fall * 8;
+      line.visible = !mobile;
     });
     sparks.forEach((spark, i) => {
-      const a = i * 2.4;
+      const a = i * 2.4 + (active ? time * (i % 2 ? 0.11 : -0.08) : 0);
       spark.position.set(
-        Math.cos(a) * halfWidth * 0.82,
+        Math.cos(a) * halfWidth * (0.84 + (i % 3) * 0.035),
         Math.sin(a) * 3.15 +
-          (active ? Math.sin(time * 0.6 + i) * 0.12 : 0) -
+          (active ? Math.sin(time * 0.6 + i) * 0.2 : 0) -
           fall * 9,
         -0.5,
       );
-      spark.visible = !mobile || i % 2 === 0;
+      spark.visible = !mobile || i % 3 === 0;
     });
     if (burst >= 0 && active) {
       burst += dt;
@@ -446,11 +900,23 @@ function createUniverse(host) {
         drops.forEach((d) => (d.object.visible = false));
       }
     }
+    if (active) animateBubbles(dt);
     copy.style.transform = `translate(-50%, calc(-50% - ${progress * 65}px)) scale(${1 - progress * 0.08})`;
     copy.style.opacity = String(
       1 - clamp((progress - 0.35) / 0.65, 0, 1) * 0.85,
     );
     renderer.render(scene, camera);
+    if (active && pointerInside && fine.matches) {
+      const nextHover = hitTest();
+      if (hovered !== nextHover) {
+        hovered = nextHover;
+        host.classList.toggle("is-over-toy", hovered >= 0);
+        caption.textContent =
+          hovered >= 0
+            ? `${descriptions[hovered]} Tap to play.`
+            : "Tap a little object. Follow a little curiosity.";
+      }
+    }
     if (active) request();
   }
   // Pause when offscreen/backgrounded. No scroll interception or continuous work in static mode.
@@ -478,17 +944,90 @@ function createUniverse(host) {
       (event.clientX - r.left) / r.width - 0.5,
       (event.clientY - r.top) / r.height - 0.5,
     );
+    hitPoint.set(pointer.x * 2, -pointer.y * 2);
+    pointerInside = !event.target.closest("a, button");
   });
-  stage.addEventListener("pointerleave", () => pointer.set(0, 0));
+  stage.addEventListener("pointerleave", () => {
+    pointer.set(0, 0);
+    pointerInside = false;
+    hovered = -1;
+    host.classList.remove("is-over-toy");
+  });
+  let pressStart = null;
+  stage.addEventListener(
+    "pointerdown",
+    (event) => {
+      pressStart = [event.clientX, event.clientY];
+    },
+    { passive: true },
+  );
+  stage.addEventListener(
+    "pointerup",
+    (event) => {
+      if (
+        !active ||
+        !pressStart ||
+        event.target.closest("a,button") ||
+        Math.hypot(
+          event.clientX - pressStart[0],
+          event.clientY - pressStart[1],
+        ) > 8
+      )
+        return;
+      const rect = stage.getBoundingClientRect();
+      hitPoint.set(
+        ((event.clientX - rect.left) / rect.width) * 2 - 1,
+        1 - ((event.clientY - rect.top) / rect.height) * 2,
+      );
+      const bubbleIndex = bubbleHitTest();
+      if (bubbleIndex >= 0) {
+        popBubble(bubbleIndex);
+        pressStart = null;
+        return;
+      }
+      const index = hitTest();
+      if (index === 8) shootBubbles();
+      else poke(index);
+      pressStart = null;
+    },
+    { passive: true },
+  );
+  stage.addEventListener("pointercancel", () => {
+    pressStart = null;
+  });
   canvas.addEventListener("webglcontextlost", (event) => {
     event.preventDefault();
     lost = true;
     cancelAnimationFrame(frame);
     host.classList.remove("scene-ready");
     rainButton.hidden = true;
+    orbitButton.hidden = true;
+    snapButton.hidden = true;
+    clearButton.hidden = true;
   });
   rainButton.addEventListener("click", makeRain);
+  orbitButton.addEventListener("click", () => {
+    if (!active) return;
+    orbiting = !orbiting;
+    orbitButton.setAttribute("aria-pressed", String(orbiting));
+    canvas.dataset.orbit = orbiting ? "active" : "idle";
+    caption.textContent = orbiting
+      ? "A new perspective, every turn."
+      : "Tap a little object. Follow a little curiosity.";
+    request();
+  });
+  snapButton.addEventListener("click", shootBubbles);
+  clearButton.addEventListener("click", () => {
+    if (!active) return;
+    bubbles.forEach((b, i) => {
+      if (b.live) popBubble(i);
+    });
+    caption.textContent = "Pop! A fresh start for a new idea.";
+  });
   rainButton.hidden = false;
+  orbitButton.hidden = false;
+  snapButton.hidden = false;
+  caption.textContent = "Tap a little object. Follow a little curiosity.";
   resize();
   setPreference();
   host.classList.add("scene-ready");

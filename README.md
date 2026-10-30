@@ -15,8 +15,9 @@ HTML, CSS and JavaScript are served directly by GitHub Pages. No build step is r
 - `assets/css/motion.css` and `assets/js/motion.js`: soft sculptural surfaces, scroll-linked
   parallax, one-time reveals, pointer tilt, and the optional curiosity burst. The fixed motion
   control remembers a visitor's choice; the device's reduced-motion preference always wins.
-- `assets/files/InhaKang_CV.pdf`: supplied September 2026 CV. The October news appears on the website;
-  the PDF remains the supplied document.
+- `assets/files/Inha_Kang_CV_20261030.pdf`: redesigned four-page October 30 CV, linked from every page.
+  `InhaKang_CV.pdf` is kept as an identical current alias for existing external links.
+- `assets/files/Inha_Kang_Research_Resume_20261030.pdf`: matching two-page research resume, linked from About.
 
 To preview locally, run `python3 -m http.server 4173` in this directory and open
 http://localhost:4173. Check the three pages on desktop and mobile before pushing.
@@ -85,3 +86,38 @@ and a deliberate scroll sequence. All scene models and animation code are origin
 
 QA for this revision includes desktop/mobile rendering, menu and archive search, animation pause,
 scene fallback, local links, and browser error inspection.
+
+
+## October 31 · Bubble camera and a paper playground
+
+- The original 3D set now includes a mint camera, a neural network and a glass prism (11 models total).
+  Toys respond to taps with a spring and turn; the camera instead emits soap bubbles. Orbit mode,
+  moving orbital beads, breathing atmosphere and pointer response add motion around the reading area.
+- Every camera click advances the bubble color palette. Bubbles collide, settle into a pile, and can
+  be popped individually or all at once. The pool is capped at 64 on desktop / 32 on mobile and reuses
+  materials and geometry. Toy rain is capped at 26 / 16. No visitor camera or microphone is accessed.
+- `assets/js/wonder.js` drives the paper collage: drag and drop, spring settling, responsive typography,
+  a two-sided paper turn, and Daydream / Studio settings. Keyboard users can move the focused paper
+  with arrow keys, turn it with Enter/Space, and reset with Home/Escape or the visible Reset button.
+- `assets/img/curiosity-landscape.webp` is original generated conceptual artwork: a lavender-rock
+  waterfall, turquoise reflective water, a peach sky and iridescent orbs. It is imagined scenery,
+  not a photograph of an actual place. The image was generated with the built-in imagegen tool.
+- `assets/img/inha-cutout.webp` is an alpha cutout derived from the owner's supplied photograph using
+  imagegen background extraction. The requested edit preserves the person's pose, clothes, croissant
+  and identity while removing the outdoor background. The original photograph remains in the repo.
+  Torn paper, fiber grain, translucent tape, fold shading and shadows are authored in CSS; they are
+  separate from the portrait asset. Both generated assets are optimized locally to WebP with alpha
+  preserved on the cutout. No stock-photo license or hotlinked third-party image is required.
+- New motion follows the existing device preference and Motion control; the collage remains usable
+  with instantaneous state changes when motion is off. Ambient CSS animations pause offscreen,
+  and the 3D scene pauses offscreen or in a background tab.
+
+The current full CV and two-page resume are the verified October 30 exports; their content includes
+QIFK 2026 Finalist, NeurIPS 2026 Top Reviewer and PLUME's dataset link. All site CV links use the dated
+filename to avoid retaining a stale September PDF in a browser cache.
+
+Validation for this pass: desktop plus 390px / 320px layouts; direct camera clicks, changing bubble
+palettes, stacking, individual/all popping and pool caps; orbit and rain; pointer dragging, responsive
+lettering, keyboard movement, paper flipping and reset; reduced-motion and WebGL-unavailable paths;
+local assets/fragments; current PDF page counts and byte-for-byte export comparison. JavaScript syntax,
+CSS parsing and Git whitespace checks pass. Original scientific content and archive behavior are retained.
