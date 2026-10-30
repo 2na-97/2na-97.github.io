@@ -101,6 +101,7 @@
       });
       particles?.replaceChildren();
     }
+    window.dispatchEvent(new CustomEvent("inha:motion", { detail: { active } }));
     scheduleScroll();
   };
   toggle.addEventListener("click", () => {

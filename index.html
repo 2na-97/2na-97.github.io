@@ -8,7 +8,7 @@
       name="description"
       content="Inha Kang: KAIST AI Ph.D. student and KRAFTON research intern. Vision-language models, explainable AI, physical understanding and agentic systems."
     />
-    <meta name="theme-color" content="#f5f2e9" />
+    <meta name="theme-color" content="#f7f8fc" />
     <link rel="canonical" href="https://2na-97.github.io/" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Inha Kang — AI Researcher" />
@@ -17,7 +17,10 @@
       content="Inha Kang: KAIST AI Ph.D. student and KRAFTON research intern. Vision-language models, explainable AI, physical understanding and agentic systems."
     />
     <meta property="og:url" content="https://2na-97.github.io/" />
-    <meta property="og:image" content="https://2na-97.github.io/assets/img/social-preview.png" />
+    <meta
+      property="og:image"
+      content="https://2na-97.github.io/assets/img/social-preview.png"
+    />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
@@ -26,16 +29,31 @@
     />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
-    <link rel="preload" href="assets/fonts/space-grotesk-700.ttf" as="font" type="font/ttf" crossorigin />
+    <link
+      rel="preload"
+      href="assets/fonts/space-grotesk-700.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/motion.css" />
     <script src="assets/js/site.js" defer></script>
     <script src="assets/js/motion.js" defer></script>
+    <link rel="stylesheet" href="assets/css/experience.css" />
+    <script type="module" src="assets/js/lab-scene.js"></script>
   </head>
   <body>
     <div class="reading-progress" aria-hidden="true"></div>
-    <button class="motion-toggle" type="button" aria-pressed="true" aria-label="Pause animations" hidden>
-      <span class="motion-toggle-icon" aria-hidden="true">✳</span><span data-motion-label>Motion on</span>
+    <button
+      class="motion-toggle"
+      type="button"
+      aria-pressed="true"
+      aria-label="Pause animations"
+      hidden
+    >
+      <span class="motion-toggle-icon" aria-hidden="true">✳</span
+      ><span data-motion-label>Motion on</span>
     </button>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
@@ -47,13 +65,23 @@
           >A curious mind.<br />
           A research practice.</span
         >
-        <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" hidden>
+        <button
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          hidden
+        >
           Menu <span aria-hidden="true">+</span>
         </button>
         <nav id="site-nav" class="site-nav" aria-label="Main navigation">
-          <a href="index.html#research">Research</a><a href="index.html#about">About</a
-          ><a href="index.html#news">News</a><a href="projects.html">Play &amp; build</a>
-          <a class="nav-cv" href="assets/files/InhaKang_CV.pdf" target="_blank" rel="noopener noreferrer"
+          <a href="index.html#research">Research</a
+          ><a href="index.html#about">About</a><a href="index.html#news">News</a
+          ><a href="projects.html">Play &amp; build</a>
+          <a
+            class="nav-cv"
+            href="assets/files/InhaKang_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             >CV <span aria-hidden="true">↗</span></a
           >
         </nav>
@@ -61,81 +89,76 @@
     </header>
     <main id="main-content">
       <div id="top"></div>
-      <section class="hero wrap" data-scroll-scene aria-labelledby="hero-title">
-        <div class="hero-haze" aria-hidden="true"></div>
-        <div class="hero-topline">
-          <p class="eyebrow"><span class="status-dot"></span> AI RESEARCHER · SEOUL, KOREA</p>
-          <span class="edition">RESEARCH / 2026</span>
-        </div>
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <h1 id="hero-title">
-              <span class="name-line">Inha</span>
-              <span class="name-line">Kang<span class="name-period">.</span></span>
-            </h1>
-            <p class="hero-tagline">
-              Vision, language,<br />
-              <em>and what comes next.</em>
-            </p>
-            <p class="hero-intro">
-              I turn insights from model failures into<br class="desktop-break" />
-              more capable and reliable AI.
-            </p>
-            <div class="hero-actions">
-              <a class="button dark" href="#research"
-                >Explore my research <span aria-hidden="true">↘</span></a
-              ><a class="text-link" href="mailto:rkswlsj13@kaist.ac.kr">Say hello ↗</a>
-            </div>
-          </div>
-          <div class="hero-visual">
-            <button class="curiosity-pop" type="button" aria-label="Pop a little curiosity" disabled>
-              <img src="assets/img/puff-flower.svg" width="300" height="300" alt="" />
-              <span class="pop-hint">tap for a little joy</span>
-            </button>
-            <span class="pearl pearl-peach" aria-hidden="true"></span>
-            <span class="pearl pearl-blue" aria-hidden="true"></span>
-            <div class="joy-particles" aria-hidden="true"></div>
-            <div class="photo-orbit" aria-hidden="true"></div>
-            <figure class="portrait" data-tilt>
+      <section class="hero-showcase" aria-labelledby="hero-title">
+        <div class="showcase-stage">
+          <div class="showcase-aurora" aria-hidden="true"></div>
+          <div class="research-universe" aria-hidden="true">
+            <div class="scene-fallback">
+              <span class="fallback-orb"></span
+              ><span class="fallback-ring"></span>
               <img
-                src="assets/img/profile.webp"
-                width="720"
-                height="720"
-                alt="Inha Kang outdoors beside a waterfall"
-                fetchpriority="high"
+                src="assets/img/puff-flower.svg"
+                alt=""
+                width="300"
+                height="300"
               />
-              <figcaption><span>INHA, OUTSIDE THE LAB</span><span>↗</span></figcaption>
-            </figure>
-            <div class="hero-sticker">
-              <span>MODEL FAILURES</span><span class="sticker-arrow" aria-hidden="true">↳</span
-              ><strong
-                >new<br />
-                possibilities.</strong
-              >
             </div>
-            <div class="hero-affiliations">
-              <span><b>KAIST AI</b>Ph.D. student</span><span><b>KRAFTON</b>Research intern</span>
+            <canvas class="universe-canvas"></canvas>
+          </div>
+          <div class="showcase-topline wrap">
+            <p class="eyebrow">
+              <span class="status-dot"></span> AI RESEARCHER · SEOUL
+            </p>
+            <span class="edition">A WORLD OF POSSIBILITIES</span>
+          </div>
+          <div class="showcase-copy">
+            <p class="showcase-kicker">A curious mind. An open world.</p>
+            <h1 id="hero-title">Inha Kang<span>.</span></h1>
+            <p class="showcase-statement">
+              Making AI see, reason<br />&amp; <span>imagine what’s next.</span>
+            </p>
+            <p class="showcase-intro">
+              Vision–language models. Physical intelligence. Agentic systems.<br />I
+              turn model failures into new capabilities.
+            </p>
+            <div class="showcase-actions">
+              <a class="button dark" href="#research"
+                >Discover my research <span aria-hidden="true">↗</span></a
+              >
+              <button class="rain-button" type="button" hidden>
+                <span class="rain-icon" aria-hidden="true">✦</span> Make it rain
+              </button>
             </div>
           </div>
-        </div>
-        <div class="hero-bottom">
-          <span class="eyebrow">A FEW THINGS I THINK ABOUT</span
-          ><a href="#directions" class="scroll-cue"
-            >A little scroll, a little discovery <span aria-hidden="true">↓</span></a
-          >
+          <div class="showcase-bottom wrap">
+            <div class="affiliation-lockup">
+              <span><strong>KAIST AI</strong>Ph.D. student</span><i></i
+              ><span><strong>KRAFTON</strong>Research intern</span>
+            </div>
+            <a href="#news" class="discovery-cue"
+              >Ideas in motion <span aria-hidden="true">↓</span></a
+            >
+          </div>
+          <p class="scene-caption" aria-hidden="true">
+            A small universe of things I’m curious about.
+          </p>
         </div>
       </section>
       <div class="keyword-band">
         <div class="wrap keyword-line">
-          <a href="#directions">Vision–Language</a><span aria-hidden="true">✳</span
-          ><a href="#directions">Explainable AI</a><span aria-hidden="true">✳</span
-          ><a href="#directions">Agentic Systems</a><span aria-hidden="true">✳</span
+          <a href="#directions">Vision–Language</a
+          ><span aria-hidden="true">✳</span
+          ><a href="#directions">Explainable AI</a
+          ><span aria-hidden="true">✳</span
+          ><a href="#directions">Agentic Systems</a
+          ><span aria-hidden="true">✳</span
           ><a href="#directions">World Models</a>
         </div>
       </div>
       <section class="news-section wrap" id="news">
         <div class="section-label">
-          <span class="eyebrow">HOT OFF THE PRESS</span><span class="news-dot" aria-hidden="true">↗</span>
+          <span class="eyebrow">HOT OFF THE PRESS</span
+          ><span class="news-dot" aria-hidden="true">↗</span>
         </div>
         <div class="news-items">
           <article class="news-item">
@@ -150,7 +173,10 @@
             <time datetime="2026-10-11">11 OCT 2026</time>
             <div>
               <h2>NeurIPS 2026</h2>
-              <p>Recognized as a <strong>Top Reviewer</strong> for main-track reviewing.</p>
+              <p>
+                Recognized as a <strong>Top Reviewer</strong> for main-track
+                reviewing.
+              </p>
             </div>
             <span class="news-badge peach">TOP REVIEWER</span>
           </article>
@@ -158,9 +184,17 @@
             <time datetime="2026-08-31">31 AUG 2026</time>
             <div>
               <h2>A new chapter at KRAFTON</h2>
-              <p>Joined as a research intern, working on LLMs and agentic tool use.</p>
+              <p>
+                Joined as a research intern, working on LLMs and agentic tool
+                use.
+              </p>
             </div>
-            <a class="news-link" href="#experience" aria-label="Read about my KRAFTON experience">↗</a>
+            <a
+              class="news-link"
+              href="#experience"
+              aria-label="Read about my KRAFTON experience"
+              >↗</a
+            >
           </article>
         </div>
       </section>
@@ -192,7 +226,8 @@
               rel="noopener noreferrer"
               aria-label="Read Blind to Position, Biased in Language: Probing Mid-Layer Representational Bias in Vision-Language Encoders for Zero-Shot Language-Grounded Spatial Understanding"
               ><div class="work-art-top">
-                <span class="eyebrow">ECCV 2026</span><span class="circle-arrow" aria-hidden="true">↗</span>
+                <span class="eyebrow">ECCV 2026</span
+                ><span class="circle-arrow" aria-hidden="true">↗</span>
               </div>
               <h3>
                 What do models<br />
@@ -208,17 +243,22 @@
                 />
               </div>
               <div class="work-art-bottom">
-                <strong>TRAINING-FREE</strong><span>Spatial grounding from mid-layer representations</span>
+                <strong>TRAINING-FREE</strong
+                ><span>Spatial grounding from mid-layer representations</span>
               </div></a
             >
             <div class="work-caption">
               <span class="work-number">01</span>
               <div>
                 <p class="work-title">
-                  Blind to Position, Biased in Language: Probing Mid-Layer Representational Bias in
-                  Vision-Language Encoders for Zero-Shot Language-Grounded Spatial Understanding
+                  Blind to Position, Biased in Language: Probing Mid-Layer
+                  Representational Bias in Vision-Language Encoders for
+                  Zero-Shot Language-Grounded Spatial Understanding
                 </p>
-                <p class="authors">Na Min An*, <strong>Inha Kang*</strong>, Minhyun Lee, Hyunjung Shim</p>
+                <p class="authors">
+                  Na Min An*, <strong>Inha Kang*</strong>, Minhyun Lee, Hyunjung
+                  Shim
+                </p>
               </div>
             </div>
           </article>
@@ -230,7 +270,8 @@
               rel="noopener noreferrer"
               aria-label="Read What “Not” to Detect: Negation-Aware VLMs via Structured Reasoning and Token Merging"
               ><div class="work-art-top">
-                <span class="eyebrow">ICLR 2026</span><span class="circle-arrow" aria-hidden="true">↗</span>
+                <span class="eyebrow">ICLR 2026</span
+                ><span class="circle-arrow" aria-hidden="true">↗</span>
               </div>
               <h3>
                 Understanding<br />
@@ -246,17 +287,20 @@
                 />
               </div>
               <div class="work-art-bottom">
-                <strong>+10.8</strong><span>NMS-AP points · up to, on OVDEval negation</span>
+                <strong>+10.8</strong
+                ><span>NMS-AP points · up to, on OVDEval negation</span>
               </div></a
             >
             <div class="work-caption">
               <span class="work-number">02</span>
               <div>
                 <p class="work-title">
-                  What “Not” to Detect: Negation-Aware VLMs via Structured Reasoning and Token Merging
+                  What “Not” to Detect: Negation-Aware VLMs via Structured
+                  Reasoning and Token Merging
                 </p>
                 <p class="authors">
-                  <strong>Inha Kang</strong>, Youngsun Lim, Seonho Lee, Jiho Choi, Junsuk Choe, Hyunjung Shim
+                  <strong>Inha Kang</strong>, Youngsun Lim, Seonho Lee, Jiho
+                  Choi, Junsuk Choe, Hyunjung Shim
                 </p>
               </div>
             </div>
@@ -269,7 +313,8 @@
               rel="noopener noreferrer"
               aria-label="Read Real-Time Long Horizon Air Quality Forecasting via Group-Relative Policy Optimization"
               ><div class="work-art-top">
-                <span class="eyebrow">CVPR 2026</span><span class="circle-arrow" aria-hidden="true">↗</span>
+                <span class="eyebrow">CVPR 2026</span
+                ><span class="circle-arrow" aria-hidden="true">↗</span>
               </div>
               <h3>
                 Better forecasts.<br />
@@ -285,18 +330,21 @@
                 />
               </div>
               <div class="work-art-bottom">
-                <strong>−47.3%</strong><span>False-alarm rate · compared with SFT alone</span>
+                <strong>−47.3%</strong
+                ><span>False-alarm rate · compared with SFT alone</span>
               </div></a
             >
             <div class="work-caption">
               <span class="work-number">03</span>
               <div>
                 <p class="work-title">
-                  Real-Time Long Horizon Air Quality Forecasting via Group-Relative Policy Optimization
+                  Real-Time Long Horizon Air Quality Forecasting via
+                  Group-Relative Policy Optimization
                 </p>
                 <p class="authors">
-                  <strong>Inha Kang</strong>, Eunki Kim, Wonjeong Ryu, Jaeyo Shin, Seungjun Yu, Yoon-Hee Kang,
-                  Seongeun Jeong, Eunhye Kim, Soontae Kim, Hyunjung Shim
+                  <strong>Inha Kang</strong>, Eunki Kim, Wonjeong Ryu, Jaeyo
+                  Shin, Seungjun Yu, Yoon-Hee Kang, Seongeun Jeong, Eunhye Kim,
+                  Soontae Kim, Hyunjung Shim
                 </p>
               </div>
             </div>
@@ -326,17 +374,20 @@
                 />
               </div>
               <div class="work-art-bottom">
-                <strong>2D → 3D</strong><span>Geometric knowledge, distilled into VLMs</span>
+                <strong>2D → 3D</strong
+                ><span>Geometric knowledge, distilled into VLMs</span>
               </div></a
             >
             <div class="work-caption">
               <span class="work-number">04</span>
               <div>
                 <p class="work-title">
-                  3D-Aware Vision-Language Models Fine-Tuning with Geometric Distillation
+                  3D-Aware Vision-Language Models Fine-Tuning with Geometric
+                  Distillation
                 </p>
                 <p class="authors">
-                  Seonho Lee*, Jiho Choi*, <strong>Inha Kang</strong>, Jiwook Kim, Junsung Park, Hyunjung Shim
+                  Seonho Lee*, Jiho Choi*, <strong>Inha Kang</strong>, Jiwook
+                  Kim, Junsung Park, Hyunjung Shim
                 </p>
               </div>
             </div>
@@ -344,10 +395,18 @@
         </div>
         <a class="archive-link" href="publications.html"
           ><span>There’s more where that came from.</span
-          ><strong>Explore the full research archive <span aria-hidden="true">↗</span></strong></a
+          ><strong
+            >Explore the full research archive
+            <span aria-hidden="true">↗</span></strong
+          ></a
         >
       </section>
-      <section class="plume-section wrap" id="plume" aria-labelledby="plume-title" data-scroll-scene>
+      <section
+        class="plume-section wrap"
+        id="plume"
+        aria-labelledby="plume-title"
+        data-scroll-scene
+      >
         <div class="plume-art">
           <img
             class="plume-atmosphere"
@@ -362,18 +421,26 @@
             ><span class="plume-mini-orbit" aria-hidden="true">↗</span>
           </div>
           <span class="plume-word" aria-hidden="true">PLUME</span>
-          <span class="plume-art-caption">EAST ASIA · AIR QUALITY · OPEN DATA</span>
+          <span class="plume-art-caption"
+            >EAST ASIA · AIR QUALITY · OPEN DATA</span
+          >
         </div>
         <div class="plume-copy">
-          <span class="release-badge"><span aria-hidden="true">↗</span> DATASET AVAILABLE</span>
-          <h2 id="plume-title">A little further<br />into <em>the atmosphere.</em></h2>
+          <span class="release-badge"
+            ><span aria-hidden="true">↗</span> DATASET AVAILABLE</span
+          >
+          <h2 id="plume-title">
+            A little further<br />into <em>the atmosphere.</em>
+          </h2>
           <p>
-            Meet <strong>PLUME</strong>: direct multiday particulate forecasting with physically conditioned
-            correction and ordered uncertainty over East Asia.
+            Meet <strong>PLUME</strong>: direct multiday particulate forecasting
+            with physically conditioned correction and ordered uncertainty over
+            East Asia.
           </p>
           <p>
-            The public dataset brings together CMAQ reanalysis, gridded ground-station observations and
-            trained model weights for studying air-quality forecasting.
+            The public dataset brings together CMAQ reanalysis, gridded
+            ground-station observations and trained model weights for studying
+            air-quality forecasting.
           </p>
           <dl class="plume-facts">
             <div>
@@ -396,7 +463,9 @@
             rel="noopener noreferrer"
             >Explore the dataset <span aria-hidden="true">↗</span></a
           >
-          <p class="release-note">Dataset released · Paper archive forthcoming</p>
+          <p class="release-note">
+            Dataset released · Paper archive forthcoming
+          </p>
         </div>
       </section>
       <section class="directions-section" id="directions" data-scroll-scene>
@@ -410,7 +479,11 @@
               </h2>
             </div>
             <span class="direction-spark" aria-hidden="true"
-              ><svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
+              ><svg
+                viewBox="0 0 100 100"
+                fill="currentColor"
+                aria-hidden="true"
+              >
                 <path
                   d="M44 0h12v33L80 9l9 9-24 24h35v12H65l24 24-9 9-24-24v37H44V63L20 87l-9-9 24-24H0V42h35L11 18l9-9 24 24z"
                 /></svg
@@ -430,10 +503,13 @@
                   loading="lazy"
                 />
                 <span class="sculpture-satellite"></span>
-                <span class="sculpture-label">always<br /><em>curious.</em></span>
+                <span class="sculpture-label"
+                  >always<br /><em>curious.</em></span
+                >
               </div>
               <div class="sculpture-steps">
-                <span data-sculpture-label>01 / SEE &amp; UNDERSTAND</span><span>↘</span>
+                <span data-sculpture-label>01 / SEE &amp; UNDERSTAND</span
+                ><span>↘</span>
               </div>
             </div>
             <div class="direction-list">
@@ -445,8 +521,9 @@
                 </h3>
                 <div>
                   <p>
-                    I probe how vision-language models represent space, language and negation, then use those
-                    insights to improve grounding and reasoning.
+                    I probe how vision-language models represent space, language
+                    and negation, then use those insights to improve grounding
+                    and reasoning.
                   </p>
                   <ul class="tags">
                     <li>Vision–language models</li>
@@ -463,8 +540,10 @@
                 </h3>
                 <div>
                   <p>
-                    I connect foundation models with physical dynamics, uncertainty and decision-aware
-                    objectives. My current work explores task-specific world models for multi-day forecasting.
+                    I connect foundation models with physical dynamics,
+                    uncertainty and decision-aware objectives. My current work
+                    explores task-specific world models for multi-day
+                    forecasting.
                   </p>
                   <ul class="tags">
                     <li>World models</li>
@@ -481,8 +560,9 @@
                 </h3>
                 <div>
                   <p>
-                    At KRAFTON, I work on reliable agentic tool use: separating model errors from evaluation
-                    artifacts, curating training data and designing verifiable post-training tasks.
+                    At KRAFTON, I work on reliable agentic tool use: separating
+                    model errors from evaluation artifacts, curating training
+                    data and designing verifiable post-training tasks.
                   </p>
                   <ul class="tags">
                     <li>LLM foundation models</li>
@@ -502,6 +582,18 @@
             Research depth.<br />
             <em>Builder energy.</em>
           </h2>
+          <figure class="about-portrait">
+            <img
+              src="assets/img/profile.webp"
+              alt="Inha Kang outdoors beside a waterfall"
+              width="720"
+              height="720"
+              loading="lazy"
+            />
+            <figcaption>
+              Outside the lab. Still curious. <span aria-hidden="true">↗</span>
+            </figcaption>
+          </figure>
           <div class="about-note">
             <span aria-hidden="true">✳</span>
             <p>
@@ -512,24 +604,30 @@
         </div>
         <div class="about-content">
           <p class="about-lead">
-            I’m Inha, a researcher who likes to understand <em>why</em> things fail—and build something better
-            from there.
+            I’m Inha, a researcher who likes to understand <em>why</em> things
+            fail—and build something better from there.
           </p>
           <p>
-            I’m a Ph.D. student at <strong>KAIST AI</strong>, advised by Prof. Hyunjung Shim in the Computer
-            Vision and Machine Learning Lab, and a research intern at <strong>KRAFTON</strong>.
+            I’m a Ph.D. student at <strong>KAIST AI</strong>, advised by Prof.
+            Hyunjung Shim in the Computer Vision and Machine Learning Lab, and a
+            research intern at <strong>KRAFTON</strong>.
           </p>
           <p>
-            My path runs through 3D medical imaging, multimodal perception, vision-language reasoning and now
-            agentic systems. Before my Ph.D., I spent two years at <strong>FaindersAI</strong>, building data
+            My path runs through 3D medical imaging, multimodal perception,
+            vision-language reasoning and now agentic systems. Before my Ph.D.,
+            I spent two years at <strong>FaindersAI</strong>, building data
             pipelines and perception systems for real-world retail environments.
           </p>
           <p>
-            That mix shapes my approach: careful model analysis, better data, and research that carries
-            through to working systems.
+            That mix shapes my approach: careful model analysis, better data,
+            and research that carries through to working systems.
           </p>
           <div class="about-links">
-            <a class="text-link" href="assets/files/InhaKang_CV.pdf" target="_blank" rel="noopener noreferrer"
+            <a
+              class="text-link"
+              href="assets/files/InhaKang_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               >Read my CV · Sep 2026 <span aria-hidden="true">↗</span></a
             ><a
               class="text-link"
@@ -560,8 +658,8 @@
               </div>
               <p class="role">Research Intern · LLMs &amp; Agentic Systems</p>
               <p>
-                Benchmark and failure analysis, role-aware tool-use data curation, and executable RL tasks
-                with state-based verification.
+                Benchmark and failure analysis, role-aware tool-use data
+                curation, and executable RL tasks with state-based verification.
               </p>
             </article>
             <article class="experience">
@@ -569,21 +667,29 @@
               <h4>FaindersAI</h4>
               <p class="role">Deep Learning Researcher</p>
               <p>
-                VLM-based segmentation-data curation, continual learning, heterogeneous sensor fusion and
-                real-time retail change detection.
+                VLM-based segmentation-data curation, continual learning,
+                heterogeneous sensor fusion and real-time retail change
+                detection.
               </p>
             </article>
             <details class="earlier-experience">
-              <summary>Earlier research experience <span aria-hidden="true">+</span></summary>
+              <summary>
+                Earlier research experience <span aria-hidden="true">+</span>
+              </summary>
               <article class="experience">
                 <p class="meta">2019 — 2020</p>
                 <h4>Machine Learning and Vision Lab</h4>
-                <p>Research Intern · Long-tailed object detection for autonomous driving.</p>
+                <p>
+                  Research Intern · Long-tailed object detection for autonomous
+                  driving.
+                </p>
               </article>
               <article class="experience">
                 <p class="meta">2017 — 2018</p>
                 <h4>Aerospace Propulsion Lab</h4>
-                <p>Research Intern · Parallel computing and GPU acceleration.</p>
+                <p>
+                  Research Intern · Parallel computing and GPU acceleration.
+                </p>
               </article>
             </details>
           </div>
@@ -665,12 +771,13 @@
         </div>
         <div class="other-recognition">
           <p>
-            <strong>Also along the way</strong> Best Presentation Award, KTCP 2022 · Best Thesis Award, GIST
-            2020
+            <strong>Also along the way</strong> Best Presentation Award, KTCP
+            2022 · Best Thesis Award, GIST 2020
           </p>
           <p>
-            <strong>Talk &amp; patent</strong> Invited speaker, KOSMII 2022 · Data Collection Apparatus and
-            Method, Korean patent publication No. 10-2025-0031529
+            <strong>Talk &amp; patent</strong> Invited speaker, KOSMII 2022 ·
+            Data Collection Apparatus and Method, Korean patent publication No.
+            10-2025-0031529
           </p>
         </div>
       </section>
@@ -680,9 +787,14 @@
           <div>
             <p class="eyebrow">CURIOSITY DOESN’T STAY IN ONE LANE</p>
             <h2>Beyond the paper.</h2>
-            <p>Immersive interfaces, virtual fashion, mobile AI, and the joy of building things.</p>
+            <p>
+              Immersive interfaces, virtual fashion, mobile AI, and the joy of
+              building things.
+            </p>
           </div>
-          <a class="button dark" href="projects.html">Play &amp; build <span aria-hidden="true">↗</span></a>
+          <a class="button dark" href="projects.html"
+            >Play &amp; build <span aria-hidden="true">↗</span></a
+          >
         </div>
       </section>
     </main>
@@ -702,10 +814,17 @@
             Let’s make AI<br />
             <em>make sense.</em>
           </h2>
-          <a class="contact-arrow" href="mailto:rkswlsj13@kaist.ac.kr" aria-label="Email Inha Kang">↗</a>
+          <a
+            class="contact-arrow"
+            href="mailto:rkswlsj13@kaist.ac.kr"
+            aria-label="Email Inha Kang"
+            >↗</a
+          >
         </div>
         <div class="footer-links">
-          <a class="email-link" href="mailto:rkswlsj13@kaist.ac.kr">rkswlsj13@kaist.ac.kr</a>
+          <a class="email-link" href="mailto:rkswlsj13@kaist.ac.kr"
+            >rkswlsj13@kaist.ac.kr</a
+          >
           <div>
             <a
               class="text-link"
@@ -713,7 +832,11 @@
               target="_blank"
               rel="noopener noreferrer"
               >Scholar <span aria-hidden="true">↗</span></a
-            ><a class="text-link" href="https://github.com/2na-97" target="_blank" rel="noopener noreferrer"
+            ><a
+              class="text-link"
+              href="https://github.com/2na-97"
+              target="_blank"
+              rel="noopener noreferrer"
               >GitHub <span aria-hidden="true">↗</span></a
             ><a
               class="text-link"
@@ -731,8 +854,11 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <span>© <span data-year>2026</span> Inha Kang <span lang="ko">강인하</span></span
-          ><span>Seoul, Korea · Updated October 2026</span><a href="#top">Back to top ↑</a>
+          <span
+            >© <span data-year>2026</span> Inha Kang
+            <span lang="ko">강인하</span></span
+          ><span>Seoul, Korea · Updated October 2026</span
+          ><a href="#top">Back to top ↑</a>
         </div>
       </div>
     </footer>

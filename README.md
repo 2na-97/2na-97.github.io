@@ -1,7 +1,7 @@
 # Inha Kang — research portfolio
 
-A static, dependency-free personal website hosted at https://2na-97.github.io.
-HTML, CSS and JavaScript are served directly by GitHub Pages. No build step is required.
+A static personal website hosted at https://2na-97.github.io.
+HTML, CSS and JavaScript are served directly by GitHub Pages. No build step is required. The optional homepage 3D scene uses a pinned, self-hosted copy of Three.js.
 
 ## Pages and maintenance
 
@@ -62,3 +62,26 @@ is original conceptual artwork generated with the built-in imagegen tool, optimi
 it is decorative, not scientific output or an actual forecast. Generation prompt:
 
 > Use case: stylized-concept. Asset type: atmospheric editorial artwork for a personal AI research portfolio's PLUME air-quality dataset feature. Create a sophisticated dreamy wide 3D still life, landscape 3:2. A large floating luminous translucent pearlescent glass sphere, subtle fine longitude-latitude etched lines on it, nested in voluminous soft white cumulus clouds. A small glossy pale peach orb and one small butter yellow sphere float nearby. Powder blue sky fading gently to lavender with soft sunlight, a slightly surreal fashion-editorial sensibility, tactile puffiness, smooth glossy materials and carefully crafted volumetric light. Sphere placed centrally in the upper middle, white clouds cluster along the lower third and sides, ample blue sky around it. Elegant and playful with strong visual hierarchy, not childish. A tiny electric blue glint for contrast. Not a data visualization, purely conceptual atmospheric artwork. No text, lettering, logos, borders, watermark, map labels or UI.
+
+## October 31 · A research universe in motion
+
+The visual direction takes cues from [Apple’s product storytelling](https://www.apple.com/airpods-pro/)
+and [Lusion’s sculptural web work](https://lusion.co/): clear type, generous spacing, soft studio light
+and a deliberate scroll sequence. All scene models and animation code are original.
+
+- `assets/css/experience.css`: refined typography, glass navigation, colorful surfaces, responsive hero
+  and shared page styling.
+- `assets/js/lab-scene.js`: original WebGL research toys: a robot, vision eye, orbital globe, cloud,
+  language bubble, star, data-token stack and ring. These are decorative metaphors, not research outputs.
+- Scrolling gently lowers and rotates the toys; **Make it rain** releases a capped pool of 22 objects
+  with gravity, floor bounces and a timed cleanup. Existing scientific content stays in HTML.
+- The scene honors the existing Motion control and device reduced-motion setting. It stops rendering
+  while offscreen or in a background tab, caps pixel density on mobile, and reuses particle geometry.
+- If WebGL is unavailable, original CSS/SVG artwork remains visible. No external textures or models,
+  runtime CDN requests, analytics, or new backend are used. The rest of the website works without JS.
+- `assets/vendor/three/`: Three.js **0.181.2** from the official npm package, including its MIT license.
+  Only the two production modules, RoundedBoxGeometry and RoomEnvironment are included. The two
+  add-on imports point to the local module; the production modules are otherwise unmodified.
+
+QA for this revision includes desktop/mobile rendering, menu and archive search, animation pause,
+scene fallback, local links, and browser error inspection.
