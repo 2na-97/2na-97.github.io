@@ -99,9 +99,12 @@ scene fallback, local links, and browser error inspection.
 - `assets/js/wonder.js` drives the paper collage: drag and drop, spring settling, responsive typography,
   a two-sided paper turn, and Daydream / Studio settings. Keyboard users can move the focused paper
   with arrow keys, turn it with Enter/Space, and reset with Home/Escape or the visible Reset button.
-- `assets/img/curiosity-landscape.webp` is original generated conceptual artwork: a lavender-rock
-  waterfall, turquoise reflective water, a peach sky and iridescent orbs. It is imagined scenery,
-  not a photograph of an actual place. The image was generated with the built-in imagegen tool.
+- `assets/img/curiosity-ocean-orbit.webp` is original generated conceptual artwork: a cobalt ocean,
+  a lilac sky and a pearl-chrome planet with a thin orbit ring. It replaces the earlier waterfall
+  background with a more spacious editorial composition. It is imagined scenery, not a photograph
+  of an actual place. The image was generated with the built-in imagegen tool (`stylized-concept`),
+  then encoded locally as a 1536 × 1024 WebP (approximately 160 KB). Desktop and mobile have separate
+  focal points and light scrims to keep the headline legible while preserving the water's color.
 - `assets/img/inha-cutout.webp` is an alpha cutout derived from the owner's supplied photograph using
   imagegen background extraction. The requested edit preserves the person's pose, clothes, croissant
   and identity while removing the outdoor background. The original photograph remains in the repo.
@@ -121,3 +124,26 @@ palettes, stacking, individual/all popping and pool caps; orbit and rain; pointe
 lettering, keyboard movement, paper flipping and reset; reduced-motion and WebGL-unavailable paths;
 local assets/fragments; current PDF page counts and byte-for-byte export comparison. JavaScript syntax,
 CSS parsing and Git whitespace checks pass. Original scientific content and archive behavior are retained.
+
+### Ocean / Orbit · generation prompt
+
+Mode: built-in imagegen, new opaque image; no reference image. Final asset:
+`assets/img/curiosity-ocean-orbit.webp`. The original generated PNG is kept outside the repository.
+
+```text
+Create a stunning art-directed editorial background for an experimental designer/researcher portfolio. Landscape 3:2 composition, 1536 by 1024. Theme: OCEAN / ORBIT — a serene surreal alien ocean rendered like a luxury contemporary 3D design campaign, playful yet impeccably restrained. The bottom 44 percent is an endless deep electric-cobalt ocean with smooth liquid-metal ripples and glimmering cyan, ultramarine and rose reflections. A razor-clean horizon. Above is a luminous spacious periwinkle-to-pale-lilac sky, slightly rosy near the horizon. In the UPPER RIGHT, a single large pearl-chrome sphere with a very thin tilted metallic orbit ring, like a sculptural Saturn, partly cropped by the top/right edge. Its surface is polished iridescent silver, lavender and icy blue, physically believable studio lighting. One much smaller clear glass orb close to the water in the LOWER LEFT, with a pink caustic, for asymmetrical balance. A subtle crescent moon in the far distance. Beautiful refined smooth gradients and hyperreal crisp water reflections, delicate subtle film grain. Restrained gallery-poster composition, surreal photoreal CGI, distinctive sophisticated art direction, strong bold cobalt color field against the airy sky, premium materiality. CRITICAL composition: leave the entire upper-left 52 percent clean, bright and almost empty for dark headline text to be added later; put all large sculptural details toward the upper-right. Keep the lower-right fairly simple, since a separate paper portrait will be placed over it. No mountains, no rocks, no waterfalls, no trees, no islands, no people, no typography, no letters, no logos, no landscape fantasy illustration, no dense stars, no nebula, no visual clutter. This is a designer's abstract ocean-and-space art print, not a generic science-fiction wallpaper.
+```
+
+### Blue sapphire · wordmark asset
+
+The star beside `ik` is now an original sapphire render with transparent alpha on all three pages.
+`assets/img/brand-sapphire.webp` is the 192px source for the 30–34px header icon (approximately 19 KB).
+`assets/img/favicon-sapphire.png` is its 64px browser-tab counterpart. Hover and keyboard focus add a
+small lift and turn, with transitions disabled by the site's Motion control and reduced-motion preference.
+Both exports are resized from the same generated image; no stock artwork or external image requests.
+
+Mode: built-in imagegen, new transparent image. Final prompt:
+
+```text
+Use case: stylized-concept. Asset type: transparent 3D gemstone icon for a designer's personal portfolio wordmark. Create ONE exquisite electric-blue sapphire gemstone, isolated and centered on a completely transparent background. A bold softly elongated cushion/emerald cut with a clipped-corner octagonal silhouette, seen at a three-quarter front angle and tilted clockwise about 15 degrees. Large clean geometric facets, substantial dimensional depth, vividly saturated royal-blue and cobalt glass, cyan internal refractions, a few restrained icy-white edge highlights and darker deep ultramarine facet planes. The gem itself should be elegant, sculptural and immediately readable at only 32 pixels tall, so use a small number of broad clear facets rather than many tiny busy facets. High-end photoreal product CGI with crisp polished edges, balanced studio lighting and beautiful refractive depth. Fill about 84 percent of the square canvas with the one gem. No pedestal, no ground plane, no jewelry setting, no gold, no ring, no other objects, no text, no star shape, no floating sparkle symbols, no cartoon outline, no background, no cast shadow outside the object. Output genuine transparent alpha.
+```

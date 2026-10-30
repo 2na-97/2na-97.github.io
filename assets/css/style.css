@@ -176,14 +176,20 @@ summary {
   align-items: center;
   gap: 3px;
 }
-.brand-star {
-  color: var(--blue);
-  font-size: 32px;
-  margin-top: 8px;
-  transition: transform 0.4s;
+.brand-gem {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  flex: 0 0 auto;
+  margin-left: 3px;
+  filter: drop-shadow(0 3px 4px #174ee72b);
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.brand:hover .brand-star {
-  transform: rotate(90deg);
+.brand:is(:hover, :focus-visible) .brand-gem {
+  transform: translateY(-2px) rotate(-12deg) scale(1.1);
+}
+.motion-off .brand-gem {
+  transition: none;
 }
 .nav-note {
   font-size: 10px;
@@ -1765,8 +1771,9 @@ summary {
   .brand {
     font-size: 33px;
   }
-  .brand-star {
-    font-size: 28px;
+  .brand-gem {
+    width: 30px;
+    height: 30px;
   }
   .nav-toggle:not([hidden]) {
     display: flex;
