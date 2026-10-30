@@ -28,9 +28,15 @@
     <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="assets/fonts/space-grotesk-700.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/motion.css" />
     <script src="assets/js/site.js" defer></script>
+    <script src="assets/js/motion.js" defer></script>
   </head>
   <body>
+    <div class="reading-progress" aria-hidden="true"></div>
+    <button class="motion-toggle" type="button" aria-pressed="true" aria-label="Pause animations" hidden>
+      <span class="motion-toggle-icon" aria-hidden="true">✳</span><span data-motion-label>Motion on</span>
+    </button>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <div class="nav-shell wrap">
@@ -55,7 +61,8 @@
     </header>
     <main id="main-content">
       <div id="top"></div>
-      <section class="hero wrap" aria-labelledby="hero-title">
+      <section class="hero wrap" data-scroll-scene aria-labelledby="hero-title">
+        <div class="hero-haze" aria-hidden="true"></div>
         <div class="hero-topline">
           <p class="eyebrow"><span class="status-dot"></span> AI RESEARCHER · SEOUL, KOREA</p>
           <span class="edition">RESEARCH / 2026</span>
@@ -63,8 +70,8 @@
         <div class="hero-grid">
           <div class="hero-copy">
             <h1 id="hero-title">
-              Inha<br />
-              Kang<span class="name-period">.</span>
+              <span class="name-line">Inha</span>
+              <span class="name-line">Kang<span class="name-period">.</span></span>
             </h1>
             <p class="hero-tagline">
               Vision, language,<br />
@@ -81,14 +88,15 @@
             </div>
           </div>
           <div class="hero-visual">
-            <span class="hero-spark" aria-hidden="true"
-              ><svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
-                <path
-                  d="M44 0h12v33L80 9l9 9-24 24h35v12H65l24 24-9 9-24-24v37H44V63L20 87l-9-9 24-24H0V42h35L11 18l9-9 24 24z"
-                /></svg
-            ></span>
+            <button class="curiosity-pop" type="button" aria-label="Pop a little curiosity" disabled>
+              <img src="assets/img/puff-flower.svg" width="300" height="300" alt="" />
+              <span class="pop-hint">tap for a little joy</span>
+            </button>
+            <span class="pearl pearl-peach" aria-hidden="true"></span>
+            <span class="pearl pearl-blue" aria-hidden="true"></span>
+            <div class="joy-particles" aria-hidden="true"></div>
             <div class="photo-orbit" aria-hidden="true"></div>
-            <figure class="portrait">
+            <figure class="portrait" data-tilt>
               <img
                 src="assets/img/profile.webp"
                 width="720"
@@ -112,7 +120,9 @@
         </div>
         <div class="hero-bottom">
           <span class="eyebrow">A FEW THINGS I THINK ABOUT</span
-          ><a href="#directions" class="scroll-cue">Scroll to explore <span aria-hidden="true">↓</span></a>
+          ><a href="#directions" class="scroll-cue"
+            >A little scroll, a little discovery <span aria-hidden="true">↓</span></a
+          >
         </div>
       </section>
       <div class="keyword-band">
@@ -337,7 +347,59 @@
           ><strong>Explore the full research archive <span aria-hidden="true">↗</span></strong></a
         >
       </section>
-      <section class="directions-section" id="directions">
+      <section class="plume-section wrap" id="plume" aria-labelledby="plume-title" data-scroll-scene>
+        <div class="plume-art">
+          <img
+            class="plume-atmosphere"
+            src="assets/img/plume-atmosphere.webp"
+            width="1536"
+            height="1024"
+            alt=""
+            loading="lazy"
+          />
+          <div class="plume-art-top">
+            <span class="eyebrow">A WINDOW INTO THE PHYSICAL WORLD</span
+            ><span class="plume-mini-orbit" aria-hidden="true">↗</span>
+          </div>
+          <span class="plume-word" aria-hidden="true">PLUME</span>
+          <span class="plume-art-caption">EAST ASIA · AIR QUALITY · OPEN DATA</span>
+        </div>
+        <div class="plume-copy">
+          <span class="release-badge"><span aria-hidden="true">↗</span> DATASET AVAILABLE</span>
+          <h2 id="plume-title">A little further<br />into <em>the atmosphere.</em></h2>
+          <p>
+            Meet <strong>PLUME</strong>: direct multiday particulate forecasting with physically conditioned
+            correction and ordered uncertainty over East Asia.
+          </p>
+          <p>
+            The public dataset brings together CMAQ reanalysis, gridded ground-station observations and
+            trained model weights for studying air-quality forecasting.
+          </p>
+          <dl class="plume-facts">
+            <div>
+              <dt>2016–2024</dt>
+              <dd>hourly record</dd>
+            </div>
+            <div>
+              <dt>0.25°</dt>
+              <dd>shared spatial grid</dd>
+            </div>
+            <div>
+              <dt>+120 h</dt>
+              <dd>forecast horizon</dd>
+            </div>
+          </dl>
+          <a
+            class="button dark"
+            href="https://huggingface.co/datasets/2na-97/PLUME"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Explore the dataset <span aria-hidden="true">↗</span></a
+          >
+          <p class="release-note">Dataset released · Paper archive forthcoming</p>
+        </div>
+      </section>
+      <section class="directions-section" id="directions" data-scroll-scene>
         <div class="wrap">
           <div class="section-heading">
             <div>
@@ -354,61 +416,82 @@
                 /></svg
             ></span>
           </div>
-          <div class="direction-list">
-            <article class="direction">
-              <span class="direction-number">01</span>
-              <h3>
-                See &amp;<br />
-                understand.
-              </h3>
-              <div>
-                <p>
-                  I probe how vision-language models represent space, language and negation, then use those
-                  insights to improve grounding and reasoning.
-                </p>
-                <ul class="tags">
-                  <li>Vision–language models</li>
-                  <li>Explainable AI</li>
-                  <li>Representation learning</li>
-                </ul>
+          <div class="directions-layout">
+            <div class="thinking-sculpture" aria-hidden="true">
+              <div class="sculpture-stage">
+                <span class="sculpture-orbit"></span>
+                <span class="sculpture-orb"></span>
+                <img
+                  class="sculpture-flower"
+                  src="assets/img/puff-flower.svg"
+                  width="300"
+                  height="300"
+                  alt=""
+                  loading="lazy"
+                />
+                <span class="sculpture-satellite"></span>
+                <span class="sculpture-label">always<br /><em>curious.</em></span>
               </div>
-            </article>
-            <article class="direction">
-              <span class="direction-number">02</span>
-              <h3>
-                Predict the<br />
-                physical world.
-              </h3>
-              <div>
-                <p>
-                  I connect foundation models with physical dynamics, uncertainty and decision-aware
-                  objectives. My current work explores task-specific world models for multi-day forecasting.
-                </p>
-                <ul class="tags">
-                  <li>World models</li>
-                  <li>Physical understanding</li>
-                  <li>Reinforcement learning</li>
-                </ul>
+              <div class="sculpture-steps">
+                <span data-sculpture-label>01 / SEE &amp; UNDERSTAND</span><span>↘</span>
               </div>
-            </article>
-            <article class="direction">
-              <span class="direction-number">03</span>
-              <h3>
-                Turn reasoning<br />
-                into action.
-              </h3>
-              <div>
-                <p>
-                  At KRAFTON, I work on reliable agentic tool use: separating model errors from evaluation
-                  artifacts, curating training data and designing verifiable post-training tasks.
-                </p>
-                <ul class="tags">
-                  <li>LLM foundation models</li>
-                  <li>Agentic tool calling</li>
-                  <li>Data curation &amp; evaluation</li>
-                </ul>
-              </div>
-            </article>
+            </div>
+            <div class="direction-list">
+              <article class="direction">
+                <span class="direction-number">01</span>
+                <h3>
+                  See &amp;<br />
+                  understand.
+                </h3>
+                <div>
+                  <p>
+                    I probe how vision-language models represent space, language and negation, then use those
+                    insights to improve grounding and reasoning.
+                  </p>
+                  <ul class="tags">
+                    <li>Vision–language models</li>
+                    <li>Explainable AI</li>
+                    <li>Representation learning</li>
+                  </ul>
+                </div>
+              </article>
+              <article class="direction">
+                <span class="direction-number">02</span>
+                <h3>
+                  Predict the<br />
+                  physical world.
+                </h3>
+                <div>
+                  <p>
+                    I connect foundation models with physical dynamics, uncertainty and decision-aware
+                    objectives. My current work explores task-specific world models for multi-day forecasting.
+                  </p>
+                  <ul class="tags">
+                    <li>World models</li>
+                    <li>Physical understanding</li>
+                    <li>Reinforcement learning</li>
+                  </ul>
+                </div>
+              </article>
+              <article class="direction">
+                <span class="direction-number">03</span>
+                <h3>
+                  Turn reasoning<br />
+                  into action.
+                </h3>
+                <div>
+                  <p>
+                    At KRAFTON, I work on reliable agentic tool use: separating model errors from evaluation
+                    artifacts, curating training data and designing verifiable post-training tasks.
+                  </p>
+                  <ul class="tags">
+                    <li>LLM foundation models</li>
+                    <li>Agentic tool calling</li>
+                    <li>Data curation &amp; evaluation</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
           </div>
         </div>
       </section>
