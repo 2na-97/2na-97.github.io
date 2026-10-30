@@ -1,170 +1,304 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projects | Inha Kang</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Play & Build — Inha Kang</title>
     <meta
       name="description"
-      content="Project portfolio for Inha Kang across medical imaging, XR, applied machine learning, human-centered AI, and high-performance computing."
+      content="A selection of Inha Kang’s research and engineering projects in XR, virtual fashion, mobile AI, 3D imaging and GPU computing."
     />
-    <meta name="theme-color" content="#070b17" />
+    <meta name="theme-color" content="#f5f2e9" />
+    <link rel="canonical" href="https://2na-97.github.io/projects.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Play & Build — Inha Kang" />
+    <meta
+      property="og:description"
+      content="A selection of Inha Kang’s research and engineering projects in XR, virtual fashion, mobile AI, 3D imaging and GPU computing."
+    />
+    <meta property="og:url" content="https://2na-97.github.io/projects.html" />
+    <meta property="og:image" content="https://2na-97.github.io/assets/img/social-preview.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Inha Kang — AI researcher at KAIST and research intern at KRAFTON. Vision, language, and what comes next."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="assets/fonts/space-grotesk-700.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <script defer src="assets/js/site.js"></script>
+    <script src="assets/js/site.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
-
     <header class="site-header">
-      <div class="container nav-shell">
-        <a class="brand" href="index.html" aria-label="Go to home page">
-          <span class="brand-mark">IK</span>
-          <span class="brand-copy">
-            <strong>Inha Kang</strong>
-            <small>Deep Learning Researcher</small>
-          </span>
-        </a>
-
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span class="sr-only">Toggle navigation</span>
+      <div class="nav-shell wrap">
+        <a class="brand" href="index.html" aria-label="Inha Kang, home"
+          >ik<span class="brand-star">✳</span></a
+        >
+        <span class="nav-note"
+          >A curious mind.<br />
+          A research practice.</span
+        >
+        <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" hidden>
+          Menu <span aria-hidden="true">+</span>
         </button>
-
-        <nav class="site-nav" id="site-nav" aria-label="Primary">
-          <a href="index.html#about">About</a>
-          <a href="publications.html">Publications</a>
-          <a href="projects.html" aria-current="page">Projects</a>
-          <a href="index.html#journey">Journey</a>
-          <a href="index.html#contact">Contact</a>
+        <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+          <a href="index.html#research">Research</a><a href="index.html#about">About</a
+          ><a href="index.html#news">News</a><a href="projects.html" aria-current="page">Play &amp; build</a>
+          <a class="nav-cv" href="assets/files/InhaKang_CV.pdf" target="_blank" rel="noopener noreferrer"
+            >CV <span aria-hidden="true">↗</span></a
+          >
         </nav>
       </div>
     </header>
-
     <main id="main-content">
-      <section class="page-hero">
-        <div class="hero-wave hero-wave-b" aria-hidden="true"></div>
-        <div class="container narrow-container">
-          <p class="eyebrow">Projects and systems</p>
-          <h1>From immersive visualization to medical AI, health, and product design.</h1>
-          <p class="hero-text narrow-text">
-            A selection of applied research and engineering projects across medical
-            imaging, XR, human-centered interfaces, mobile AI, and high-performance computing.
+      <div id="top"></div>
+      <section class="page-hero wrap">
+        <p class="eyebrow">EXPERIMENTS / SYSTEMS / OTHER CURIOSITIES</p>
+        <h1>
+          Serious curiosity.<br />
+          <em>Playful possibilities.</em>
+        </h1>
+        <div class="page-hero-bottom">
+          <p>
+            Before and beyond the papers: a selection of things I’ve built,<br />
+            from immersive interfaces to the systems underneath them.
           </p>
+          <a
+            class="text-link"
+            href="https://drive.google.com/file/d/10ShAh3M-BPV0rrOXE94NQod0BKUxyx11/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Full portfolio <span aria-hidden="true">↗</span></a
+          >
         </div>
       </section>
-
-      <section class="section no-top-gap">
-        <div class="container project-grid">
-          <article class="card project-card glow-card">
-            <div class="project-top">
-              <span class="chip chip-accent">Feb 2021 – Dec 2022</span>
-              <span class="chip chip-soft">Medical Imaging</span>
-            </div>
-            <h2>ODT-based Visualization of PM2.5 Interaction with Cells</h2>
+      <section class="project-list wrap" aria-label="Selected engineering projects">
+        <article class="project">
+          <div class="project-art lilac">
+            <span class="eyebrow">EXPERIMENT / 01</span>
+            <h2>
+              A different way<br />
+              to look inside.
+            </h2>
+            <img
+              src="assets/img/project-xr.svg"
+              width="600"
+              height="300"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+            /><span class="art-caption">SKETCHSCOPE</span>
+          </div>
+          <div class="project-copy">
+            <p class="meta">2021 — 2022 · XR / INTERACTION DESIGN</p>
+            <h3>SketchScope</h3>
             <p>
-              Investigated how fine dust interacts with macrophages and epithelial cells
-              using Optical Diffraction Tomography and holographic microscopy.
+              Sketch-based volume exploration that makes internal structures tangible through gestures, touch
+              and immersive displays.
             </p>
             <ul>
-              <li>Built a 3D label-free visualization workflow for PM2.5-cell interaction analysis.</li>
-              <li>Analyzed refractive index distributions to compare active and passive uptake patterns in real time.</li>
-              <li>Demonstrated a phototoxicity-free method for studying hard-to-label substances in biological systems.</li>
+              <li>Built interaction across Leap Motion, VR and holographic displays.</li>
+              <li>Extended the platform to HoloLens 2 with QR-code-based volume placement.</li>
             </ul>
-          </article>
-
-          <article class="card project-card">
-            <div class="project-top">
-              <span class="chip chip-accent">Mar 2021 – Aug 2022</span>
-              <span class="chip chip-soft">XR / AR / VR</span>
-            </div>
-            <h2>SketchScope: Interactive Virtual Science Museum Platform</h2>
+            <a
+              class="button outline"
+              href="https://cgv.kaist.ac.kr/smc/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Project page <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </article>
+        <article class="project">
+          <div class="project-art peach">
+            <span class="eyebrow">EXPERIMENT / 02</span>
+            <h2>
+              Try it on.<br />
+              Mix it up.
+            </h2>
+            <img
+              src="assets/img/project-fashion.svg"
+              width="600"
+              height="300"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+            /><span class="art-caption">FORMIXMATCH</span>
+          </div>
+          <div class="project-copy">
+            <p class="meta">2020 · VIRTUAL FASHION / HUMAN–AI INTERACTION</p>
+            <h3>ForMixMatch</h3>
             <p>
-              A multi-modal volume visualization platform enabling sketch-based exploration
-              of internal structure without damaging the object.
+              A virtual fashion coordinator exploring how interface design changes the way people compare and
+              combine clothing.
             </p>
             <ul>
-              <li>Implemented bi-directional interactions across hand gestures, touch interfaces, VR headsets, and holographic displays.</li>
-              <li>Extended the system to HoloLens 2 with QR-code based volume placement for immersive museum experiences.</li>
-              <li>Focused on accessibility, education, and multi-device interaction design.</li>
+              <li>Built a VITON-based pipeline for upper- and lower-body outfit combinations.</li>
+              <li>Compared four interface layouts in a user study on interaction and confidence.</li>
             </ul>
-            <div class="action-row">
-              <a class="button button-small button-secondary" href="https://cgv.kaist.ac.kr/smc/" target="_blank" rel="noreferrer">Project page</a>
-            </div>
-          </article>
-
-          <article class="card project-card">
-            <div class="project-top">
-              <span class="chip chip-accent">Sept 2020 – Dec 2020</span>
-              <span class="chip chip-soft">Human-Centered AI</span>
-            </div>
-            <h2>ForMixMatch: Virtual Fashion Coordinator Service</h2>
+            <a
+              class="button outline"
+              href="https://drive.google.com/file/d/15ikMyMpH_iaYv0yi-2vp4AvnEG0EBfVl/view?usp=drivesdk"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Project deck <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </article>
+        <article class="project">
+          <div class="project-art lime">
+            <span class="eyebrow">EXPERIMENT / 03</span>
+            <h2>
+              Movement,<br />
+              with feedback.
+            </h2>
+            <img
+              src="assets/img/project-pose.svg"
+              width="600"
+              height="300"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+            /><span class="art-caption">AI HEALTH TRAINER</span>
+          </div>
+          <div class="project-copy">
+            <p class="meta">2018 · MOBILE AI / POSE ESTIMATION</p>
+            <h3>AI Health Trainer</h3>
+            <p>Real-time mobile posture correction using OpenPose and Realtime PoseNet.</p>
+            <ul>
+              <li>Built accessible posture feedback without dedicated motion-capture hardware.</li>
+              <li>Led the GIST representative team for JETS and presented the project at NAVER.</li>
+            </ul>
+            <a
+              class="button outline"
+              href="https://drive.google.com/file/d/11Xq5r3vr8ErQ-EqwzP5P-GEJ7Y1aDk0I/view?usp=drivesdk"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Project deck <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </article>
+        <article class="project">
+          <div class="project-art sky">
+            <span class="eyebrow">EXPERIMENT / 04</span>
+            <h2>
+              Small particles.<br />
+              A closer look.
+            </h2>
+            <img
+              src="assets/img/project-cells.svg"
+              width="600"
+              height="300"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+            /><span class="art-caption">SEEING PM2.5 IN 3D</span>
+          </div>
+          <div class="project-copy">
+            <p class="meta">2021 — 2022 · 3D IMAGING / AI FOR SCIENCE</p>
+            <h3>Seeing PM2.5 in 3D</h3>
             <p>
-              Designed an image-based virtual try-on service that explores how interface
-              layouts affect user confidence in apparel coordination.
+              Label-free visualization of how fine dust interacts with macrophages and epithelial cells using
+              optical diffraction tomography.
             </p>
             <ul>
-              <li>Built a VITON-based pipeline to simulate top-and-bottom outfit combinations.</li>
-              <li>Ran a user study across four interface layouts to optimize browsing and comparison patterns.</li>
-              <li>Showed that adjustable grid-based layouts improved confidence over single-item views.</li>
+              <li>Built a 3D visualization workflow for cellular PM2.5 interaction analysis.</li>
+              <li>Quantified uptake, refractive index and mass changes.</li>
             </ul>
-            <div class="action-row">
-              <a class="button button-small button-secondary" href="https://drive.google.com/file/d/15ikMyMpH_iaYv0yi-2vp4AvnEG0EBfVl/view?usp=drivesdk" target="_blank" rel="noreferrer">Project deck</a>
-            </div>
-          </article>
-
-          <article class="card project-card">
-            <div class="project-top">
-              <span class="chip chip-accent">Apr 2018 – Dec 2018</span>
-              <span class="chip chip-soft">Health Tech</span>
-            </div>
-            <h2>AI Health Trainer</h2>
-            <p>
-              Mobile fitness coaching application using pose estimation for real-time
-              posture correction and personalized training support.
-            </p>
+            <a
+              class="button outline"
+              href="https://doi.org/10.1016/j.jhazmat.2023.131678"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Published research <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </article>
+        <article class="project">
+          <div class="project-art yellow">
+            <span class="eyebrow">EXPERIMENT / 05</span>
+            <h2>
+              Under the hood.<br />
+              Across architectures.
+            </h2>
+            <img
+              src="assets/img/project-compute.svg"
+              width="600"
+              height="300"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+            /><span class="art-caption">GPU ACCELERATION WITH KOKKOS</span>
+          </div>
+          <div class="project-copy">
+            <p class="meta">2017 — 2018 · C++ / PARALLEL COMPUTING</p>
+            <h3>GPU Acceleration with Kokkos</h3>
+            <p>Exploring portable parallel workloads and architecture-aware GPU execution.</p>
             <ul>
-              <li>Used OpenPose and Realtime PoseNet to correct posture without expensive motion-capture equipment.</li>
-              <li>Included workout routine generation, diet recommendations, and social ranking mechanics.</li>
-              <li>Selected as the university representative for the JETS competition and presented the project at NAVER as team lead.</li>
+              <li>Implemented parallel computing tasks in C++ using Kokkos.</li>
+              <li>Studied memory access, data layouts and work mapping across architectures.</li>
             </ul>
-            <div class="action-row">
-              <a class="button button-small button-secondary" href="https://drive.google.com/file/d/11Xq5r3vr8ErQ-EqwzP5P-GEJ7Y1aDk0I/view?usp=drivesdk" target="_blank" rel="noreferrer">Project deck</a>
-            </div>
-          </article>
-
-          <article class="card project-card">
-            <div class="project-top">
-              <span class="chip chip-accent">Dec 2017 – Dec 2018</span>
-              <span class="chip chip-soft">High-Performance Computing</span>
-            </div>
-            <h2>GPU Acceleration with KOKKOS</h2>
-            <p>
-              Explored performance portability with KOKKOS for efficient work mapping,
-              memory layout control, and scalable GPU acceleration.
-            </p>
-            <ul>
-              <li>Studied architecture-aware arrays and memory access optimization strategies.</li>
-              <li>Implemented parallel computing tasks while preserving code portability across devices.</li>
-              <li>Focused on simplifying performance-tuned patterns in modern C++ for research workflows.</li>
-            </ul>
-            <div class="action-row">
-              <a class="button button-small button-secondary" href="https://drive.google.com/file/d/1MAHBFubHB7QF1plxxZh8X9vJ9ded_nya/view?usp=drivesdk" target="_blank" rel="noreferrer">Project presentation</a>
-            </div>
-          </article>
-        </div>
+            <a
+              class="button outline"
+              href="https://drive.google.com/file/d/1MAHBFubHB7QF1plxxZh8X9vJ9ded_nya/view?usp=drivesdk"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Project presentation <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </article>
       </section>
     </main>
-
-    <footer class="site-footer">
-      <div class="container footer-shell">
-        <p>© <span id="current-year"></span> Inha Kang. Built for GitHub Pages.</p>
-        <div class="inline-links">
-          <a href="mailto:rkswlsj13@kaist.ac.kr">Email</a>
-          <a href="https://scholar.google.com/citations?user=sAYvnb8AAAAJ&amp;hl=en" target="_blank" rel="noreferrer">Scholar</a>
-          <a href="https://github.com/2na-97" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="https://www.linkedin.com/in/inha-kang-646742170/" target="_blank" rel="noreferrer">LinkedIn</a>
+    <footer class="site-footer" id="contact">
+      <div class="wrap">
+        <div class="footer-top">
+          <p class="eyebrow">Good questions start conversations.</p>
+          <span class="footer-spark"
+            ><svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
+              <path
+                d="M44 0h12v33L80 9l9 9-24 24h35v12H65l24 24-9 9-24-24v37H44V63L20 87l-9-9 24-24H0V42h35L11 18l9-9 24 24z"
+              /></svg
+          ></span>
+        </div>
+        <div class="contact-line">
+          <h2>
+            Let’s make AI<br />
+            <em>make sense.</em>
+          </h2>
+          <a class="contact-arrow" href="mailto:rkswlsj13@kaist.ac.kr" aria-label="Email Inha Kang">↗</a>
+        </div>
+        <div class="footer-links">
+          <a class="email-link" href="mailto:rkswlsj13@kaist.ac.kr">rkswlsj13@kaist.ac.kr</a>
+          <div>
+            <a
+              class="text-link"
+              href="https://scholar.google.com/citations?user=sAYvnb8AAAAJ&amp;hl=en"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Scholar <span aria-hidden="true">↗</span></a
+            ><a class="text-link" href="https://github.com/2na-97" target="_blank" rel="noopener noreferrer"
+              >GitHub <span aria-hidden="true">↗</span></a
+            ><a
+              class="text-link"
+              href="https://www.linkedin.com/in/inha-kang-646742170/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >LinkedIn <span aria-hidden="true">↗</span></a
+            ><a
+              class="text-link"
+              href="assets/files/InhaKang_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              >CV <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© <span data-year>2026</span> Inha Kang <span lang="ko">강인하</span></span
+          ><span>Seoul, Korea · Updated October 2026</span><a href="#top">Back to top ↑</a>
         </div>
       </div>
     </footer>
