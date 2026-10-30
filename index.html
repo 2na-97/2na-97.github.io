@@ -71,8 +71,7 @@
             alt=""
             width="34"
             height="34"
-          /></a
-        >
+        /></a>
         <span class="nav-note"
           >A curious mind.<br />
           A research practice.</span
@@ -103,6 +102,102 @@
       <div id="top"></div>
       <section class="hero-showcase" aria-labelledby="hero-title">
         <div class="showcase-stage">
+          <div
+            class="curiosity-world hero-world"
+            data-scroll-scene
+            data-world="daydream"
+          >
+            <img
+              class="world-landscape"
+              src="assets/img/curiosity-ocean-orbit.webp"
+              alt=""
+              width="1536"
+              height="1024"
+              loading="eager"
+            />
+            <div class="world-wash" aria-hidden="true"></div>
+            <div class="world-orbs" aria-hidden="true">
+              <i></i><i></i><i></i>
+            </div>
+            <div class="world-photo-anchor">
+              <button
+                class="world-photo"
+                type="button"
+                aria-pressed="false"
+                aria-label="Flip Inha’s photo"
+                aria-describedby="paper-help"
+                disabled
+              >
+                <span class="photo-face photo-front">
+                  <span class="paper-fibers" aria-hidden="true"></span>
+                  <span class="paper-tape" aria-hidden="true"></span>
+                  <img
+                    src="assets/img/inha-cutout.webp"
+                    alt="Inha Kang, cut out from her original outdoor photograph"
+                    width="1254"
+                    height="1254"
+                    loading="eager"
+                    draggable="false"
+                  />
+                  <span class="paper-corner" aria-hidden="true"></span>
+                  <span class="photo-caption"
+                    >A little outside the lines.
+                    <b aria-hidden="true">↻</b></span
+                  >
+                </span>
+                <span class="photo-face photo-back" aria-hidden="true">
+                  <span class="postcard-stamp" aria-hidden="true">✳</span>
+                  <span class="eyebrow">A NOTE FROM INHA</span>
+                  <strong
+                    >Curiosity is<br />the common<br /><em>thread.</em></strong
+                  >
+                  <span
+                    >From pixels and language<br />to the physical world.</span
+                  >
+                  <span class="postcard-signature">Keep wondering. ↻</span>
+                </span>
+              </button>
+              <span class="paper-hint" aria-hidden="true"
+                >drag me · flip me ↗</span
+              >
+              <p id="paper-help" class="paper-help">
+                Drag the paper, or use arrow keys to move it. Press Enter to
+                turn it over, and Home to reset its position.
+              </p>
+            </div>
+            <div class="world-footer">
+              <p>Real photograph · Ocean / Orbit</p>
+              <div
+                class="world-switch"
+                role="group"
+                aria-label="Choose the portrait setting"
+                hidden
+              >
+                <button
+                  type="button"
+                  data-setting="daydream"
+                  aria-pressed="true"
+                >
+                  Daydream <span aria-hidden="true">✧</span>
+                </button>
+                <button
+                  type="button"
+                  data-setting="studio"
+                  aria-pressed="false"
+                >
+                  Studio <span aria-hidden="true">◌</span>
+                </button>
+                <button
+                  type="button"
+                  class="paper-reset"
+                  aria-label="Reset the paper collage"
+                >
+                  Reset <span aria-hidden="true">↺</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
           <div class="showcase-aurora" aria-hidden="true"></div>
           <div class="research-universe" aria-hidden="true">
             <div class="scene-fallback">
@@ -608,94 +703,6 @@
         </div>
       </section>
       <section class="section wrap about-section" id="about">
-        <div class="curiosity-world" data-scroll-scene data-world="daydream">
-          <img
-            class="world-landscape"
-            src="assets/img/curiosity-ocean-orbit.webp"
-            alt=""
-            width="1536"
-            height="1024"
-            loading="lazy"
-          />
-          <div class="world-wash" aria-hidden="true"></div>
-          <div class="world-heading">
-            <p class="eyebrow">SOMEWHERE BETWEEN REAL &amp; POSSIBLE</p>
-            <h2><span>A curious mind.</span><em>In any world.</em></h2>
-            <p>
-              A real moment. A little imagination.<br />The same person asking
-              what comes next.
-            </p>
-          </div>
-          <div class="world-orbs" aria-hidden="true"><i></i><i></i><i></i></div>
-          <div class="world-photo-anchor">
-            <button
-              class="world-photo"
-              type="button"
-              aria-pressed="false"
-              aria-label="Flip Inha’s photo"
-              aria-describedby="paper-help"
-              disabled
-            >
-              <span class="photo-face photo-front">
-                <span class="paper-fibers" aria-hidden="true"></span>
-                <span class="paper-tape" aria-hidden="true"></span>
-                <img
-                  src="assets/img/inha-cutout.webp"
-                  alt="Inha Kang, cut out from her original outdoor photograph"
-                  width="1254"
-                  height="1254"
-                  loading="lazy"
-                  draggable="false"
-                />
-                <span class="paper-corner" aria-hidden="true"></span>
-                <span class="photo-caption"
-                  >A little outside the lines. <b aria-hidden="true">↻</b></span
-                >
-              </span>
-              <span class="photo-face photo-back" aria-hidden="true">
-                <span class="postcard-stamp" aria-hidden="true">✳</span>
-                <span class="eyebrow">A NOTE FROM INHA</span>
-                <strong
-                  >Curiosity is<br />the common<br /><em>thread.</em></strong
-                >
-                <span
-                  >From pixels and language<br />to the physical world.</span
-                >
-                <span class="postcard-signature">Keep wondering. ↻</span>
-              </span>
-            </button>
-            <span class="paper-hint" aria-hidden="true"
-              >drag me · flip me ↗</span
-            >
-            <p id="paper-help" class="paper-help">
-              Drag the paper, or use arrow keys to move it. Press Enter to turn
-              it over, and Home to reset its position.
-            </p>
-          </div>
-          <div class="world-footer">
-            <p>Real photograph · Ocean / Orbit</p>
-            <div
-              class="world-switch"
-              role="group"
-              aria-label="Choose the portrait setting"
-              hidden
-            >
-              <button type="button" data-setting="daydream" aria-pressed="true">
-                Daydream <span aria-hidden="true">✧</span>
-              </button>
-              <button type="button" data-setting="studio" aria-pressed="false">
-                Studio <span aria-hidden="true">◌</span>
-              </button>
-              <button
-                type="button"
-                class="paper-reset"
-                aria-label="Reset the paper collage"
-              >
-                Reset <span aria-hidden="true">↺</span>
-              </button>
-            </div>
-          </div>
-        </div>
         <div class="about-heading">
           <p class="eyebrow">02 / THE PERSON BEHIND THE PAPERS</p>
           <h2>

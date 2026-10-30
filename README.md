@@ -147,3 +147,13 @@ Mode: built-in imagegen, new transparent image. Final prompt:
 ```text
 Use case: stylized-concept. Asset type: transparent 3D gemstone icon for a designer's personal portfolio wordmark. Create ONE exquisite electric-blue sapphire gemstone, isolated and centered on a completely transparent background. A bold softly elongated cushion/emerald cut with a clipped-corner octagonal silhouette, seen at a three-quarter front angle and tilted clockwise about 15 degrees. Large clean geometric facets, substantial dimensional depth, vividly saturated royal-blue and cobalt glass, cyan internal refractions, a few restrained icy-white edge highlights and darker deep ultramarine facet planes. The gem itself should be elegant, sculptural and immediately readable at only 32 pixels tall, so use a small number of broad clear facets rather than many tiny busy facets. High-end photoreal product CGI with crisp polished edges, balanced studio lighting and beautiful refractive depth. Fill about 84 percent of the square canvas with the one gem. No pedestal, no ground plane, no jewelry setting, no gold, no ring, no other objects, no text, no star shape, no floating sparkle symbols, no cartoon outline, no background, no cast shadow outside the object. Output genuine transparent alpha.
 ```
+
+### One opening scene
+
+The Ocean / Orbit image and interactive paper portrait now open the homepage together with the 3D
+research toys. The original About collage was moved rather than duplicated. The hero image and
+portrait load eagerly; the left introduction stays readable over a local light scrim. On phones the
+portrait follows the introduction in the same scene, with the camera beside it. Toy placement leaves
+room for the face and headline, including a matching lightweight fallback when WebGL is unavailable.
+The existing keyboard, drag, page-turn, scene-switch and motion controls remain available, and dragging
+the paper gives the hero title a small response. The About anchor now leads directly to the research bio.

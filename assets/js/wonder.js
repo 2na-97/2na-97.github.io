@@ -78,6 +78,11 @@
     paperY = Math.max(narrow ? -35 : -65, Math.min(narrow ? 45 : 80, nextY));
     world.style.setProperty("--paper-x", paperX.toFixed(2));
     world.style.setProperty("--paper-y", paperY.toFixed(2));
+    const heroStage = world.closest(".showcase-stage");
+    if (heroStage) {
+      heroStage.style.setProperty("--paper-x", paperX.toFixed(2));
+      heroStage.style.setProperty("--paper-y", paperY.toFixed(2));
+    }
     world.dataset.paperMoved = String(Math.abs(paperX) + Math.abs(paperY) > 1);
   };
   const settle = () => {

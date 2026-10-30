@@ -1884,3 +1884,274 @@ h3 {
     top: 33%;
   }
 }
+
+/* One opening scene: ocean, paper portrait, typography and research toys. */
+.showcase-stage > .hero-world {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  min-height: 0;
+  border-radius: 0;
+  pointer-events: none;
+}
+.hero-world .world-landscape {
+  object-position: 50% 50%;
+}
+.hero-world .world-wash {
+  background:
+    linear-gradient(
+      90deg,
+      #f3f5ffed,
+      #eff2ffde 37%,
+      #e6eaff30 67%,
+      transparent
+    ),
+    linear-gradient(0deg, #132c6066, transparent 20%);
+}
+.hero-world .world-photo-anchor {
+  pointer-events: auto;
+  top: 31%;
+  right: 8%;
+  width: clamp(245px, 25vw, 350px);
+}
+.hero-world .world-footer {
+  left: auto;
+  right: max(5%, 165px);
+  bottom: 18px;
+  pointer-events: auto;
+}
+.hero-world .world-footer > p {
+  display: none;
+}
+.showcase-stage .research-universe {
+  z-index: 1;
+}
+.showcase-stage .showcase-aurora,
+.showcase-stage::after {
+  display: none;
+}
+.showcase-stage .fallback-orb {
+  width: 90px;
+  height: 90px;
+  top: 12%;
+  right: 9%;
+}
+.showcase-stage .fallback-ring {
+  width: 60px;
+  height: 60px;
+  border-width: 12px;
+  left: 52%;
+  top: 10%;
+}
+.showcase-stage .scene-fallback img {
+  width: 95px;
+  left: 22%;
+  bottom: 8%;
+}
+.showcase-copy {
+  left: 35%;
+  top: 46%;
+  width: min(760px, 54%);
+  text-align: left;
+  z-index: 3;
+}
+.showcase-copy h1 {
+  font-size: clamp(68px, 8.4vw, 126px);
+  transform: translate(
+    calc(var(--paper-x, 0) * -0.06px),
+    calc(var(--paper-y, 0) * 0.04px)
+  );
+  transition: transform 0.7s var(--spring);
+}
+.showcase-copy .showcase-intro,
+.showcase-copy .showcase-kicker {
+  color: #464d6b;
+}
+.showcase-copy .showcase-actions,
+.showcase-copy .scene-controls {
+  justify-content: flex-start;
+}
+.showcase-copy .bubble-clear {
+  left: 0;
+  transform: none;
+}
+.showcase-topline,
+.showcase-bottom,
+.scene-caption {
+  z-index: 2;
+}
+.showcase-bottom {
+  pointer-events: none;
+}
+.showcase-bottom .discovery-cue {
+  display: none;
+}
+.showcase-bottom .affiliation-lockup,
+.scene-caption {
+  color: white;
+  text-shadow: 0 1px 8px #142d7066;
+}
+@media (min-width: 601px) and (max-width: 900px) {
+  .hero-world .world-photo-anchor {
+    width: 215px;
+    top: 35%;
+    right: 5%;
+  }
+  .showcase-copy {
+    left: 32%;
+    width: 54%;
+  }
+  .showcase-copy h1 {
+    font-size: 8.7vw;
+  }
+  .showcase-statement {
+    font-size: 28px;
+  }
+  .showcase-intro {
+    max-width: 330px;
+    font-size: 11px;
+  }
+  .hero-world .photo-back {
+    padding: 22px;
+  }
+  .hero-world .photo-back strong {
+    font-size: 27px;
+  }
+}
+@media (max-width: 600px) {
+  .showcase-stage {
+    min-height: 760px;
+  }
+  .motion-toggle {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    justify-content: center;
+    right: 8px;
+    bottom: 64px;
+  }
+  .motion-toggle [data-motion-label] {
+    display: none;
+  }
+  .hero-world .world-landscape {
+    object-position: 72% 50%;
+  }
+  .hero-world .world-wash {
+    background:
+      linear-gradient(
+        180deg,
+        #f0f3ffeb,
+        #eef1ffe3 36%,
+        #e8eaff30 62%,
+        transparent 78%
+      ),
+      linear-gradient(0deg, #071b4f99, transparent 25%);
+  }
+  .showcase-copy,
+  .motion-off .showcase-copy {
+    top: 54px;
+    left: 20px;
+    width: calc(100% - 40px);
+    transform: none !important;
+    text-align: center;
+  }
+  .showcase-copy h1 {
+    font-size: clamp(54px, 16vw, 80px);
+    white-space: nowrap;
+  }
+  .showcase-kicker {
+    display: none;
+  }
+  .showcase-statement {
+    font-size: clamp(24px, 6.4vw, 32px);
+    margin-top: 12px;
+  }
+  .showcase-intro {
+    font-size: 9.5px;
+    line-height: 1.6;
+    padding: 0;
+    margin-top: 12px;
+  }
+  .showcase-actions {
+    margin-top: 14px;
+  }
+  .showcase-copy .showcase-actions,
+  .showcase-copy .scene-controls {
+    justify-content: center;
+  }
+  .scene-controls {
+    margin-top: 8px;
+  }
+  .showcase-copy .bubble-clear {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .hero-world .world-photo-anchor {
+    top: 365px;
+    right: calc(50% - 100px);
+    width: 200px;
+  }
+  .hero-world .photo-back {
+    padding: 20px;
+  }
+  .hero-world .photo-back strong {
+    font-size: 25px;
+    margin-block: 14px 12px;
+  }
+  .hero-world .world-footer {
+    bottom: 94px;
+    left: 0;
+    right: 0;
+  }
+  .showcase-stage .fallback-orb {
+    width: 52px;
+    height: 52px;
+    top: 35px;
+    right: 4%;
+  }
+  .showcase-stage .fallback-ring {
+    width: 40px;
+    height: 40px;
+    left: 7%;
+    top: 51%;
+    border-width: 8px;
+  }
+  .showcase-stage .scene-fallback img {
+    width: 65px;
+    bottom: 23%;
+    left: auto;
+    right: 2%;
+  }
+  .hero-world .paper-hint {
+    bottom: -23px;
+  }
+  .showcase-bottom {
+    bottom: 49px;
+  }
+  .showcase-bottom .affiliation-lockup {
+    margin-inline: auto;
+  }
+  .showcase-bottom .affiliation-lockup strong,
+  .showcase-bottom .affiliation-lockup span {
+    color: #fff;
+  }
+  .scene-caption {
+    bottom: 14px;
+    left: 20px;
+    right: auto;
+    width: 220px;
+    padding: 0;
+    text-align: left;
+    font-size: 7px;
+  }
+}
+@media print {
+  .showcase-stage > .hero-world {
+    display: block !important;
+  }
+  .hero-world .world-switch,
+  .hero-world .paper-hint,
+  .hero-world .world-orbs {
+    display: none !important;
+  }
+}
