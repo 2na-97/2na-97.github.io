@@ -1,0 +1,108 @@
+/* Letterforms, never plaques. This readable treatment is also the no-WebGL fallback. */
+.interest-token {
+  padding: 4px 0;
+  border: 0;
+  border-radius: 6px;
+  box-shadow: none;
+  background: none;
+  color: #768bd6;
+  font:
+    700 23px/1.1 "Space Grotesk",
+    sans-serif;
+  letter-spacing: -0.04em;
+  text-shadow:
+    1px 1px 0 #d9ecff,
+    2px 2px 0 #7089b8,
+    0 5px 10px #33548225;
+}
+.interest-token::after {
+  display: none;
+}
+.interest-token .token-label {
+  font: inherit;
+}
+.token-vision {
+  --word-x: 0.57;
+  --word-y: 0.35;
+  color: #6f93c8;
+}
+.token-world {
+  --word-x: 0.61;
+  --word-y: 0.56;
+  color: #6b76c7;
+}
+.token-agent {
+  --word-x: 0.45;
+  --word-y: 0.12;
+  color: #579f98;
+}
+.token-explain {
+  --word-x: 0.55;
+  --word-y: 0.78;
+  color: #ae79c0;
+}
+.hero-showcase.glass-words-ready .interest-token {
+  left: 0;
+  top: 0;
+  right: auto;
+  bottom: auto;
+  padding: 0;
+  color: transparent;
+  text-shadow: none;
+  animation: none !important;
+  rotate: none;
+  translate: none;
+  scale: 1;
+  transition: none;
+  filter: none;
+}
+.glass-words-ready .token-label {
+  opacity: 0;
+}
+.hero-showcase.glass-words-ready .interest-token:focus-visible {
+  outline: 2px dashed #4859aa;
+  outline-offset: 6px;
+}
+@media (min-width: 601px) and (max-width: 1000px) {
+  .interest-token {
+    font-size: 18px;
+  }
+  .token-vision {
+    --word-x: 0.64;
+    --word-y: 0.34;
+  }
+  .token-world {
+    --word-x: 0.75;
+    --word-y: 0.75;
+  }
+  .token-agent {
+    --word-x: 0.43;
+    --word-y: 0.13;
+  }
+  .token-explain {
+    --word-x: 0.38;
+    --word-y: 0.84;
+  }
+}
+@media (max-width: 600px) {
+  .interest-token {
+    font-size: 13px;
+    padding: 6px 0;
+  }
+  .token-vision {
+    --word-x: 0.26;
+    --word-y: 0.77;
+  }
+  .token-world {
+    --word-x: 0.74;
+    --word-y: 0.77;
+  }
+  .token-agent {
+    --word-x: 0.27;
+    --word-y: 0.825;
+  }
+  .token-explain {
+    --word-x: 0.74;
+    --word-y: 0.825;
+  }
+}

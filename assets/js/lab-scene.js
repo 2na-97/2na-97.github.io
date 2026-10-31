@@ -2,6 +2,7 @@
 import * as THREE from "../vendor/three/three.module.js";
 import { RoundedBoxGeometry } from "../vendor/three/RoundedBoxGeometry.js";
 import { RoomEnvironment } from "../vendor/three/RoomEnvironment.js";
+import { createGlassWords } from "./glass-words.js";
 
 const host = document.querySelector(".hero-showcase");
 if (host) {
@@ -9,7 +10,7 @@ if (host) {
     createUniverse(host);
   } catch (error) {
     // The static artwork and all research content stay available without WebGL.
-    host.classList.remove("scene-ready");
+    host.classList.remove("scene-ready", "glass-words-ready");
     console.warn(
       "The research universe is using its static artwork.",
       error.message,
@@ -372,6 +373,7 @@ function createUniverse(host) {
       push: new THREE.Vector2(),
     });
   });
+  const glassWords = createGlassWords({ scene, camera, stage, host, request });
   const raycaster = new THREE.Raycaster();
   const hitPoint = new THREE.Vector2();
   // Lightweight orbital ribbons and traveling beads give the stage depth.
@@ -479,8 +481,8 @@ function createUniverse(host) {
     halfWidth = 8,
     mobile = false,
     lost = false,
-    orbiting = false,
-    orbitMix = 0,
+    orbiting = active,
+    orbitMix = active ? 1 : 0,
     orbitTime = 0,
     hovered = -1,
     pointerInside = false;
@@ -504,6 +506,7 @@ function createUniverse(host) {
     camera.left = -halfWidth;
     camera.right = halfWidth;
     camera.updateProjectionMatrix();
+    glassWords.resize();
     measure();
     request();
   }
@@ -523,6 +526,8 @@ function createUniverse(host) {
       event?.detail?.active ??
       (document.documentElement.classList.contains("motion-active") &&
         !reduced.matches);
+    // Start each visit in Orbit; resuming Motion also restores the composed orbits.
+    if (active && event) orbiting = true;
     // Automatic motion and visitor-requested play are independent preferences.
     rainButton.disabled = false;
     orbitButton.disabled = false;
@@ -547,6 +552,8 @@ function createUniverse(host) {
       });
       caption.textContent = "A small universe of things I’m curious about.";
     }
+    orbitButton.setAttribute("aria-pressed", String(orbiting));
+    canvas.dataset.orbit = orbiting ? "active" : "idle";
     previous = 0;
     request();
   }
@@ -756,7 +763,7 @@ function createUniverse(host) {
     const progress = scrollValue,
       fall = progress * progress;
     orbitMix = THREE.MathUtils.damp(orbitMix, orbiting ? 1 : 0, 3, dt);
-    if (orbiting) orbitTime += dt * 0.24;
+    if (orbiting) orbitTime += dt * 0.36;
     toys.forEach((toy, i) => {
       const { object, layout: l, phase } = toy;
       let x = l[0] * halfWidth * 2,
@@ -765,10 +772,10 @@ function createUniverse(host) {
       if (mobile) {
         // Small objects frame the lower portrait; the camera remains easy to tap.
         const placements = [
-          [-0.35, -2.35, 0.36],
+          [-0.39, -1.65, 0.3],
           [-0.4, 0.3, 0.23],
           [0.4, 3.92, 0.23],
-          [0.36, -2.5, 0.36],
+          [0.4, -1.75, 0.3],
           [0.4, -1.5, 0.23],
           [0.02, 3.98, 0.21],
           [-0.12, -3.6, 0.23],
@@ -781,21 +788,14 @@ function createUniverse(host) {
         y = placements[i][1];
         scale = placements[i][2];
       }
-      const orbitAngle =
-        Math.atan2(y / 3.5, x / (halfWidth * 0.86)) + orbitTime;
-      const cos = Math.cos(orbitAngle),
-        sin = Math.sin(orbitAngle);
-      x = THREE.MathUtils.lerp(
-        x,
-        Math.sign(cos) * Math.pow(Math.abs(cos), 0.55) * halfWidth * 0.86,
-        orbitMix,
-      );
-      y = THREE.MathUtils.lerp(
-        y,
-        Math.sign(sin) * Math.pow(Math.abs(sin), 0.55) * 3.5,
-        orbitMix,
-      );
-      scale *= 1 - orbitMix * 0.22;
+      // Orbit each object's own anchor to preserve the reading and portrait areas.
+      // The glass letterforms use this same clock, with smaller lanes on phones.
+      const orbitAngle = orbitTime + phase;
+      const radiusX = mobile ? 0.07 : i === 8 ? 0.48 : 0.3;
+      const radiusY = mobile ? 0.08 : 0.3;
+      x += Math.cos(orbitAngle) * radiusX * orbitMix;
+      y += Math.sin(orbitAngle) * radiusY * orbitMix;
+      scale *= 1 - orbitMix * 0.04;
       const float = active ? Math.sin(time * 1.05 + phase) * 0.17 : 0;
       const entry = active
         ? Math.exp(-time * 2.2) * Math.cos(time * 3.8 + i * 0.35) * 0.8
@@ -933,6 +933,14 @@ function createUniverse(host) {
       ((1 - cameraScreen.y) * stage.clientHeight) / 2 - (mobile ? 65 : 72),
     );
     cameraInvite.style.transform = `translate3d(${hintX}px, ${hintY}px, 0)`;
+    glassWords.update({
+      time,
+      dt,
+      active,
+      orbitMix,
+      orbitTime,
+      pointer: smoothPointer,
+    });
     renderer.render(scene, camera);
     if (pointerInside && fine.matches) {
       const nextHover = hitTest();
@@ -1029,6 +1037,7 @@ function createUniverse(host) {
   canvas.addEventListener("webglcontextlost", (event) => {
     event.preventDefault();
     lost = true;
+    glassWords.hide();
     cancelAnimationFrame(frame);
     host.classList.remove("scene-ready");
     playDock.hidden = true;

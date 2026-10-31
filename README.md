@@ -170,8 +170,8 @@ non-interactive atmosphere interpolates through five light palettes as native sc
   In static mode their simulation renders only for a bounded play interval (or while Orbit is on).
 - A high-contrast play dock, a clickable camera tag, a paper-drag cue and distinct icon invitations
   expose the available actions. Invitations repeat only a few times and stop after interaction where
-  applicable. Four accessible research links use CSS perspective, thick edges and gentle floating.
-- `type-play.js` adds a cursor-proximity lens to the name and research tokens. Nearby glyphs grow and
+  applicable. Four accessible research links now use the glass letterforms described below.
+- `type-play.js` adds a cursor-proximity lens to the name. Nearby glyphs grow and
   lift through transforms, preserving line layout. Full phrases remain accessible names. It uses
   coalesced pointer frames, resets on leave/scroll, and disables on coarse pointers, paused motion
   and reduced-motion devices.
@@ -196,3 +196,28 @@ Validation covers 1920px, 1280px, 768px, 390px and 320px layouts; cursor scaling
 button actions with automatic motion on/off; reduced-motion JS and no-WebGL fixtures; finite rain
 cleanup; paper flip and keyboard behavior; planet palette changes and particle cleanup; archive search;
 local references, JavaScript syntax, browser errors and Git whitespace.
+
+
+### Glass letterforms and default Orbit
+
+- `glass-words.js` creates actual beveled, extruded Space Grotesk letter geometry for
+  Vision–Language, World Models, Agentic Systems and Explainable AI. Transparent physical
+  materials, tinted edges, reflections and slight rotation reveal depth without card backgrounds.
+- The four words share the camera/toys' orbit clock. Separate elliptical paths keep the main
+  introduction clear; phones use smaller paths and two rows below the portrait. Hover or keyboard
+  focus holds a word's position and enlarges it, with an aligned HTML link to the research directions.
+- Orbit is on at first load when automatic motion is allowed. Its pressed state is visible in the
+  play dock. Visitors can turn Orbit off independently; Motion off and reduced-motion preferences
+  stop ambient animation, and resuming Motion restores Orbit. Manual play remains available.
+- `keyword-outlines.js` contains only the four required phrases, generated from the existing local
+  OFL-licensed `space-grotesk-700.ttf` (see `assets/fonts/spacegrotesk-OFL.txt`). To regenerate,
+  install `fonttools==4.60.1` in a development environment and run
+  `python tools/build_keyword_outlines.py`. No runtime font parser or external asset request is added.
+- Native HTML text links remain visible if WebGL is unavailable or its context is lost. All animated
+  geometry shares the existing scene loop, viewport limits and offscreen/background pause behavior.
+
+This update was checked at 1920px, 1280px, 768px, 390px and 320px: default Orbit state,
+independent toggle, Motion pause/resume, camera bubbles, keyboard link activation, and overflow.
+The reduced-motion JavaScript fixture stops ambient rendering; manually toggling Orbit off returns
+it to idle. The no-WebGL fixture retains visible text links. Application JS syntax, local references,
+formatting and Git whitespace checks pass; normal browser runs report no console errors.
