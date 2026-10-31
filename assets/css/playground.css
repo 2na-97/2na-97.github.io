@@ -1,0 +1,838 @@
+/* An intimate opening scene, readable controls, and tactile research interests. */
+body:has(.page-atmosphere) {
+  isolation: isolate;
+  background: #f4f5ff;
+}
+.page-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(
+    145deg,
+    var(--ambient-a, #f0f1ff),
+    var(--ambient-b, #fff3ed)
+  );
+}
+.page-atmosphere i {
+  position: absolute;
+  width: 65vw;
+  height: 65vw;
+  max-width: 950px;
+  max-height: 950px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.42;
+}
+.page-atmosphere i:nth-child(1) {
+  left: -30%;
+  top: -25%;
+  background: #b9c9ff;
+  transform: translate(var(--ambient-shift, 0px), var(--ambient-rise, 0px));
+}
+.page-atmosphere i:nth-child(2) {
+  right: -30%;
+  top: 15%;
+  background: #f3b5de;
+  transform: translate(
+    calc(var(--ambient-shift, 0px) * -0.6),
+    calc(var(--ambient-rise, 0px) * -0.3)
+  );
+}
+.page-atmosphere i:nth-child(3) {
+  left: 25%;
+  bottom: -65%;
+  background: #9ce3d6;
+  transform: translateY(calc(var(--ambient-rise, 0px) * -0.5));
+}
+.hero-showcase {
+  height: calc(100svh + 180px);
+  min-height: 950px;
+  max-height: 1180px;
+  padding-top: 14px;
+}
+.showcase-stage {
+  width: min(1320px, calc(100% - 48px));
+  margin-inline: auto;
+  top: 84px;
+  height: min(780px, calc(100svh - 100px));
+  min-height: 660px;
+  max-height: 780px;
+  border-radius: 32px;
+  box-shadow:
+    0 24px 70px #454e8112,
+    inset 0 0 0 1px #fff;
+}
+.showcase-topline {
+  top: 24px;
+}
+.showcase-copy {
+  left: 34%;
+  top: 47%;
+  width: 54%;
+}
+.showcase-copy h1 {
+  font-size: clamp(72px, 7.4vw, 104px);
+}
+.showcase-statement {
+  font-size: clamp(29px, 2.75vw, 38px);
+  margin-top: 16px;
+}
+.showcase-intro {
+  font-size: 15px;
+  line-height: 1.65;
+  margin-top: 16px;
+  max-width: 470px;
+}
+.showcase-intro br {
+  display: none;
+}
+.showcase-kicker {
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+.showcase-actions {
+  margin-top: 22px;
+}
+.hero-world .world-photo-anchor {
+  width: clamp(245px, 24vw, 330px);
+  top: 31%;
+  right: 7%;
+}
+.hero-world .world-footer {
+  right: 5%;
+  bottom: 20px;
+}
+.showcase-bottom {
+  bottom: 28px;
+}
+.scene-caption {
+  bottom: 8px;
+}
+.section-heading h2,
+.about-heading h2 {
+  font-size: clamp(38px, 4.6vw, 64px);
+}
+.play-dock {
+  width: min(450px, 100%);
+  margin-top: 18px;
+  padding: 13px 14px 11px;
+  border: 1px solid #fff;
+  border-radius: 21px;
+  background: #ffffffed;
+  box-shadow:
+    0 10px 30px #46559c24,
+    inset 0 1px 0 #fff;
+  backdrop-filter: blur(18px);
+}
+.play-dock-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.play-dock-heading p {
+  font:
+    700 9px/1.2 "Space Grotesk",
+    sans-serif;
+  letter-spacing: 0.11em;
+  color: #494569;
+}
+.play-nudge {
+  font-size: 10px;
+  color: #4430a0;
+  font-weight: 700;
+}
+.play-dock .scene-controls {
+  margin: 0;
+  gap: 7px;
+}
+.play-dock .scene-controls button {
+  flex: 1;
+  justify-content: center;
+  min-height: 46px;
+  padding: 10px 9px;
+  border-radius: 13px;
+  border: 1px solid #cbc4e8;
+  background: #eee9ff;
+  color: #33234f;
+  font-weight: 700;
+  gap: 7px;
+  box-shadow:
+    0 4px 0 #c1b2e3,
+    inset 0 1px 0 #fff9;
+  transition:
+    transform 0.3s var(--spring),
+    box-shadow 0.3s,
+    background 0.3s;
+}
+.play-dock .scene-controls button span {
+  color: inherit;
+  font-size: 12px;
+  white-space: nowrap;
+  line-height: 1;
+}
+.play-dock .scene-controls svg {
+  width: 21px;
+  height: 21px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.play-dock .scene-controls .snap-button {
+  color: white;
+  background: #4c40da;
+  border-color: #4035bd;
+  box-shadow:
+    0 4px 0 #2e258c,
+    inset 0 1px 0 #ffffff60;
+}
+.play-dock .scene-controls .rain-button {
+  background: #ffdbdf;
+  border-color: #eeb7c4;
+  box-shadow:
+    0 4px 0 #dca3b3,
+    inset 0 1px 0 #fff9;
+}
+.play-dock .scene-controls button:hover:not(:disabled),
+.play-dock .scene-controls button:focus-visible {
+  transform: translateY(-3px);
+  box-shadow:
+    0 7px 0 #7762a9,
+    0 10px 22px #55548a25;
+}
+.play-dock .scene-controls button:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #7762a9;
+}
+.play-dock .scene-controls button[aria-pressed="true"] {
+  background: #d4ffc9;
+  border-color: #90b997;
+  box-shadow: 0 4px 0 #8db194;
+}
+.play-dock .scene-controls button:disabled {
+  opacity: 0.65;
+  cursor: progress;
+}
+.play-dock-note {
+  margin-top: 12px;
+  color: #666078;
+  font-size: 9px;
+  line-height: 1.4;
+}
+.motion-active .hero-showcase.is-in-view:not(.has-played) .play-dock {
+  animation: play-invitation 2.8s ease-in-out 3;
+}
+.motion-active .hero-showcase.is-in-view:not(.has-played) .play-nudge {
+  animation: play-point 1.4s ease-in-out 6;
+}
+@keyframes play-invitation {
+  50% {
+    box-shadow:
+      0 10px 30px #46559c24,
+      0 0 0 5px #8f78ee22,
+      0 0 0 11px #8f78ee08;
+  }
+}
+@keyframes play-point {
+  50% {
+    transform: translate(-2px, 3px);
+  }
+}
+.showcase-copy .bubble-clear {
+  background: #fff;
+  border: 1px solid #aca3cc;
+  color: #352a56;
+  z-index: 2;
+}
+.interest-constellation {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  perspective: 1000px;
+}
+.interest-token {
+  position: absolute;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 12px 16px;
+  border: 1px solid #ffffffb3;
+  border-radius: 13px;
+  background: var(--token-face);
+  color: var(--token-ink, #272f54);
+  font:
+    700 12px/1.2 "Space Grotesk",
+    sans-serif;
+  white-space: nowrap;
+  transform: perspective(600px) rotateX(14deg) rotateY(-12deg)
+    rotate(var(--token-tilt));
+  transform-style: preserve-3d;
+  box-shadow:
+    0 2px 0 var(--token-edge),
+    0 4px 0 var(--token-edge),
+    1px 6px 0 var(--token-edge),
+    0 16px 22px #22335c20,
+    inset 0 1px 1px #fff;
+  transition:
+    scale 0.4s var(--spring),
+    filter 0.4s;
+}
+.interest-token::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    #fff7,
+    transparent 35%,
+    transparent 66%,
+    #fff4
+  );
+}
+.interest-token span {
+  font-size: 20px;
+  line-height: 1;
+}
+.interest-token:hover,
+.interest-token:focus-visible {
+  scale: 1.08;
+  filter: brightness(1.06);
+}
+.token-vision {
+  --token-face: #f8efcb;
+  --token-edge: #c4b575;
+  --token-tilt: -8deg;
+  left: 50%;
+  top: 30%;
+}
+.token-world {
+  --token-face: #4a6bdf;
+  --token-edge: #263b97;
+  --token-ink: white;
+  --token-tilt: 8deg;
+  left: 54%;
+  top: 49%;
+}
+.token-agent {
+  --token-face: #cff0de;
+  --token-edge: #89b59d;
+  --token-tilt: 6deg;
+  left: 38%;
+  top: 9%;
+}
+.token-explain {
+  --token-face: #f4d2ea;
+  --token-edge: #bc93b4;
+  --token-tilt: -5deg;
+  left: 49%;
+  top: 72%;
+}
+.motion-active .hero-showcase.is-in-view .interest-token {
+  animation: interest-drift 7s ease-in-out infinite alternate;
+}
+.interest-token:nth-child(2) {
+  animation-delay: -3s !important;
+}
+.interest-token:nth-child(3) {
+  animation-delay: -5s !important;
+}
+.interest-token:nth-child(4) {
+  animation-delay: -1s !important;
+}
+@keyframes interest-drift {
+  from {
+    translate: -4px 3px;
+    rotate: -2deg;
+  }
+  to {
+    translate: 5px -9px;
+    rotate: 2deg;
+  }
+}
+@media (min-width: 601px) and (max-width: 1000px) {
+  .showcase-stage {
+    width: calc(100% - 32px);
+    min-height: 740px;
+  }
+  .showcase-copy {
+    width: 56%;
+    left: 33%;
+    top: 47%;
+  }
+  .showcase-copy h1 {
+    font-size: 8.1vw;
+  }
+  .showcase-statement {
+    font-size: clamp(25px, 3.2vw, 32px);
+  }
+  .showcase-intro {
+    font-size: 13px;
+    max-width: 340px;
+  }
+  .hero-world .world-photo-anchor {
+    width: 215px;
+    right: 4%;
+    top: 34%;
+  }
+  .play-dock {
+    padding: 11px 10px;
+  }
+  .play-dock .scene-controls button {
+    padding-inline: 7px;
+    gap: 4px;
+  }
+  .play-dock .scene-controls button span {
+    font-size: 10px;
+  }
+  .play-dock .scene-controls svg {
+    width: 17px;
+    height: 17px;
+  }
+  .play-dock-note {
+    font-size: 8px;
+  }
+  .interest-token {
+    font-size: 10px;
+    padding: 9px 12px;
+    gap: 6px;
+  }
+  .interest-token span {
+    font-size: 16px;
+  }
+  .token-vision {
+    left: 49%;
+    top: 28%;
+  }
+  .token-world {
+    left: 69%;
+    top: 73%;
+  }
+  .token-agent {
+    left: 36%;
+    top: 11%;
+  }
+  .token-explain {
+    left: 31%;
+    top: 81%;
+  }
+}
+@media (max-width: 600px) {
+  .hero-showcase {
+    height: 1080px;
+    min-height: 1080px;
+    max-height: none;
+    padding-top: 7px;
+  }
+  .showcase-stage {
+    width: calc(100% - 16px);
+    top: 72px;
+    height: 900px;
+    min-height: 900px;
+    max-height: none;
+    border-radius: 23px;
+  }
+  .showcase-topline {
+    top: 20px;
+    width: calc(100% - 32px);
+  }
+  .showcase-copy,
+  .motion-off .showcase-copy {
+    left: 16px;
+    top: 51px;
+    width: calc(100% - 32px);
+  }
+  .showcase-copy h1 {
+    font-size: clamp(50px, 15vw, 74px);
+  }
+  .showcase-statement {
+    font-size: clamp(23px, 6vw, 30px);
+    margin-top: 12px;
+  }
+  .showcase-intro {
+    font-size: 12px;
+    margin-top: 12px;
+    max-width: none;
+  }
+  .showcase-actions {
+    margin-top: 14px;
+  }
+  .play-dock {
+    width: 100%;
+    margin-top: 14px;
+    padding: 11px 10px 9px;
+    border-radius: 17px;
+    text-align: left;
+  }
+  .play-dock-heading {
+    margin-bottom: 9px;
+  }
+  .play-dock-heading p {
+    font-size: 8px;
+  }
+  .play-nudge {
+    font-size: 9px;
+  }
+  .play-dock .scene-controls {
+    gap: 5px;
+  }
+  .play-dock .scene-controls button {
+    min-height: 44px;
+    padding: 8px 5px;
+    gap: 4px;
+    border-radius: 10px;
+  }
+  .play-dock .scene-controls button span {
+    font-size: 10px;
+  }
+  .play-dock .scene-controls svg {
+    width: 17px;
+    height: 17px;
+  }
+  .play-dock-note {
+    font-size: 8px;
+    margin-top: 11px;
+    text-align: center;
+  }
+  .hero-world .world-photo-anchor {
+    width: 195px;
+    right: calc(50% - 97.5px);
+    top: 450px;
+  }
+  .hero-world .world-footer {
+    bottom: 60px;
+    left: 0;
+    right: 0;
+  }
+  .showcase-bottom {
+    bottom: 20px;
+  }
+  .scene-caption {
+    bottom: 4px;
+    font-size: 7px;
+    width: 210px;
+  }
+  .interest-token {
+    font-size: 9px;
+    padding: 9px 10px;
+    gap: 5px;
+    border-radius: 10px;
+  }
+  .interest-token span {
+    font-size: 15px;
+  }
+  .token-vision {
+    left: 6%;
+    top: 681px;
+  }
+  .token-world {
+    left: auto;
+    right: 6%;
+    top: 677px;
+  }
+  .token-agent {
+    left: 9%;
+    top: 729px;
+  }
+  .token-explain {
+    left: auto;
+    right: 7%;
+    top: 725px;
+  }
+  .page-atmosphere i {
+    filter: blur(45px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .interest-token,
+  .play-dock,
+  .play-nudge {
+    animation: none !important;
+  }
+  .page-atmosphere i {
+    transform: none;
+  }
+}
+@media print {
+  .page-atmosphere,
+  .interest-constellation,
+  .play-dock {
+    display: none !important;
+  }
+  .hero-showcase {
+    height: auto;
+    min-height: 0;
+    padding: 0;
+  }
+  .showcase-stage {
+    width: 100%;
+    height: 450px;
+    min-height: 450px;
+    top: 0;
+  }
+}
+
+/* The pointer lens lifts nearby glyphs without shifting neighboring content. */
+.showcase-copy h1 {
+  letter-spacing: -0.065em;
+}
+.showcase-copy h1 .proximity-letter {
+  color: inherit;
+}
+.showcase-copy h1 .title-dot {
+  color: #a57bef;
+}
+.interest-token .token-label,
+.interest-token .proximity-letter {
+  font: inherit;
+}
+.proximity-letter {
+  display: inline-block;
+  transform-origin: 50% 78%;
+  transition: transform 240ms cubic-bezier(0.2, 0.8, 0.25, 1);
+}
+.motion-off .proximity-letter {
+  transform: none !important;
+}
+@media (prefers-reduced-motion: reduce), (hover: none) {
+  .proximity-letter {
+    transform: none !important;
+    transition: none;
+  }
+}
+
+/* Small, different invitations explain what each playful object does. */
+.camera-invite {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 11px;
+  border: 1px solid #fff;
+  border-radius: 12px 12px 12px 3px;
+  background: #fff1a8;
+  color: #514021;
+  box-shadow:
+    0 4px 0 #d7bf6e,
+    0 7px 18px #43467326;
+  font:
+    700 12px/1.1 "Space Grotesk",
+    sans-serif;
+  cursor: pointer;
+}
+.camera-invite b {
+  font-size: 18px;
+  line-height: 1;
+}
+.motion-active .hero-showcase.is-in-view:not(.camera-played) .camera-invite b {
+  animation: camera-point 1.4s ease-in-out 8;
+}
+.camera-invite:hover {
+  background: #fffbd7;
+}
+.motion-active .hero-showcase.is-in-view:not(.has-played) .snap-button svg {
+  animation: bubble-invite 2.4s ease-in-out 4;
+}
+.motion-active .hero-showcase.is-in-view:not(.has-played) .rain-button svg {
+  animation: rain-invite 2.4s ease-in-out 4;
+  animation-delay: 0.6s;
+}
+.motion-active .hero-showcase.is-in-view:not(.has-played) .orbit-button svg {
+  animation: orbit-invite 3s ease-in-out 3;
+  animation-delay: 1.2s;
+}
+.curiosity-world.hero-world[data-world] .paper-hint {
+  width: max-content;
+  max-width: 100%;
+  left: 50%;
+  padding: 6px 10px;
+  border-radius: 99px;
+  background: #fff7de;
+  color: #584567;
+  text-shadow: none;
+  box-shadow: 0 3px 12px #18286524;
+  font:
+    700 10px/1.2 "Space Grotesk",
+    sans-serif;
+  transform: translateX(-50%) rotate(-3deg);
+}
+.paper-hint b {
+  display: inline-block;
+  padding-inline: 3px;
+  font-size: 13px;
+}
+.paper-hint i {
+  opacity: 0.5;
+  margin-inline: 3px;
+  font:
+    italic 12px Georgia,
+    serif;
+}
+.motion-active .hero-showcase.is-in-view .paper-hint b:first-child {
+  animation: drag-invite 2s ease-in-out 4;
+}
+.planet-play {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 40px);
+  z-index: 6;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+.planet-invitation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px 15px;
+  border: 1px solid white;
+  border-radius: 14px 14px 14px 3px;
+  background: #fff2b4;
+  color: #584329;
+  box-shadow: 0 4px 0 #dbc472;
+  font:
+    700 13px/1.3 "Space Grotesk",
+    sans-serif;
+  rotate: 7deg;
+}
+.planet-invitation b {
+  font-size: 22px;
+  display: inline-block;
+  rotate: 180deg;
+  margin-right: 6px;
+}
+.motion-active
+  .thinking-sculpture.is-in-view:not(.has-spun)
+  .planet-invitation {
+  animation: planet-invite 1.8s ease-in-out 6;
+}
+.thinking-sculpture[data-palette="1"] .sculpture-orb {
+  background: radial-gradient(
+    circle at 28% 20%,
+    #f5fff5,
+    #c1f0d5 28%,
+    #65c3bc 65%,
+    #40879c
+  );
+}
+.thinking-sculpture[data-palette="2"] .sculpture-orb {
+  background: radial-gradient(
+    circle at 28% 20%,
+    #fff8ed,
+    #ffd3ae 28%,
+    #ee9eac 65%,
+    #a471ad
+  );
+}
+.planet-spark {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 45%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  box-shadow:
+    inset -2px -3px 4px #28234930,
+    inset 1px 2px 2px #fff;
+  pointer-events: none;
+}
+@keyframes camera-point {
+  50% {
+    translate: -3px 4px;
+    rotate: -10deg;
+  }
+}
+@keyframes bubble-invite {
+  45% {
+    translate: 0 -4px;
+    scale: 1.15;
+  }
+}
+@keyframes rain-invite {
+  35% {
+    rotate: -18deg;
+    translate: 0 -2px;
+  }
+  65% {
+    rotate: 15deg;
+    translate: 0 3px;
+  }
+}
+@keyframes orbit-invite {
+  70%,
+  100% {
+    rotate: 180deg;
+  }
+}
+@keyframes drag-invite {
+  30% {
+    translate: -4px 0;
+  }
+  70% {
+    translate: 4px 0;
+  }
+}
+@keyframes planet-invite {
+  45% {
+    translate: -3px 7px;
+    rotate: 4deg;
+  }
+}
+@media (max-width: 600px) {
+  .camera-invite {
+    font-size: 10px;
+    padding: 5px 9px;
+  }
+  .curiosity-world.hero-world[data-world] .paper-hint {
+    font-size: 8px;
+    padding: 5px 7px;
+  }
+  .planet-invitation {
+    font-size: 11px;
+    padding: 8px 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .camera-invite b,
+  .scene-controls svg,
+  .paper-hint b,
+  .planet-invitation {
+    animation: none !important;
+  }
+}
+@media print {
+  .camera-invite,
+  .planet-play,
+  .planet-spark {
+    display: none !important;
+  }
+}
+
+.direction .direction-number {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font:
+    700 11px/1 "Space Grotesk",
+    sans-serif;
+}

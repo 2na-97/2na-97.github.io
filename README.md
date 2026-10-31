@@ -157,3 +157,42 @@ portrait follows the introduction in the same scene, with the camera beside it. 
 room for the face and headline, including a matching lightweight fallback when WebGL is unavailable.
 The existing keyboard, drag, page-turn, scene-switch and motion controls remain available, and dragging
 the paper gives the hero title a small response. The About anchor now leads directly to the research bio.
+
+### Readable play, typographic curiosity, and paper insights
+
+The opening scene is capped at 1320px and centered on wide displays. Introduction text is larger,
+controls remain opaque during scrolling, and the portrait stays close to the introduction. A fixed,
+non-interactive atmosphere interpolates through five light palettes as native scrolling progresses.
+
+- Automatic motion starts on in a new tab session. An explicit pause lasts for that session; old
+  persistent pause values no longer silently disable new visits. Device reduced-motion preferences
+  still stop ambient motion. Manual camera/bubble, rain and orbit actions remain available independently.
+  In static mode their simulation renders only for a bounded play interval (or while Orbit is on).
+- A high-contrast play dock, a clickable camera tag, a paper-drag cue and distinct icon invitations
+  expose the available actions. Invitations repeat only a few times and stop after interaction where
+  applicable. Four accessible research links use CSS perspective, thick edges and gentle floating.
+- `type-play.js` adds a cursor-proximity lens to the name and research tokens. Nearby glyphs grow and
+  lift through transforms, preserving line layout. Full phrases remain accessible names. It uses
+  coalesced pointer frames, resets on leave/scroll, and disables on coarse pointers, paused motion
+  and reduced-motion devices.
+- The four selected research figures now turn over to a short insight/method/contribution summary.
+  Conference badges are larger on the homepage and in the full archive. Important phrases use bold
+  Space Grotesk; the reverse-side headlines pair DM Sans with an editorial serif. Read-paper links
+  remain outside the flipping surfaces. Enter/Space flips and Escape returns to the figure; the
+  inactive face is hidden from assistive technology. Without JS, figures and paper links remain usable.
+- The research planet responds to clicks with a new palette, a spring, an orbit turn and ten bounded
+  particles. Repeated clicks cancel previous effects. Reduced motion uses an instantaneous palette
+  change. No camera access, external runtime, backend or tracking is involved.
+
+Contribution summaries were checked against the authors' primary abstracts:
+[spatial grounding](https://arxiv.org/abs/2509.23098),
+[negation](https://arxiv.org/abs/2510.13232),
+[air-quality GRPO](https://arxiv.org/abs/2511.22169), and
+[geometric distillation](https://arxiv.org/abs/2506.09883).
+Existing CV-confirmed conference labels are preserved. Quantitative callouts retain the reported
+benchmark and baseline, and the forecasting paper remains distinct from the separate PLUME feature.
+
+Validation covers 1920px, 1280px, 768px, 390px and 320px layouts; cursor scaling; direct camera and
+button actions with automatic motion on/off; reduced-motion JS and no-WebGL fixtures; finite rain
+cleanup; paper flip and keyboard behavior; planet palette changes and particle cleanup; archive search;
+local references, JavaScript syntax, browser errors and Git whitespace.

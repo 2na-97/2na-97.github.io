@@ -45,11 +45,17 @@
     <link rel="stylesheet" href="assets/css/motion.css" />
     <script src="assets/js/site.js" defer></script>
     <script src="assets/js/motion.js" defer></script>
+    <script src="assets/js/type-play.js" defer></script>
+    <script src="assets/js/paper-flip.js" defer></script>
+    <script src="assets/js/planet-play.js" defer></script>
     <link rel="stylesheet" href="assets/css/experience.css" />
+    <link rel="stylesheet" href="assets/css/playground.css" />
+    <link rel="stylesheet" href="assets/css/papers.css" />
     <script type="module" src="assets/js/lab-scene.js"></script>
     <script src="assets/js/wonder.js" defer></script>
   </head>
   <body>
+    <div class="page-atmosphere" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="reading-progress" aria-hidden="true"></div>
     <button
       class="motion-toggle"
@@ -158,7 +164,7 @@
                 </span>
               </button>
               <span class="paper-hint" aria-hidden="true"
-                >drag me · flip me ↗</span
+                ><b>↔</b> drag me <i>or</i> flip me <b>↗</b></span
               >
               <p id="paper-help" class="paper-help">
                 Drag the paper, or use arrow keys to move it. Press Enter to
@@ -212,6 +218,35 @@
             </div>
             <canvas class="universe-canvas"></canvas>
           </div>
+          <button
+            class="camera-invite"
+            type="button"
+            aria-label="Take a bubble photo"
+            hidden
+          >
+            <span>click!</span><b aria-hidden="true">↙</b>
+          </button>
+          <nav
+            class="interest-constellation"
+            aria-label="Floating research interests"
+          >
+            <a class="interest-token token-vision" href="#directions"
+              ><span aria-hidden="true">◎</span>
+              <span class="token-label" data-proximity>Vision–Language</span></a
+            >
+            <a class="interest-token token-world" href="#directions"
+              ><span aria-hidden="true">◈</span>
+              <span class="token-label" data-proximity>World Models</span></a
+            >
+            <a class="interest-token token-agent" href="#directions"
+              ><span aria-hidden="true">↗</span>
+              <span class="token-label" data-proximity>Agentic Systems</span></a
+            >
+            <a class="interest-token token-explain" href="#directions"
+              ><span aria-hidden="true">✧</span>
+              <span class="token-label" data-proximity>Explainable AI</span></a
+            >
+          </nav>
           <div class="showcase-topline wrap">
             <p class="eyebrow">
               <span class="status-dot"></span> AI RESEARCHER · SEOUL
@@ -220,38 +255,70 @@
           </div>
           <div class="showcase-copy">
             <p class="showcase-kicker">A curious mind. An open world.</p>
-            <h1 id="hero-title">Inha Kang<span>.</span></h1>
+            <h1 id="hero-title" data-proximity>
+              Inha Kang<span class="title-dot">.</span>
+            </h1>
             <p class="showcase-statement">
               Making AI see, reason<br />&amp; <span>imagine what’s next.</span>
             </p>
             <p class="showcase-intro">
-              Vision–language models. Physical intelligence. Agentic systems.<br />I
-              turn model failures into new capabilities.
+              Vision–language models. Physical intelligence. Agentic systems.<br />
+              I turn model failures into new capabilities.
             </p>
             <div class="showcase-actions">
               <a class="button dark" href="#research"
                 >Discover my research <span aria-hidden="true">↗</span></a
               >
             </div>
-            <div
-              class="scene-controls"
-              role="group"
-              aria-label="Play with the research universe"
-            >
-              <button class="rain-button" type="button" hidden>
-                <span aria-hidden="true">✦</span> Make it rain
-              </button>
-              <button
-                class="orbit-button"
-                type="button"
-                aria-pressed="false"
-                hidden
+            <div class="play-dock" hidden>
+              <div class="play-dock-heading">
+                <p>PLAY WITH MY WORLD</p>
+                <span class="play-nudge"
+                  >Try a button <b aria-hidden="true">↙</b></span
+                >
+              </div>
+              <div
+                class="scene-controls"
+                role="group"
+                aria-label="Play with the research universe"
               >
-                <span aria-hidden="true">◎</span> Orbit
-              </button>
-              <button class="snap-button" type="button" hidden>
-                <span aria-hidden="true">▣</span> Bubbles
-              </button>
+                <button class="snap-button" type="button" hidden>
+                  <svg viewBox="0 0 28 28" aria-hidden="true">
+                    <circle cx="10" cy="17" r="7" />
+                    <circle cx="20" cy="8" r="4" />
+                    <circle cx="22" cy="22" r="2" />
+                  </svg>
+                  <span>Bubbles</span>
+                </button>
+                <button class="rain-button" type="button" hidden>
+                  <svg viewBox="0 0 28 28" aria-hidden="true">
+                    <path d="m14 2 3 8 8 3-8 3-3 8-3-8-8-3 8-3Z" />
+                    <path d="M3 21v5m21-5v5" />
+                  </svg>
+                  <span>Make it rain</span>
+                </button>
+                <button
+                  class="orbit-button"
+                  type="button"
+                  aria-pressed="false"
+                  hidden
+                >
+                  <svg viewBox="0 0 28 28" aria-hidden="true">
+                    <circle cx="14" cy="14" r="5" />
+                    <ellipse
+                      cx="14"
+                      cy="14"
+                      rx="13"
+                      ry="6"
+                      transform="rotate(-35 14 14)"
+                    />
+                  </svg>
+                  <span>Orbit</span>
+                </button>
+              </div>
+              <p class="play-dock-note">
+                Or tap the little camera. Every shot, a new color.
+              </p>
             </div>
             <button class="bubble-clear" type="button" hidden>
               Pop all bubbles <span aria-hidden="true">✧</span>
@@ -346,128 +413,290 @@
         </div>
         <div class="work-grid">
           <article class="work-card lilac">
-            <a
-              class="work-art"
-              href="https://arxiv.org/abs/2509.23098"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Read Blind to Position, Biased in Language: Probing Mid-Layer Representational Bias in Vision-Language Encoders for Zero-Shot Language-Grounded Spatial Understanding"
-              ><div class="work-art-top">
-                <span class="eyebrow">ECCV 2026</span
-                ><span class="circle-arrow" aria-hidden="true">↗</span>
+            <div class="paper-flip">
+              <div class="paper-turn">
+                <div class="work-art paper-face paper-front">
+                  <div class="work-art-top">
+                    <span class="venue-badge">ECCV 2026</span
+                    ><span class="flip-cue" aria-hidden="true">Flip ↻</span>
+                  </div>
+                  <h3>
+                    What do models<br />
+                    really see?
+                  </h3>
+                  <div class="paper-figure">
+                    <img
+                      src="assets/img/multilingual.webp"
+                      alt="Research overview: Blind to Position, Biased in Language: Probing Mid-Layer Representational Bias in Vision-Language Encoders for Zero-Shot Language-Grounded Spatial Understanding"
+                      width="1000"
+                      height="380"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="work-art-bottom">
+                    <strong>TRAINING-FREE</strong
+                    ><span
+                      >Spatial grounding from mid-layer representations</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="work-art paper-face paper-back"
+                  id="paper-insight-1"
+                  aria-hidden="true"
+                >
+                  <div class="work-art-top">
+                    <span class="venue-badge">ECCV 2026</span
+                    ><span class="flip-cue" aria-hidden="true">Back ↶</span>
+                  </div>
+                  <h3>Look inside.<br /><em>Localize better.</em></h3>
+                  <ol class="insight-points">
+                    <li>
+                      <span class="insight-label">THE INSIGHT</span>
+                      <p>
+                        Final-layer alignment weakens
+                        <strong>position cues</strong> and preserves
+                        <strong>language-dependent bias</strong>.
+                      </p>
+                    </li>
+                    <li>
+                      <span class="insight-label">THE METHOD</span>
+                      <p>
+                        Reuse <strong>mid-layer spatial maps</strong> for
+                        zero-shot grounding, without task-specific training.
+                      </p>
+                    </li>
+                    <li>
+                      <span class="insight-label">THE CONTRIBUTION</span>
+                      <p>
+                        Connect layer-wise probing to better localization;
+                        mixed-language features offer another path to improved
+                        grounding.
+                      </p>
+                    </li>
+                  </ol>
+                  <div class="insight-result">
+                    <strong>+1–7</strong
+                    ><span>mIoU across nine RefCOCO benchmarks</span>
+                  </div>
+                </div>
               </div>
-              <h3>
-                What do models<br />
-                really see?
-              </h3>
-              <div class="paper-figure">
-                <img
-                  src="assets/img/multilingual.webp"
-                  alt="Research overview: Blind to Position, Biased in Language: Probing Mid-Layer Representational Bias in Vision-Language Encoders for Zero-Shot Language-Grounded Spatial Understanding"
-                  width="1000"
-                  height="380"
-                  loading="lazy"
-                />
-              </div>
-              <div class="work-art-bottom">
-                <strong>TRAINING-FREE</strong
-                ><span>Spatial grounding from mid-layer representations</span>
-              </div></a
-            >
+              <button
+                class="paper-flip-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="paper-insight-1"
+                aria-label="Flip ECCV 2026 card to read contributions"
+                hidden
+              ></button>
+            </div>
             <div class="work-caption">
               <span class="work-number">01</span>
               <div>
-                <p class="work-title">
+                <h3 class="work-title">
                   Blind to Position, Biased in Language: Probing Mid-Layer
                   Representational Bias in Vision-Language Encoders for
                   Zero-Shot Language-Grounded Spatial Understanding
-                </p>
+                </h3>
+                <p class="paper-role">Co-first author</p>
                 <p class="authors">
                   Na Min An*, <strong>Inha Kang*</strong>, Minhyun Lee, Hyunjung
                   Shim
                 </p>
               </div>
             </div>
-          </article>
-          <article class="work-card peach">
             <a
-              class="work-art"
-              href="https://arxiv.org/abs/2510.13232"
+              class="paper-source"
+              href="https://arxiv.org/abs/2509.23098"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Read What “Not” to Detect: Negation-Aware VLMs via Structured Reasoning and Token Merging"
-              ><div class="work-art-top">
-                <span class="eyebrow">ICLR 2026</span
-                ><span class="circle-arrow" aria-hidden="true">↗</span>
-              </div>
-              <h3>
-                Understanding<br />
-                the word “not”.
-              </h3>
-              <div class="paper-figure">
-                <img
-                  src="assets/img/negationVLM.webp"
-                  alt="Research overview: What “Not” to Detect: Negation-Aware VLMs via Structured Reasoning and Token Merging"
-                  width="1000"
-                  height="380"
-                  loading="lazy"
-                />
-              </div>
-              <div class="work-art-bottom">
-                <strong>+10.8</strong
-                ><span>NMS-AP points · up to, on OVDEval negation</span>
-              </div></a
+              >Read paper <span aria-hidden="true">↗</span></a
             >
+          </article>
+          <article class="work-card peach">
+            <div class="paper-flip">
+              <div class="paper-turn">
+                <div class="work-art paper-face paper-front">
+                  <div class="work-art-top">
+                    <span class="venue-badge">ICLR 2026</span
+                    ><span class="flip-cue" aria-hidden="true">Flip ↻</span>
+                  </div>
+                  <h3>
+                    Understanding<br />
+                    the word “not”.
+                  </h3>
+                  <div class="paper-figure">
+                    <img
+                      src="assets/img/negationVLM.webp"
+                      alt="Research overview: What “Not” to Detect: Negation-Aware VLMs via Structured Reasoning and Token Merging"
+                      width="1000"
+                      height="380"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="work-art-bottom">
+                    <strong>+10.8</strong
+                    ><span>NMS-AP points · up to, on OVDEval negation</span>
+                  </div>
+                </div>
+                <div
+                  class="work-art paper-face paper-back"
+                  id="paper-insight-2"
+                  aria-hidden="true"
+                >
+                  <div class="work-art-top">
+                    <span class="venue-badge">ICLR 2026</span
+                    ><span class="flip-cue" aria-hidden="true">Back ↶</span>
+                  </div>
+                  <h3>Give “not”<br /><em>its meaning back.</em></h3>
+                  <ol class="insight-points">
+                    <li>
+                      <span class="insight-label">THE DATA</span>
+                      <p>
+                        <strong>CoVAND</strong> builds instance-grounded
+                        negation examples through a structured reasoning and VQA
+                        pipeline.
+                      </p>
+                    </li>
+                    <li>
+                      <span class="insight-label">THE METHOD</span>
+                      <p>
+                        <strong>NegToMe</strong> merges negation and attributes
+                        into coherent tokens; targeted
+                        <strong>LoRA</strong> adapts the model efficiently.
+                      </p>
+                    </li>
+                    <li>
+                      <span class="insight-label">THE CONTRIBUTION</span>
+                      <p>
+                        Address affirmative bias at both the
+                        <strong>data</strong> and
+                        <strong>representation</strong> levels to reduce false
+                        positives.
+                      </p>
+                    </li>
+                  </ol>
+                  <div class="insight-result">
+                    <strong>+10.8</strong
+                    ><span>NMS-AP points, up to, on OVDEval negation</span>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="paper-flip-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="paper-insight-2"
+                aria-label="Flip ICLR 2026 card to read contributions"
+                hidden
+              ></button>
+            </div>
             <div class="work-caption">
               <span class="work-number">02</span>
               <div>
-                <p class="work-title">
+                <h3 class="work-title">
                   What “Not” to Detect: Negation-Aware VLMs via Structured
                   Reasoning and Token Merging
-                </p>
+                </h3>
+                <p class="paper-role">First author</p>
                 <p class="authors">
                   <strong>Inha Kang</strong>, Youngsun Lim, Seonho Lee, Jiho
                   Choi, Junsuk Choe, Hyunjung Shim
                 </p>
               </div>
             </div>
-          </article>
-          <article class="work-card lime">
             <a
-              class="work-art"
-              href="https://arxiv.org/abs/2511.22169"
+              class="paper-source"
+              href="https://arxiv.org/abs/2510.13232"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Read Real-Time Long Horizon Air Quality Forecasting via Group-Relative Policy Optimization"
-              ><div class="work-art-top">
-                <span class="eyebrow">CVPR 2026</span
-                ><span class="circle-arrow" aria-hidden="true">↗</span>
-              </div>
-              <h3>
-                Better forecasts.<br />
-                Fewer false alarms.
-              </h3>
-              <div class="paper-figure">
-                <img
-                  src="assets/img/finedust.webp"
-                  alt="Research overview: Real-Time Long Horizon Air Quality Forecasting via Group-Relative Policy Optimization"
-                  width="1000"
-                  height="380"
-                  loading="lazy"
-                />
-              </div>
-              <div class="work-art-bottom">
-                <strong>−47.3%</strong
-                ><span>False-alarm rate · compared with SFT alone</span>
-              </div></a
+              >Read paper <span aria-hidden="true">↗</span></a
             >
+          </article>
+          <article class="work-card lime">
+            <div class="paper-flip">
+              <div class="paper-turn">
+                <div class="work-art paper-face paper-front">
+                  <div class="work-art-top">
+                    <span class="venue-badge">CVPR 2026</span
+                    ><span class="flip-cue" aria-hidden="true">Flip ↻</span>
+                  </div>
+                  <h3>
+                    Better forecasts.<br />
+                    Fewer false alarms.
+                  </h3>
+                  <div class="paper-figure">
+                    <img
+                      src="assets/img/finedust.webp"
+                      alt="Research overview: Real-Time Long Horizon Air Quality Forecasting via Group-Relative Policy Optimization"
+                      width="1000"
+                      height="380"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="work-art-bottom">
+                    <strong>−47.3%</strong
+                    ><span>False-alarm rate · compared with SFT alone</span>
+                  </div>
+                </div>
+                <div
+                  class="work-art paper-face paper-back"
+                  id="paper-insight-3"
+                  aria-hidden="true"
+                >
+                  <div class="work-art-top">
+                    <span class="venue-badge">CVPR 2026</span
+                    ><span class="flip-cue" aria-hidden="true">Back ↶</span>
+                  </div>
+                  <h3>Forecast for<br /><em>real decisions.</em></h3>
+                  <ol class="insight-points">
+                    <li>
+                      <span class="insight-label">THE DATA</span>
+                      <p>
+                        An East Asia <strong>CMAQ-OBS dataset</strong> supports
+                        real-time forecasts <strong>48–120 hours</strong> ahead.
+                      </p>
+                    </li>
+                    <li>
+                      <span class="insight-label">THE METHOD</span>
+                      <p>
+                        <strong>GRPO with class-wise rewards</strong> and
+                        curriculum rollout aligns forecasts with asymmetric
+                        warning costs.
+                      </p>
+                    </li>
+                    <li>
+                      <span class="insight-label">THE CONTRIBUTION</span>
+                      <p>
+                        Move beyond point-wise error to
+                        <strong>operational reliability</strong>, while
+                        maintaining competitive F1.
+                      </p>
+                    </li>
+                  </ol>
+                  <div class="insight-result">
+                    <strong>−47.3%</strong
+                    ><span>false-alarm rate versus the SFT-only baseline</span>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="paper-flip-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="paper-insight-3"
+                aria-label="Flip CVPR 2026 card to read contributions"
+                hidden
+              ></button>
+            </div>
             <div class="work-caption">
               <span class="work-number">03</span>
               <div>
-                <p class="work-title">
+                <h3 class="work-title">
                   Real-Time Long Horizon Air Quality Forecasting via
                   Group-Relative Policy Optimization
-                </p>
+                </h3>
+                <p class="paper-role">First author</p>
                 <p class="authors">
                   <strong>Inha Kang</strong>, Eunki Kim, Wonjeong Ryu, Jaeyo
                   Shin, Seungjun Yu, Yoon-Hee Kang, Seongeun Jeong, Eunhye Kim,
@@ -475,49 +704,114 @@
                 </p>
               </div>
             </div>
-          </article>
-          <article class="work-card sky">
             <a
-              class="work-art"
-              href="https://arxiv.org/abs/2506.09883"
+              class="paper-source"
+              href="https://arxiv.org/abs/2511.22169"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Read 3D-Aware Vision-Language Models Fine-Tuning with Geometric Distillation"
-              ><div class="work-art-top">
-                <span class="eyebrow">Findings of EMNLP 2025</span
-                ><span class="circle-arrow" aria-hidden="true">↗</span>
-              </div>
-              <h3>
-                A sense of<br />
-                three dimensions.
-              </h3>
-              <div class="paper-figure">
-                <img
-                  src="assets/img/3dvlm.webp"
-                  alt="Research overview: 3D-Aware Vision-Language Models Fine-Tuning with Geometric Distillation"
-                  width="1000"
-                  height="380"
-                  loading="lazy"
-                />
-              </div>
-              <div class="work-art-bottom">
-                <strong>2D → 3D</strong
-                ><span>Geometric knowledge, distilled into VLMs</span>
-              </div></a
+              >Read paper <span aria-hidden="true">↗</span></a
             >
+          </article>
+          <article class="work-card sky">
+            <div class="paper-flip">
+              <div class="paper-turn">
+                <div class="work-art paper-face paper-front">
+                  <div class="work-art-top">
+                    <span class="venue-badge">EMNLP 2025 · Findings</span
+                    ><span class="flip-cue" aria-hidden="true">Flip ↻</span>
+                  </div>
+                  <h3>
+                    A sense of<br />
+                    three dimensions.
+                  </h3>
+                  <div class="paper-figure">
+                    <img
+                      src="assets/img/3dvlm.webp"
+                      alt="Research overview: 3D-Aware Vision-Language Models Fine-Tuning with Geometric Distillation"
+                      width="1000"
+                      height="380"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="work-art-bottom">
+                    <strong>2D → 3D</strong
+                    ><span>Geometric knowledge, distilled into VLMs</span>
+                  </div>
+                </div>
+                <div
+                  class="work-art paper-face paper-back"
+                  id="paper-insight-4"
+                  aria-hidden="true"
+                >
+                  <div class="work-art-top">
+                    <span class="venue-badge">EMNLP 2025 · Findings</span
+                    ><span class="flip-cue" aria-hidden="true">Back ↶</span>
+                  </div>
+                  <h3>Teach geometry.<br /><em>Keep the architecture.</em></h3>
+                  <ol class="insight-points">
+                    <li>
+                      <span class="insight-label">THE INSIGHT</span>
+                      <p>
+                        Image-text training alone leaves VLMs with limited
+                        <strong>3D spatial understanding</strong>.
+                      </p>
+                    </li>
+                    <li>
+                      <span class="insight-label">THE METHOD</span>
+                      <p>
+                        Distill
+                        <strong
+                          >correspondences, relative depth and cost
+                          volumes</strong
+                        >
+                        from pretrained 3D foundation models.
+                      </p>
+                    </li>
+                    <li>
+                      <span class="insight-label">THE CONTRIBUTION</span>
+                      <p>
+                        <strong>Annotation-free fine-tuning</strong> improves
+                        spatial reasoning without changing the VLM architecture
+                        or its image-text inputs.
+                      </p>
+                    </li>
+                  </ol>
+                  <div class="insight-result">
+                    <strong>2D → 3D</strong
+                    ><span>geometric knowledge transferred into VLMs</span>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="paper-flip-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="paper-insight-4"
+                aria-label="Flip EMNLP 2025 · Findings card to read contributions"
+                hidden
+              ></button>
+            </div>
             <div class="work-caption">
               <span class="work-number">04</span>
               <div>
-                <p class="work-title">
+                <h3 class="work-title">
                   3D-Aware Vision-Language Models Fine-Tuning with Geometric
                   Distillation
-                </p>
+                </h3>
+                <p class="paper-role">Co-author</p>
                 <p class="authors">
                   Seonho Lee*, Jiho Choi*, <strong>Inha Kang</strong>, Jiwook
                   Kim, Junsung Park, Hyunjung Shim
                 </p>
               </div>
             </div>
+            <a
+              class="paper-source"
+              href="https://arxiv.org/abs/2506.09883"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Read paper <span aria-hidden="true">↗</span></a
+            >
           </article>
         </div>
         <a class="archive-link" href="publications.html"
@@ -617,8 +911,8 @@
             ></span>
           </div>
           <div class="directions-layout">
-            <div class="thinking-sculpture" aria-hidden="true">
-              <div class="sculpture-stage">
+            <div class="thinking-sculpture">
+              <div class="sculpture-stage" aria-hidden="true">
                 <span class="sculpture-orbit"></span>
                 <span class="sculpture-orb"></span>
                 <img
@@ -634,6 +928,16 @@
                   >always<br /><em>curious.</em></span
                 >
               </div>
+              <button
+                class="planet-play"
+                type="button"
+                aria-label="Spin the research planet"
+                hidden
+              >
+                <span class="planet-invitation"
+                  ><b aria-hidden="true">☝</b> give me a spin!</span
+                >
+              </button>
               <div class="sculpture-steps">
                 <span data-sculpture-label>01 / SEE &amp; UNDERSTAND</span
                 ><span>↘</span>

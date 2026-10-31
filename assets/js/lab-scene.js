@@ -26,6 +26,10 @@ function createUniverse(host) {
   const snapButton = host.querySelector(".snap-button");
   const caption = host.querySelector(".scene-caption");
   const clearButton = host.querySelector(".bubble-clear");
+  const playDock = host.querySelector(".play-dock");
+  const playNudge = host.querySelector(".play-nudge");
+  const cameraInvite = host.querySelector(".camera-invite");
+  const cameraScreen = new THREE.Vector3();
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   const fine = matchMedia("(hover:hover) and (pointer:fine)");
   const renderer = new THREE.WebGLRenderer({
@@ -343,9 +347,9 @@ function createUniverse(host) {
   // Frame the introduction on the left and the paper portrait on the right.
   const layouts = [
     [-0.28, -2.55, 0.68, -0.2, 0.34, -0.19],
-    [-0.45, 0.7, 0.48, 0.12, -0.28, 0.12],
+    [-0.47, 0.7, 0.36, 0.12, -0.28, 0.12],
     [0.38, 2.85, 0.65, 0.25, -0.25, 0.15],
-    [0.38, -2.5, 0.68, -0.14, -0.25, -0.12],
+    [0.43, -2.5, 0.68, -0.14, -0.25, -0.12],
     [0.45, 0.1, 0.55, 0.1, -0.32, 0.2],
     [-0.2, 3.2, 0.43, 0.15, 0.3, -0.2],
     [-0.12, -3.35, 0.5, 0.25, 0.2, -0.18],
@@ -460,7 +464,8 @@ function createUniverse(host) {
   });
   let bubbleCursor = 0,
     bubbleShot = 0,
-    lensKick = 0;
+    lensKick = 0,
+    playRemaining = 0;
   let active =
     document.documentElement.classList.contains("motion-active") &&
     !reduced.matches;
@@ -518,12 +523,16 @@ function createUniverse(host) {
       event?.detail?.active ??
       (document.documentElement.classList.contains("motion-active") &&
         !reduced.matches);
-    rainButton.disabled = !active;
-    orbitButton.disabled = !active;
-    snapButton.disabled = !active;
-    clearButton.disabled = !active;
+    // Automatic motion and visitor-requested play are independent preferences.
+    rainButton.disabled = false;
+    orbitButton.disabled = false;
+    snapButton.disabled = false;
+    clearButton.disabled = false;
     canvas.dataset.motion = active ? "active" : "static";
+    playDock.dataset.ambient = active ? "on" : "off";
+    playNudge.textContent = active ? "Try a button ↙" : "Tap to play ↙";
     if (!active) {
+      playRemaining = 0;
       burst = -1;
       canvas.dataset.rainPhase = "idle";
       drops.forEach((d) => (d.object.visible = false));
@@ -541,6 +550,12 @@ function createUniverse(host) {
     previous = 0;
     request();
   }
+  function startPlay(seconds = 8) {
+    playRemaining = Math.max(playRemaining, seconds);
+    host.classList.add("has-played");
+    playNudge.textContent = "Go again ↻";
+    request();
+  }
   function hitTest() {
     raycaster.setFromCamera(hitPoint, camera);
     const hit = raycaster.intersectObjects(
@@ -554,7 +569,8 @@ function createUniverse(host) {
     return object?.userData.toyIndex ?? -1;
   }
   function poke(index) {
-    if (!active || index < 0) return;
+    if (index < 0) return;
+    startPlay(3);
     const toy = toys[index];
     toy.kick = 1;
     toy.turnTarget += Math.PI * 2;
@@ -570,7 +586,9 @@ function createUniverse(host) {
     clearButton.hidden = count === 0;
   }
   function shootBubbles() {
-    if (!active) return;
+    host.classList.add("camera-played");
+    cameraInvite.querySelector("span").textContent = "again?";
+    startPlay(10);
     bubbleShot++;
     lensKick = 1;
     toys[8].kick = 0.7;
@@ -601,6 +619,7 @@ function createUniverse(host) {
   function popBubble(index) {
     const bubble = bubbles[index];
     if (!bubble.live || bubble.popping) return;
+    startPlay(0.5);
     bubble.popping = 0.001;
     canvas.dataset.lastPopped = String(index);
     bubbleStatus();
@@ -693,7 +712,8 @@ function createUniverse(host) {
     }
   }
   function makeRain() {
-    if (!active || burst >= 0) return;
+    if (burst >= 0) return;
+    startPlay(8);
     burst = 0;
     rainButton.disabled = true;
     canvas.dataset.rainPhase = "falling";
@@ -725,6 +745,9 @@ function createUniverse(host) {
     }
     const dt = previous ? Math.min((now - previous) / 1000, 0.045) : 0.016;
     previous = now;
+    const simulating = active || playRemaining > 0 || orbiting;
+    playRemaining = Math.max(0, playRemaining - dt);
+
     if (active) time += dt;
     scrollValue = active
       ? THREE.MathUtils.damp(scrollValue, scrollTarget, 8, dt)
@@ -732,13 +755,8 @@ function createUniverse(host) {
     smoothPointer.lerp(active ? pointer : new THREE.Vector2(), 0.04);
     const progress = scrollValue,
       fall = progress * progress;
-    orbitMix = THREE.MathUtils.damp(
-      orbitMix,
-      orbiting && active ? 1 : 0,
-      3,
-      dt,
-    );
-    if (active && orbiting) orbitTime += dt * 0.24;
+    orbitMix = THREE.MathUtils.damp(orbitMix, orbiting ? 1 : 0, 3, dt);
+    if (orbiting) orbitTime += dt * 0.24;
     toys.forEach((toy, i) => {
       const { object, layout: l, phase } = toy;
       let x = l[0] * halfWidth * 2,
@@ -782,7 +800,7 @@ function createUniverse(host) {
       const entry = active
         ? Math.exp(-time * 2.2) * Math.cos(time * 3.8 + i * 0.35) * 0.8
         : 0;
-      toy.kick = active ? Math.max(0, toy.kick - dt * 0.65) : 0;
+      toy.kick = simulating ? Math.max(0, toy.kick - dt * 0.65) : 0;
       toy.turn = THREE.MathUtils.damp(toy.turn, toy.turnTarget, 3.2, dt);
       const kick = Math.sin(toy.kick * Math.PI * 3) * toy.kick;
       const dx = x - pointer.x * halfWidth * 2;
@@ -835,7 +853,7 @@ function createUniverse(host) {
       object.scale.setScalar(scale * (1 + Math.max(0, kick) * 0.12));
     });
     const lens = toys[8].object.getObjectByName("lens");
-    lensKick = active ? Math.max(0, lensKick - dt * 2.5) : 0;
+    lensKick = simulating ? Math.max(0, lensKick - dt * 2.5) : 0;
     lens.position.z =
       0.42 + (active ? Math.sin(time * 1.3) * 0.045 : 0) + lensKick * 0.16;
     const signal = toys[9].object.getObjectByName("signal");
@@ -865,7 +883,7 @@ function createUniverse(host) {
       );
       spark.visible = !mobile || i % 3 === 0;
     });
-    if (burst >= 0 && active) {
+    if (burst >= 0 && simulating) {
       burst += dt;
       if (burst > 1.8 && canvas.dataset.rainPhase !== "bouncing")
         canvas.dataset.rainPhase = "bouncing";
@@ -900,13 +918,23 @@ function createUniverse(host) {
         drops.forEach((d) => (d.object.visible = false));
       }
     }
-    if (active) animateBubbles(dt);
-    copy.style.transform = `translate(-50%, calc(-50% - ${progress * 65}px)) scale(${1 - progress * 0.08})`;
-    copy.style.opacity = String(
-      1 - clamp((progress - 0.35) / 0.65, 0, 1) * 0.85,
+    if (simulating) animateBubbles(dt);
+    copy.style.transform = `translate(-50%, calc(-50% - ${progress * 18}px))`;
+    // Keep the reading and play controls opaque throughout the scroll sequence.
+    copy.style.opacity = "1";
+    cameraScreen.copy(toys[8].object.position).project(camera);
+    const hintX = clamp(
+      ((cameraScreen.x + 1) * stage.clientWidth) / 2 + (mobile ? 15 : 30),
+      8,
+      stage.clientWidth - 76,
     );
+    const hintY = Math.max(
+      38,
+      ((1 - cameraScreen.y) * stage.clientHeight) / 2 - (mobile ? 65 : 72),
+    );
+    cameraInvite.style.transform = `translate3d(${hintX}px, ${hintY}px, 0)`;
     renderer.render(scene, camera);
-    if (active && pointerInside && fine.matches) {
+    if (pointerInside && fine.matches) {
       const nextHover = hitTest();
       if (hovered !== nextHover) {
         hovered = nextHover;
@@ -917,7 +945,10 @@ function createUniverse(host) {
             : "Tap a little object. Follow a little curiosity.";
       }
     }
-    if (active) request();
+    const keepPlaying =
+      active || playRemaining > 0 || orbiting || orbitMix > 0.001;
+    canvas.dataset.playback = keepPlaying ? "playing" : "idle";
+    if (keepPlaying) request();
   }
   // Pause when offscreen/backgrounded. No scroll interception or continuous work in static mode.
   const observer = new IntersectionObserver(
@@ -938,7 +969,7 @@ function createUniverse(host) {
     request();
   });
   stage.addEventListener("pointermove", (event) => {
-    if (!active || !fine.matches) return;
+    if (!fine.matches) return;
     const r = stage.getBoundingClientRect();
     pointer.set(
       (event.clientX - r.left) / r.width - 0.5,
@@ -946,6 +977,7 @@ function createUniverse(host) {
     );
     hitPoint.set(pointer.x * 2, -pointer.y * 2);
     pointerInside = !event.target.closest("a, button");
+    if (!active) request();
   });
   stage.addEventListener("pointerleave", () => {
     pointer.set(0, 0);
@@ -965,7 +997,6 @@ function createUniverse(host) {
     "pointerup",
     (event) => {
       if (
-        !active ||
         !pressStart ||
         event.target.closest("a,button") ||
         Math.hypot(
@@ -1000,6 +1031,8 @@ function createUniverse(host) {
     lost = true;
     cancelAnimationFrame(frame);
     host.classList.remove("scene-ready");
+    playDock.hidden = true;
+    cameraInvite.hidden = true;
     rainButton.hidden = true;
     orbitButton.hidden = true;
     snapButton.hidden = true;
@@ -1007,7 +1040,7 @@ function createUniverse(host) {
   });
   rainButton.addEventListener("click", makeRain);
   orbitButton.addEventListener("click", () => {
-    if (!active) return;
+    startPlay(2);
     orbiting = !orbiting;
     orbitButton.setAttribute("aria-pressed", String(orbiting));
     canvas.dataset.orbit = orbiting ? "active" : "idle";
@@ -1017,8 +1050,8 @@ function createUniverse(host) {
     request();
   });
   snapButton.addEventListener("click", shootBubbles);
+  cameraInvite.addEventListener("click", shootBubbles);
   clearButton.addEventListener("click", () => {
-    if (!active) return;
     bubbles.forEach((b, i) => {
       if (b.live) popBubble(i);
     });
@@ -1027,6 +1060,8 @@ function createUniverse(host) {
   rainButton.hidden = false;
   orbitButton.hidden = false;
   snapButton.hidden = false;
+  playDock.hidden = false;
+  cameraInvite.hidden = false;
   caption.textContent = "Tap a little object. Follow a little curiosity.";
   resize();
   setPreference();

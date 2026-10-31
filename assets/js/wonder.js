@@ -11,7 +11,9 @@
   const anchor = world.querySelector(".world-photo-anchor");
   const resetButton = world.querySelector(".paper-reset");
   const fine = matchMedia("(hover: hover) and (pointer: fine)");
-  let active = document.documentElement.classList.contains("motion-active");
+  let active =
+    document.documentElement.classList.contains("motion-active") &&
+    !matchMedia("(prefers-reduced-motion: reduce)").matches;
   let frame = 0,
     x = 0,
     y = 0;

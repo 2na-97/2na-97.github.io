@@ -10,6 +10,14 @@
   const band = document.querySelector(".keyword-band");
   const directions = [...document.querySelectorAll(".direction")];
   const sculptureLabel = document.querySelector("[data-sculpture-label]");
+  const atmosphere = document.querySelector(".page-atmosphere");
+  const skyStops = [
+    [240, 241, 255],
+    [255, 239, 232],
+    [229, 246, 240],
+    [236, 233, 255],
+    [250, 233, 243],
+  ];
   const stepLabels = [
     "01 / SEE & UNDERSTAND",
     "02 / PREDICT THE PHYSICAL WORLD",
@@ -24,7 +32,7 @@
   const particles = document.querySelector(".joy-particles");
   let paused = false;
   try {
-    paused = localStorage.getItem("inha-motion") === "off";
+    paused = sessionStorage.getItem("inha-auto-motion") === "off";
   } catch {
     /* Private browsing may block storage. */
   }
@@ -39,19 +47,60 @@
   const renderScroll = () => {
     frame = 0;
     const height = innerHeight;
-    const scrollable = Math.max(1, document.documentElement.scrollHeight - height);
-    root.style.setProperty("--scroll-progress", String(clamp(scrollY / scrollable, 0, 1)));
+    const scrollable = Math.max(
+      1,
+      document.documentElement.scrollHeight - height,
+    );
+    root.style.setProperty(
+      "--scroll-progress",
+      String(clamp(scrollY / scrollable, 0, 1)),
+    );
     if (!active || document.hidden) return;
-    const measurements = scenes.map((node) => ({ node, rect: node.getBoundingClientRect() }));
+    if (atmosphere) {
+      const progress = clamp(scrollY / scrollable, 0, 1);
+      const position = progress * (skyStops.length - 1);
+      const index = Math.min(skyStops.length - 2, Math.floor(position));
+      const mix = position - index;
+      const color = skyStops[index].map((v, i) =>
+        Math.round(v + (skyStops[index + 1][i] - v) * mix),
+      );
+      atmosphere.style.setProperty("--ambient-a", `rgb(${color.join(",")})`);
+      atmosphere.style.setProperty(
+        "--ambient-b",
+        `rgb(${color.map((v) => Math.round(v * 0.35 + 255 * 0.65)).join(",")})`,
+      );
+      atmosphere.style.setProperty(
+        "--ambient-shift",
+        `${progress * innerWidth * 0.45}px`,
+      );
+      atmosphere.style.setProperty(
+        "--ambient-rise",
+        `${progress * innerHeight * 0.65}px`,
+      );
+    }
+    if (reduced.matches) return;
+    const measurements = scenes.map((node) => ({
+      node,
+      rect: node.getBoundingClientRect(),
+    }));
     const bandRect = band?.getBoundingClientRect();
-    const directionRects = directions.map((node) => node.getBoundingClientRect());
+    const directionRects = directions.map((node) =>
+      node.getBoundingClientRect(),
+    );
     measurements.forEach(({ node, rect }) => {
       if (rect.bottom < -100 || rect.top > height + 100) return;
-      const progress = clamp((height - rect.top) / (height + rect.height), 0, 1);
+      const progress = clamp(
+        (height - rect.top) / (height + rect.height),
+        0,
+        1,
+      );
       node.style.setProperty("--scene", progress.toFixed(4));
     });
     if (bandRect && bandRect.bottom > 0 && bandRect.top < height) {
-      const shift = innerWidth > 800 ? clamp((height * 0.55 - bandRect.top) * 0.08, -25, 25) : 0;
+      const shift =
+        innerWidth > 800
+          ? clamp((height * 0.55 - bandRect.top) * 0.08, -25, 25)
+          : 0;
       band.style.setProperty("--band-shift", shift.toFixed(2));
     }
     if (directionRects.length) {
@@ -59,13 +108,19 @@
       directionRects.forEach((rect, i) => {
         if (
           Math.abs(rect.top + rect.height / 2 - height * 0.55) <
-          Math.abs(directionRects[nearest].top + directionRects[nearest].height / 2 - height * 0.55)
+          Math.abs(
+            directionRects[nearest].top +
+              directionRects[nearest].height / 2 -
+              height * 0.55,
+          )
         )
           nearest = i;
       });
       if (nearest !== currentStep) {
         currentStep = nearest;
-        directions.forEach((node, i) => node.classList.toggle("is-current", i === nearest));
+        directions.forEach((node, i) =>
+          node.classList.toggle("is-current", i === nearest),
+        );
         if (sculptureLabel) sculptureLabel.textContent = stepLabels[nearest];
       }
     }
@@ -78,20 +133,23 @@
     revealNodes.forEach((node) => node.classList.add("is-revealed"));
   };
   const applyPreference = () => {
-    active = !paused && !reduced.matches;
+    active = !paused;
     root.classList.toggle("motion-active", active);
     root.classList.toggle("motion-off", !active);
     toggle.setAttribute("aria-pressed", String(active));
-    toggle.setAttribute("aria-label", active ? "Pause animations" : "Enable animations");
-    toggle.querySelector("[data-motion-label]").textContent = active ? "Motion on" : "Motion off";
-    toggle.disabled = reduced.matches;
-    toggle.title = reduced.matches
-      ? "Following your device’s reduced-motion setting"
-      : active
-        ? "Pause decorative motion"
-        : "Enable decorative motion";
+    toggle.setAttribute(
+      "aria-label",
+      active ? "Pause animations" : "Enable animations",
+    );
+    toggle.querySelector("[data-motion-label]").textContent = active
+      ? "Motion on"
+      : "Motion off";
+    toggle.disabled = false;
+    toggle.title = active
+      ? "Pause automatic motion; play buttons still work"
+      : "Enable automatic motion";
     if (pop) pop.disabled = !active;
-    if (!active) {
+    if (!active || reduced.matches) {
       showAll();
       pop?.getAnimations().forEach((animation) => animation.cancel());
       scenes.forEach((node) => node.style.setProperty("--scene", "0"));
@@ -101,13 +159,17 @@
       });
       particles?.replaceChildren();
     }
-    window.dispatchEvent(new CustomEvent("inha:motion", { detail: { active } }));
+    window.dispatchEvent(
+      new CustomEvent("inha:motion", {
+        detail: { active: active && !reduced.matches },
+      }),
+    );
     scheduleScroll();
   };
   toggle.addEventListener("click", () => {
     paused = !paused;
     try {
-      localStorage.setItem("inha-motion", paused ? "off" : "on");
+      sessionStorage.setItem("inha-auto-motion", paused ? "off" : "on");
     } catch {
       /* Session preference still applies. */
     }
@@ -117,7 +179,7 @@
   toggle.hidden = false;
   applyPreference();
 
-  if (active && "IntersectionObserver" in window) {
+  if (active && !reduced.matches && "IntersectionObserver" in window) {
     observer = new IntersectionObserver(
       (entries) =>
         entries.forEach((entry) => {
@@ -149,31 +211,33 @@
   window.addEventListener("load", scheduleScroll, { once: true });
   document.addEventListener("visibilitychange", scheduleScroll);
 
-  document.querySelectorAll(".work-art, .portrait").forEach((node) => {
-    node.setAttribute("data-tilt", "");
-    let pointerFrame = 0;
-    let x = 0,
-      y = 0;
-    node.addEventListener("pointermove", (event) => {
-      if (!active || !finePointer.matches) return;
-      const rect = node.getBoundingClientRect();
-      x = clamp((event.clientX - rect.left) / rect.width - 0.5, -0.5, 0.5);
-      y = clamp((event.clientY - rect.top) / rect.height - 0.5, -0.5, 0.5);
-      if (pointerFrame) return;
-      pointerFrame = requestAnimationFrame(() => {
+  document
+    .querySelectorAll(".work-art:not(.paper-face), .portrait")
+    .forEach((node) => {
+      node.setAttribute("data-tilt", "");
+      let pointerFrame = 0;
+      let x = 0,
+        y = 0;
+      node.addEventListener("pointermove", (event) => {
+        if (!active || reduced.matches || !finePointer.matches) return;
+        const rect = node.getBoundingClientRect();
+        x = clamp((event.clientX - rect.left) / rect.width - 0.5, -0.5, 0.5);
+        y = clamp((event.clientY - rect.top) / rect.height - 0.5, -0.5, 0.5);
+        if (pointerFrame) return;
+        pointerFrame = requestAnimationFrame(() => {
+          pointerFrame = 0;
+          if (!active) return;
+          node.style.setProperty("--tilt-x", `${-y * 7}deg`);
+          node.style.setProperty("--tilt-y", `${x * 7}deg`);
+        });
+      });
+      node.addEventListener("pointerleave", () => {
+        cancelAnimationFrame(pointerFrame);
         pointerFrame = 0;
-        if (!active) return;
-        node.style.setProperty("--tilt-x", `${-y * 7}deg`);
-        node.style.setProperty("--tilt-y", `${x * 7}deg`);
+        node.style.setProperty("--tilt-x", "0deg");
+        node.style.setProperty("--tilt-y", "0deg");
       });
     });
-    node.addEventListener("pointerleave", () => {
-      cancelAnimationFrame(pointerFrame);
-      pointerFrame = 0;
-      node.style.setProperty("--tilt-x", "0deg");
-      node.style.setProperty("--tilt-y", "0deg");
-    });
-  });
 
   if (pop && particles && typeof pop.animate === "function") {
     pop.addEventListener("click", () => {
@@ -194,7 +258,10 @@
       for (let i = 0; i < 14; i++) {
         const particle = document.createElement("span");
         particle.className = "joy-particle";
-        particle.style.setProperty("--particle-color", colors[i % colors.length]);
+        particle.style.setProperty(
+          "--particle-color",
+          colors[i % colors.length],
+        );
         particles.append(particle);
         const angle = (Math.PI * 2 * i) / 14;
         const radius = 65 + (i % 4) * 20;
@@ -211,7 +278,10 @@
               opacity: 0,
             },
           ],
-          { duration: 850 + (i % 3) * 90, easing: "cubic-bezier(.15,.65,.4,1)" },
+          {
+            duration: 850 + (i % 3) * 90,
+            easing: "cubic-bezier(.15,.65,.4,1)",
+          },
         );
         animation.onfinish = () => particle.remove();
       }
