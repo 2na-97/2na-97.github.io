@@ -1,0 +1,126 @@
+{
+  "demo": true,
+  "deceased": {
+    "name": "이봄",
+    "hanja": "",
+    "birth": "1938. 4. 2.",
+    "death": "2026. 10. 30.",
+    "age": "88"
+  },
+  "mourners": "장남 이OO · 장녀 이OO · 손녀 이OO",
+  "funeral": {
+    "place": "하늘마루 온라인 빈소",
+    "departure": "11월 2일(월) 오전 7시",
+    "burial": "OO추모공원",
+    "departureAt": "2026-11-02T07:00"
+  },
+  "greeting": "평생 텃밭과 이웃을 아끼셨던 어머니께서 가을 햇살 좋은 날 편안히 눈을 감으셨습니다.\n멀리 계셔서 오시기 어려운 분들도 이곳에서 함께 마음을 나눠 주세요.\n\n(이 페이지는 예시입니다. 상주 패널에서 내용을 바꿀 수 있어요.)",
+  "thanks": "바쁘신 가운데 찾아와 어머니의 마지막 길을 함께해 주셔서 진심으로 감사드립니다.\n보내 주신 위로 오래 간직하겠습니다.",
+  "religion": "traditional",
+  "hostOutfit": "hostSuit",
+  "hostName": "장남 이OO",
+  "portrait": "",
+  "gallery": [],
+  "account": {
+    "bank": "OO은행",
+    "number": "000-0000-0000-00",
+    "holder": "이OO (예시)"
+  },
+  "kakaopayLink": "",
+  "toss": true,
+  "demoSeeds": {
+    "counters": {
+      "visits": 37,
+      "flowers": 18,
+      "incense": 9,
+      "candles": 4
+    },
+    "guestbook": [
+      {
+        "name": "김하늘",
+        "relation": "이웃",
+        "message": "할머니가 나눠 주시던 상추가 아직도 생각나요. 편히 쉬세요."
+      },
+      {
+        "name": "박서준",
+        "relation": "손주 친구",
+        "message": "삼가 고인의 명복을 빕니다."
+      },
+      {
+        "name": "최은영",
+        "relation": "교회 친구",
+        "message": "늘 웃으며 안부 물어 주셨던 모습 기억할게요."
+      },
+      {
+        "name": "정민호",
+        "relation": "직장 동료",
+        "message": "멀리서나마 마음 보탭니다. 힘내세요."
+      }
+    ],
+    "lanterns": [
+      {
+        "text": "엄마, 끓여 주시던 된장찌개가 벌써 그리워요.",
+        "name": "막내",
+        "color": "warm"
+      },
+      {
+        "text": "좋은 곳에서 할아버지 만나셨죠?",
+        "name": "손녀",
+        "color": "lotus"
+      },
+      {
+        "text": "감사했습니다.",
+        "name": "",
+        "color": "white"
+      },
+      {
+        "text": "텃밭 국화가 올해도 피었어요.",
+        "name": "옆집",
+        "color": "sky"
+      },
+      {
+        "text": "편히 쉬세요.",
+        "name": "",
+        "color": "warm"
+      }
+    ],
+    "wreaths": [
+      {
+        "from": "OO주식회사 임직원 일동",
+        "phrase": "삼가 고인의 명복을 빕니다",
+        "style": "white"
+      },
+      {
+        "from": "OO초등학교 동창회",
+        "phrase": "깊은 애도를 표합니다",
+        "style": "mixed"
+      },
+      {
+        "from": "햇살텃밭 이웃 일동",
+        "phrase": "그리운 마음을 담아",
+        "style": "yellow"
+      },
+      {
+        "from": "OO교회 권사회",
+        "phrase": "주님의 품에서 영원한 안식을",
+        "style": "white"
+      }
+    ]
+  },
+  "theme": "hospital",
+  "bgm": "wind",
+  "customBgm": "",
+  "hostLook": {
+    "skin": "#f2c7a5",
+    "hair": "part",
+    "hairColor": "#231d1a",
+    "eyes": "sad",
+    "brows": "sad",
+    "mouth": "calm",
+    "glasses": "square",
+    "beard": "none",
+    "blush": false,
+    "height": 1.07
+  },
+  "hostKeyHash": "be79850ceeb8492d3e5e4de7eeec30c5428ec32a297dfbdc2358607aea0a3806"
+}
