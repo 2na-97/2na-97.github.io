@@ -6,7 +6,7 @@
     "death": "1450. 3. 30.",
     "age": "54"
   },
-  "mourners": "장남 문종(이향) · 차남 수양대군(이유) · 3남 안평대군(이용) · 장녀 정의공주",
+  "mourners": "장남 문종(이향) · 차남 수양대군(이유) · 삼남 안평대군(이용) · 장녀 정의공주",
   "funeral": {
     "departure": "5월 15일(금) 오전 10시 · 세종대왕 나신 날",
     "departureAt": "2027-05-15T10:00",
@@ -181,26 +181,36 @@
     "height": 1.07
   },
   "hostKeyHash": "be79850ceeb8492d3e5e4de7eeec30c5428ec32a297dfbdc2358607aea0a3806",
-  "accounts": [
+  "rev": "2026-11-01-sejong-2",
+  "reset": "2026-11-01-r1",
+  "family": [
     {
-      "name": "왕세자 이향(문종)",
+      "relation": "장남",
+      "name": "문종(이향)",
       "bank": "우리은행",
       "number": "1002-755-131617",
-      "holder": ""
+      "holder": "",
+      "kakao": "https://qr.kakaopay.com/Ej8nSa3lI"
     },
     {
-      "name": "수양대군 이유",
+      "relation": "차남",
+      "name": "수양대군(이유)",
       "bank": "NH농협은행",
       "number": "3020157386181",
-      "holder": ""
+      "holder": "",
+      "kakao": "https://qr.kakaopay.com/Ej8nSa3lI"
     },
     {
+      "relation": "삼남",
+      "name": "안평대군(이용)"
+    },
+    {
+      "relation": "장녀",
       "name": "정의공주",
       "bank": "하나은행",
       "number": "30791039904107",
-      "holder": ""
+      "holder": "",
+      "kakao": "https://qr.kakaopay.com/Ej8nSa3lI"
     }
-  ],
-  "rev": "2026-11-01-sejong-2",
-  "reset": "2026-11-01-r1"
+  ]
 }
