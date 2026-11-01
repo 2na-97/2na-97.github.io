@@ -1,109 +1,167 @@
 {
   "demo": true,
   "deceased": {
-    "name": "이봄",
-    "hanja": "",
-    "birth": "1938. 4. 2.",
-    "death": "2026. 10. 30.",
-    "age": "88"
+    "name": "세종대왕",
+    "birth": "1397. 5. 15.",
+    "death": "1450. 3. 30.",
+    "age": "54"
   },
-  "mourners": "장남 이OO · 장녀 이OO · 손녀 이OO",
+  "mourners": "장남 문종(이향) · 차남 수양대군(이유) · 3남 안평대군(이용) · 장녀 정의공주",
   "funeral": {
-    "place": "하늘마루 온라인 빈소",
-    "departure": "11월 2일(월) 오전 7시",
-    "burial": "OO추모공원",
-    "departureAt": "2026-11-02T07:00"
+    "departure": "5월 15일(금) 오전 10시 · 세종대왕 나신 날",
+    "departureAt": "2027-05-15T10:00",
+    "burial": "영릉(英陵) · 경기도 여주"
   },
-  "greeting": "평생 텃밭과 이웃을 아끼셨던 어머니께서 가을 햇살 좋은 날 편안히 눈을 감으셨습니다.\n멀리 계셔서 오시기 어려운 분들도 이곳에서 함께 마음을 나눠 주세요.\n\n(이 페이지는 예시입니다. 상주 패널에서 내용을 바꿀 수 있어요.)",
-  "thanks": "바쁘신 가운데 찾아와 어머니의 마지막 길을 함께해 주셔서 진심으로 감사드립니다.\n보내 주신 위로 오래 간직하겠습니다.",
+  "greeting": "백성을 가엾이 여겨 스물여덟 글자를 지으신 아버님, 세종대왕께서 승하하셨습니다.\n집현전 학사들과 밤을 새우시던 경복궁의 등불처럼, 아버님이 남기신 한글은 오늘도 우리의 말과 마음을 밝힙니다.\n멀리서도 함께 마음을 모아 주세요.\n\n(삼가 서비스 예시 빈소입니다. 실제 장례가 아닙니다.)",
+  "thanks": "먼 길 찾아와 아버님의 마지막 길을 함께해 주셔서 고맙습니다.\n여러분이 쓰시는 한 글자 한 글자가 아버님께 드리는 가장 큰 위로입니다.",
   "religion": "traditional",
-  "hostOutfit": "hostSuit",
-  "hostName": "장남 이OO",
-  "portrait": "",
-  "gallery": [],
+  "hostOutfit": "sambe",
+  "hostName": "왕세자 이향(문종)",
+  "portrait": "./data/demo/portrait.jpg",
+  "gallery": [
+    {
+      "type": "image",
+      "src": "./data/demo/c1.jpg",
+      "year": "1397",
+      "caption": "한양 준수방에서 태어나다"
+    },
+    {
+      "type": "image",
+      "src": "./data/demo/c2.jpg",
+      "year": "1418",
+      "caption": "스물두 살에 조선 제4대 임금이 되다"
+    },
+    {
+      "type": "image",
+      "src": "./data/demo/c3.jpg",
+      "year": "1420",
+      "caption": "집현전을 넓혀 학자들을 모으다"
+    },
+    {
+      "type": "image",
+      "src": "./data/demo/c4.jpg",
+      "year": "1443",
+      "caption": "훈민정음 스물여덟 글자를 짓다"
+    },
+    {
+      "type": "image",
+      "src": "./data/demo/hunminjeongeum.jpg",
+      "year": "1446",
+      "caption": "훈민정음 해례본 (사진: 위키미디어 공용)"
+    },
+    {
+      "type": "image",
+      "src": "./data/demo/c5.jpg",
+      "year": "1430년대",
+      "caption": "장영실과 함께 하늘과 시간을 재다"
+    },
+    {
+      "type": "image",
+      "src": "./data/demo/angbuilgu.jpg",
+      "year": "1434",
+      "caption": "해시계 앙부일구 (경복궁 · 사진: 위키미디어 공용)"
+    },
+    {
+      "type": "image",
+      "src": "./data/demo/cheugugi.jpg",
+      "year": "1441",
+      "caption": "비의 양을 재는 측우기 (사진: 위키미디어 공용)"
+    },
+    {
+      "type": "image",
+      "src": "./data/demo/c6.jpg",
+      "year": "",
+      "caption": "백성을 나라의 근본으로 여긴 임금"
+    }
+  ],
   "account": {
     "bank": "OO은행",
-    "number": "000-0000-0000-00",
-    "holder": "이OO (예시)"
+    "number": "000-0000-0000-01",
+    "holder": "이향 (예시)"
   },
   "kakaopayLink": "",
   "toss": true,
   "demoSeeds": {
     "counters": {
-      "visits": 37,
-      "flowers": 18,
-      "incense": 9,
+      "visits": 1443,
+      "flowers": 28,
+      "incense": 12,
       "candles": 4
     },
     "guestbook": [
       {
-        "name": "김하늘",
-        "relation": "이웃",
-        "message": "할머니가 나눠 주시던 상추가 아직도 생각나요. 편히 쉬세요."
-      },
-      {
-        "name": "박서준",
-        "relation": "손주 친구",
-        "message": "삼가 고인의 명복을 빕니다."
-      },
-      {
-        "name": "최은영",
-        "relation": "교회 친구",
-        "message": "늘 웃으며 안부 물어 주셨던 모습 기억할게요."
-      },
-      {
-        "name": "정민호",
+        "name": "장영실",
         "relation": "직장 동료",
-        "message": "멀리서나마 마음 보탭니다. 힘내세요."
+        "message": "천한 몸을 알아봐 주시고 하늘을 재는 일을 맡겨 주신 은혜, 자격루가 울릴 때마다 기억하겠습니다."
+      },
+      {
+        "name": "정인지",
+        "relation": "집현전 학사",
+        "message": "전하께서 지으신 정음(正音)의 서문을 쓰던 밤을 잊지 못합니다. 편히 쉬소서."
+      },
+      {
+        "name": "성삼문",
+        "relation": "집현전 학사",
+        "message": "요동을 열세 번 오가며 음운을 물었던 길이 고생이 아니라 영광이었습니다."
+      },
+      {
+        "name": "황희",
+        "relation": "직장 동료",
+        "message": "늙은 신하를 끝까지 곁에 두어 주셔서 감사했습니다."
+      },
+      {
+        "name": "김하늘",
+        "relation": "기타",
+        "message": "한글로 이 방명록을 씁니다. 고맙습니다, 세종대왕님."
       }
     ],
     "lanterns": [
       {
-        "text": "엄마, 끓여 주시던 된장찌개가 벌써 그리워요.",
-        "name": "막내",
+        "text": "가나다라마바사 아자차카타파하. 오늘도 잘 쓰고 있어요.",
+        "name": "초등학생",
         "color": "warm"
       },
       {
-        "text": "좋은 곳에서 할아버지 만나셨죠?",
-        "name": "손녀",
+        "text": "측우기로 잰 비가 오늘은 눈물처럼 내립니다.",
+        "name": "장영실",
+        "color": "sky"
+      },
+      {
+        "text": "아버님, 보내 주신 편지 글씨를 오래 간직하겠습니다.",
+        "name": "정의공주",
         "color": "lotus"
       },
       {
-        "text": "감사했습니다.",
+        "text": "나랏말싸미 듕귁에 달아…",
         "name": "",
         "color": "white"
       },
       {
-        "text": "텃밭 국화가 올해도 피었어요.",
-        "name": "옆집",
-        "color": "sky"
-      },
-      {
-        "text": "편히 쉬세요.",
+        "text": "백성을 사랑하신 마음, 잊지 않겠습니다.",
         "name": "",
         "color": "warm"
       }
     ],
     "wreaths": [
       {
-        "from": "OO주식회사 임직원 일동",
+        "from": "집현전 학사 일동",
         "phrase": "삼가 고인의 명복을 빕니다",
         "style": "white"
       },
       {
-        "from": "OO초등학교 동창회",
+        "from": "관상감 · 자격루 제작소",
         "phrase": "깊은 애도를 표합니다",
         "style": "mixed"
       },
       {
-        "from": "햇살텃밭 이웃 일동",
+        "from": "전국 국어 교사 모임",
         "phrase": "그리운 마음을 담아",
-        "style": "yellow"
+        "style": "white"
       },
       {
-        "from": "OO교회 권사회",
-        "phrase": "주님의 품에서 영원한 안식을",
-        "style": "white"
+        "from": "한글을 쓰는 모든 사람들",
+        "phrase": "삼가 고인의 명복을 빕니다",
+        "style": "yellow"
       }
     ]
   },
@@ -112,35 +170,35 @@
   "customBgm": "",
   "hostLook": {
     "skin": "#f2c7a5",
-    "hair": "part",
+    "hair": "short",
     "hairColor": "#231d1a",
     "eyes": "sad",
     "brows": "sad",
     "mouth": "calm",
-    "glasses": "square",
-    "beard": "none",
+    "glasses": "none",
+    "beard": "mustache",
     "blush": false,
     "height": 1.07
   },
   "hostKeyHash": "be79850ceeb8492d3e5e4de7eeec30c5428ec32a297dfbdc2358607aea0a3806",
   "accounts": [
     {
-      "name": "장남 이OO",
+      "name": "왕세자 이향(문종)",
       "bank": "OO은행",
       "number": "000-0000-0000-01",
-      "holder": "이OO (예시)"
+      "holder": "이향 (예시)"
     },
     {
-      "name": "장녀 이OO",
+      "name": "수양대군 이유",
       "bank": "OO은행",
       "number": "000-0000-0000-02",
-      "holder": "이OO (예시)"
+      "holder": "이유 (예시)"
     },
     {
-      "name": "손녀 이OO",
+      "name": "정의공주",
       "bank": "OO은행",
       "number": "000-0000-0000-03",
-      "holder": "이OO (예시)"
+      "holder": "정의공주 (예시)"
     }
   ]
 }
