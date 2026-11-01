@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=Noto+Serif+KR:wght@600;700&family=Nanum+Brush+Script&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/samga-6UZFV63Q.css">
+<link rel="stylesheet" href="./assets/samga-GPFD5HVD.css">
 </head>
 <body>
 <div id="stage" aria-hidden="true"></div>
@@ -68,7 +68,7 @@
       <fieldset class="field">
         <legend>상주와의 관계</legend>
         <div class="rel-step"><p class="rel-q"><b>①</b> 어느 상주를 아시나요?</p><div class="choice-row" id="entry-hosts"></div></div>
-        <div class="rel-step" id="entry-relations-box" hidden><p class="rel-q"><b>②</b> <span id="rel-q"></span></p><div class="choice-row" id="entry-relations"></div></div>
+        <div class="rel-step" id="entry-relations-box" hidden><p class="rel-q"><b>②</b> <span id="rel-q"></span></p><div class="choice-row" id="entry-relations"></div><input id="entry-rel-other" class="rel-other" maxlength="16" placeholder="어떤 사이인지 적어 주세요 (예: 등산 모임, 대학원 선배)" hidden></div>
         <p class="tip">누구의 지인인지는 상주에게만 보이고, 다른 조문객에게는 보이지 않아요.</p>
       </fieldset>
       <fieldset class="field">
@@ -169,7 +169,7 @@
     <fieldset class="field"><legend>상주와의 관계</legend>
       <div class="choice-row" id="gb-hosts"></div>
       <div class="choice-row" id="gb-relations"></div>
-      <input name="relation" maxlength="16" placeholder="직접 쓰기 (예: 대학 동기, 등산 모임)">
+      <input name="relation" class="rel-other" maxlength="16" placeholder="어떤 사이인지 적어 주세요 (예: 등산 모임, 대학원 선배)" hidden>
     </fieldset>
     <label class="field"><span>남기실 말씀</span><textarea name="message" maxlength="300" rows="4" placeholder="고인께, 혹은 유가족께 전하고 싶은 마음을 적어 주세요."></textarea></label>
     <div class="quick" id="gb-quick"></div>
@@ -180,6 +180,7 @@
 <dialog id="dlg-book" class="sheet wide">
   <div class="sheet-body">
     <h2>방명록</h2>
+    <p class="sheet-sub" id="book-note"></p>
     <div class="choice-row" id="book-filter"></div>
     <div id="book-list" class="book-list"></div>
     <div class="sheet-actions"><button class="btn-ghost" data-close>닫기</button><button class="btn-primary" id="book-write">방명록 쓰기</button></div>
@@ -514,6 +515,6 @@
 </dialog>
 
 <noscript><p class="noscript">이 빈소는 자바스크립트가 필요합니다.</p></noscript>
-<script type="module" src="./assets/app-DCDBDH2K.js"></script>
+<script type="module" src="./assets/app-JVDE36Q5.js"></script>
 </body>
 </html>
