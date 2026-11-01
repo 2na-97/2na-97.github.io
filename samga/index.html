@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=Noto+Serif+KR:wght@600;700&family=Nanum+Brush+Script&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/samga-HMURK5QX.css">
+<link rel="stylesheet" href="./assets/samga-NZKZB44U.css">
 </head>
 <body>
 <div id="stage" aria-hidden="true"></div>
@@ -66,9 +66,10 @@
         <input id="in-name" maxlength="16" placeholder="이름 (예: 김하늘)" autocomplete="name">
       </label>
       <fieldset class="field">
-        <legend>상주와의 관계 <small>어느 상주의 지인이신가요? 이름표와 방명록에 함께 보여요</small></legend>
-        <div class="choice-row" id="entry-hosts"></div>
-        <div class="choice-row" id="entry-relations"></div>
+        <legend>상주와의 관계</legend>
+        <div class="rel-step"><p class="rel-q"><b>①</b> 어느 상주를 아시나요?</p><div class="choice-row" id="entry-hosts"></div></div>
+        <div class="rel-step" id="entry-relations-box" hidden><p class="rel-q"><b>②</b> <span id="rel-q"></span></p><div class="choice-row" id="entry-relations"></div></div>
+        <p class="tip">누구의 지인인지는 상주에게만 보이고, 다른 조문객에게는 보이지 않아요.</p>
       </fieldset>
       <fieldset class="field">
         <legend>어떤 예법으로 조문하시겠어요?</legend>
@@ -361,7 +362,7 @@
 <!-- 상주 패널 -->
 <dialog id="dlg-host" class="sheet wide host-panel">
   <div class="sheet-body">
-    <h2>상주 패널 <small>이 기기에 바로 저장되고 빈소에 즉시 반영돼요</small></h2>
+    <h2>상주 패널 <small id="live-status">바꾸면 모든 조문객 화면에 바로 반영돼요</small></h2>
     <div class="tabs" role="tablist" id="host-tabs">
       <button role="tab" data-tab="info" aria-selected="true">고인 · 빈소</button>
       <button role="tab" data-tab="photos" aria-selected="false">사진 · 영상</button>
@@ -471,7 +472,8 @@
 <dialog id="dlg-onboard" class="sheet">
   <form method="dialog" class="sheet-body">
     <h2>조문 안내 <small>언제든 왼쪽 아래 📖 버튼으로 다시 볼 수 있어요</small></h2>
-    <p class="field-label">조문 순서 <small>누르면 그 단계로 바로 가요</small></p>
+    <button type="button" class="ob-auto" id="ob-auto"><span>🙏 한 번에 조문하기</span><small>처음이시면 이걸 누르세요. 헌화 · 분향 · 절 · 상주 인사까지 알아서 해 드려요</small></button>
+    <p class="field-label">또는 한 단계씩 <small>누르면 그 단계로 바로 가요</small></p>
     <ol class="onboard-steps" id="onboard-steps"></ol>
     <p class="field-label">조작 방법</p>
     <ol class="onboard">
@@ -502,6 +504,6 @@
 </dialog>
 
 <noscript><p class="noscript">이 빈소는 자바스크립트가 필요합니다.</p></noscript>
-<script type="module" src="./assets/app-4W4NDFIH.js"></script>
+<script type="module" src="./assets/app-BSDZCFJK.js"></script>
 </body>
 </html>
