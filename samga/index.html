@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=Noto+Serif+KR:wght@600;700&family=Nanum+Brush+Script&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/samga-NZKZB44U.css">
+<link rel="stylesheet" href="./assets/samga-6UZFV63Q.css">
 </head>
 <body>
 <div id="stage" aria-hidden="true"></div>
@@ -110,6 +110,7 @@
     <button type="button" id="btn-time" class="tool" title="낮 · 노을 · 밤">낮</button>
     <button type="button" id="btn-host" class="tool host-only">상주 패널</button>
     <button type="button" id="btn-help" class="tool" aria-label="조작 도움말">?</button>
+    <button type="button" id="btn-leave" class="tool leave">나가기</button>
   </nav>
 </header>
 
@@ -149,6 +150,15 @@
 </div>
 
 <section id="theater" class="theater" hidden aria-label="추억 상영관"></section>
+<section id="bye" class="bye" hidden>
+  <div class="bye-card">
+    <img src="./icons/favicon.svg" alt="" width="56" height="56">
+    <h2>조문해 주셔서 감사합니다</h2>
+    <p id="bye-thanks"></p>
+    <p class="tip">이제 이 창을 닫으셔도 돼요.</p>
+    <button type="button" class="btn-ghost" id="bye-again">다시 들어가기</button>
+  </div>
+</section>
 
 <!-- 방명록 -->
 <dialog id="dlg-guestbook" class="sheet">
@@ -504,6 +514,6 @@
 </dialog>
 
 <noscript><p class="noscript">이 빈소는 자바스크립트가 필요합니다.</p></noscript>
-<script type="module" src="./assets/app-BSDZCFJK.js"></script>
+<script type="module" src="./assets/app-64TVHMRS.js"></script>
 </body>
 </html>

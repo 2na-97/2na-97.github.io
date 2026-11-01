@@ -79,7 +79,7 @@
     "number": "1002-755-131617",
     "holder": ""
   },
-  "kakaopayLink": "",
+  "kakaopayLink": "https://qr.kakaopay.com/Ej8nSa3lI",
   "toss": true,
   "demoSeeds": {
     "counters": {
@@ -200,5 +200,6 @@
       "number": "30791039904107",
       "holder": ""
     }
-  ]
+  ],
+  "rev": "2026-11-01-sejong-2"
 }
