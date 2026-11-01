@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=Noto+Serif+KR:wght@600;700&family=Nanum+Brush+Script&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/samga-AZMAHVPL.css">
+<link rel="stylesheet" href="./assets/samga-QDJORE3X.css">
 </head>
 <body>
 <div id="stage" aria-hidden="true"></div>
@@ -66,7 +66,8 @@
         <input id="in-name" maxlength="16" placeholder="이름 (예: 김하늘)" autocomplete="name">
       </label>
       <fieldset class="field">
-        <legend>고인과의 관계 <small>이름표와 방명록에 함께 보여요</small></legend>
+        <legend>상주와의 관계 <small>어느 상주의 지인이신가요? 이름표와 방명록에 함께 보여요</small></legend>
+        <div class="choice-row" id="entry-hosts"></div>
         <div class="choice-row" id="entry-relations"></div>
       </fieldset>
       <fieldset class="field">
@@ -154,7 +155,8 @@
     <h2>방명록</h2>
     <p class="sheet-sub">남겨 주신 이름마다 마당에 하얀 국화 한 송이가 피어납니다.</p>
     <label class="field"><span>이름</span><input name="name" maxlength="16" required></label>
-    <fieldset class="field"><legend>고인과의 관계</legend>
+    <fieldset class="field"><legend>상주와의 관계</legend>
+      <div class="choice-row" id="gb-hosts"></div>
       <div class="choice-row" id="gb-relations"></div>
       <input name="relation" maxlength="16" placeholder="직접 쓰기 (예: 대학 동기, 등산 모임)">
     </fieldset>
@@ -176,7 +178,7 @@
 <!-- 조의금 -->
 <dialog id="dlg-condolence" class="sheet wide">
   <form method="dialog" class="sheet-body" id="form-condolence">
-    <h2>조의금 봉투 꾸미기</h2>
+    <h2>조의금 전하기</h2>
     <div class="env-layout">
       <div class="envelope-wrap">
         <div class="envelope" id="envelope">
@@ -187,11 +189,7 @@
       </div>
       <div class="env-options" id="env-options">
         <div class="field"><span class="field-label">앞면 글씨</span><div class="choice-row" id="env-phrases"></div></div>
-        <div class="field"><span class="field-label">종이</span><div class="choice-row" id="env-papers"></div></div>
-        <div class="two">
-          <div class="field"><span class="field-label">스티커</span><div class="choice-row" id="env-seals"></div></div>
-          <div class="field"><span class="field-label">글씨체</span><div class="choice-row" id="env-fonts"></div></div>
-        </div>
+        <div hidden><div id="env-papers"></div><div id="env-seals"></div><div id="env-fonts"></div></div>
       </div>
     </div>
     <div class="two">
@@ -240,7 +238,8 @@
   <form method="dialog" class="sheet-body" id="form-lantern">
     <h2>마음 등불 띄우기</h2>
     <p class="sheet-sub">고인께 하고 싶었던 말을 적으면 등불이 되어 빈소 위 하늘에 머뭅니다.</p>
-    <label class="field"><span>하고 싶은 말</span><textarea name="text" maxlength="120" rows="3" required placeholder="예: 할머니, 끓여 주시던 된장찌개가 그리워요."></textarea></label>
+    <div class="field"><span class="field-label">한 마디 고르기 <small>누르면 바로 띄워져요</small></span><div class="quick presets" id="lantern-presets"></div></div>
+    <label class="field"><span>직접 쓰기 (선택)</span><textarea name="text" maxlength="120" rows="2" placeholder="예: 할머니, 끓여 주시던 된장찌개가 그리워요."></textarea></label>
     <label class="field"><span>이름 (선택)</span><input name="name" maxlength="16"></label>
     <fieldset class="field"><legend>등불 빛깔</legend>
       <div class="choice-row" id="lantern-colors">
@@ -471,7 +470,10 @@
 
 <dialog id="dlg-onboard" class="sheet">
   <form method="dialog" class="sheet-body">
-    <h2>처음 오셨나요? 이렇게 하시면 돼요</h2>
+    <h2>조문 안내 <small>언제든 왼쪽 아래 📖 버튼으로 다시 볼 수 있어요</small></h2>
+    <p class="field-label">조문 순서 <small>누르면 그 단계로 바로 가요</small></p>
+    <ol class="onboard-steps" id="onboard-steps"></ol>
+    <p class="field-label">조작 방법</p>
     <ol class="onboard">
       <li><b>👆 걷기</b>화면에서 가고 싶은 곳을 누르면 걸어가요. 화면을 끌면 고개를 돌려요.</li>
       <li><b>✍️ 떠 있는 표시</b>방명록 · 제단 · 상주 · 부의함 위의 표시를 누르면 그 자리로 가서 바로 할 수 있어요. <em>반짝이는 표시</em>가 다음에 할 곳이에요.</li>
@@ -479,9 +481,11 @@
       <li><b>🙏 한 번에 조문하기</b>헌화 · 분향 · 술잔 · 절 두 번 · 상주와 맞절까지 알아서 진행돼요.</li>
     </ol>
     <p class="tip">버튼의 작은 숫자는 조문 순서예요. 두 손가락을 벌리면 확대, 오므리면 축소예요. 끝까지 오므리면 3인칭이 돼요. 내 캐릭터는 위의 ‘내 모습’에서 언제든 꾸밀 수 있어요.</p>
-    <div class="sheet-actions"><button value="ok" class="btn-primary">시작하기</button></div>
+    <div class="sheet-actions"><button value="ok" class="btn-primary">빈소로 돌아가기</button></div>
   </form>
 </dialog>
+<button type="button" id="btn-guidebook" class="guidebook" hidden aria-label="조문 안내 다시 보기">📖<span>안내</span></button>
+<button type="button" id="btn-back" class="back-fab" hidden aria-label="이전으로">← 이전</button>
 
 <dialog id="dlg-help" class="sheet small">
   <div class="sheet-body">
@@ -499,6 +503,6 @@
 </dialog>
 
 <noscript><p class="noscript">이 빈소는 자바스크립트가 필요합니다.</p></noscript>
-<script type="module" src="./assets/app-6PFZD3B7.js"></script>
+<script type="module" src="./assets/app-YI7MTFMQ.js"></script>
 </body>
 </html>
