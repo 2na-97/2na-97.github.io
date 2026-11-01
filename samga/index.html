@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=Noto+Serif+KR:wght@600;700&family=Nanum+Brush+Script&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./assets/samga-NTRAAYDE.css">
+<link rel="stylesheet" href="./assets/samga-AZMAHVPL.css">
 </head>
 <body>
 <div id="stage" aria-hidden="true"></div>
@@ -432,16 +432,16 @@
         <p class="tip">저작권이 있는 음원은 유가족이 사용 권리를 가진 경우에만 올려 주세요.</p>
       </section>
       <section data-panel="money" hidden>
-        <div class="two">
-          <label class="field"><span>은행</span><input name="account.bank" placeholder="예: 국민"></label>
-          <label class="field"><span>예금주</span><input name="account.holder"></label>
-        </div>
-        <label class="field"><span>계좌번호</span><input name="account.number" inputmode="numeric"></label>
+        <p class="field-label">상주별 조의금 계좌 <small>조문객이 아는 상주를 골라 그 계좌로 보내요</small></p>
+        <div id="accounts-edit" class="accounts-edit"></div>
+        <button type="button" class="btn-ghost" id="acc-add">＋ 계좌 추가</button>
         <label class="field"><span>카카오페이 송금 링크 (선택)</span><input name="kakaopayLink" placeholder="https://qr.kakaopay.com/..."></label>
         <label class="check"><input type="checkbox" name="toss"> 토스로 보내기 버튼 보이기 (휴대폰에서 토스 앱이 열려요)</label>
         <p class="tip">계좌 정보는 공개된 웹페이지에 실립니다. 공개하기 전에 꼭 확인해 주세요.</p>
       </section>
       <section data-panel="ledger" hidden>
+        <div class="ledger-head"><strong>조문객별 방명록 · 조의금</strong><button type="button" class="btn-ghost" id="csv-people">CSV 받기</button></div>
+        <div id="ledger-people" class="ledger-table"></div>
         <div class="ledger-head"><strong>조의금 기록</strong><button type="button" class="btn-ghost" id="csv-condolence">CSV 받기</button></div>
         <div id="ledger-money" class="ledger"></div>
         <div class="ledger-head"><strong>방명록</strong><button type="button" class="btn-ghost" id="csv-guestbook">CSV 받기</button></div>
@@ -490,7 +490,7 @@
       <li><b>걷기</b> 바닥을 누르기 · W A S D · 방향키</li>
       <li><b>둘러보기</b> 화면 끌기 · Q / E 로 돌기</li>
       <li><b>확대</b> 마우스 휠 · 두 손가락 · + / −</li>
-      <li><b>상호작용</b> 물건이나 사람을 누르기 · 가까이 가서 스페이스</li>
+      <li><b>상호작용</b> 떠 있는 표시나 물건 · 사람을 누르기</li>
       <li><b>예법 동작</b> 아래 버튼 · 숫자 1–4</li>
       <li><b>말하기</b> T · 조문 순서 G</li>
     </ul>
@@ -499,6 +499,6 @@
 </dialog>
 
 <noscript><p class="noscript">이 빈소는 자바스크립트가 필요합니다.</p></noscript>
-<script type="module" src="./assets/app-ZDXBGKXU.js"></script>
+<script type="module" src="./assets/app-MINJNWRO.js"></script>
 </body>
 </html>

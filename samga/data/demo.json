@@ -122,5 +122,25 @@
     "blush": false,
     "height": 1.07
   },
-  "hostKeyHash": "be79850ceeb8492d3e5e4de7eeec30c5428ec32a297dfbdc2358607aea0a3806"
+  "hostKeyHash": "be79850ceeb8492d3e5e4de7eeec30c5428ec32a297dfbdc2358607aea0a3806",
+  "accounts": [
+    {
+      "name": "장남 이OO",
+      "bank": "OO은행",
+      "number": "000-0000-0000-01",
+      "holder": "이OO (예시)"
+    },
+    {
+      "name": "장녀 이OO",
+      "bank": "OO은행",
+      "number": "000-0000-0000-02",
+      "holder": "이OO (예시)"
+    },
+    {
+      "name": "손녀 이OO",
+      "bank": "OO은행",
+      "number": "000-0000-0000-03",
+      "holder": "이OO (예시)"
+    }
+  ]
 }
